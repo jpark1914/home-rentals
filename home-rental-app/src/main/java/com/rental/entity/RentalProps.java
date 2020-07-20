@@ -24,17 +24,22 @@ public class RentalProps {
 	@Column(name="START_DATE")
 	private Date startDate;
 	
+	@Column(name="TERM")
+	private int term;
+	
 	@Column(name="RENT")
 	private double rent;
+	
 	
 	public RentalProps() {
 		super();
 	}
 
-	public RentalProps(int userId, Date startDate, double rent) {
+	public RentalProps(int userId, Date startDate, int term, double rent) {
 		super();
 		this.userId = userId;
 		this.startDate = startDate;
+		this.term = term;
 		this.rent = rent;
 	}
 
@@ -70,10 +75,18 @@ public class RentalProps {
 		this.rent = rent;
 	}
 
+	public int getTerm() {
+		return term;
+	}
+
+	public void setTerm(int term) {
+		this.term = term;
+	}
+
 	@Override
 	public String toString() {
-		return "RentalProps [unitId=" + unitId + ", userId=" + userId + ", startDate=" + startDate + ", rent=" + rent
-				+ "]";
+		return "RentalProps [unitId=" + unitId + ", userId=" + userId + ", startDate=" + startDate + ", term=" + term
+				+ ", rent=" + rent + "]";
 	}
-	
+
 }
