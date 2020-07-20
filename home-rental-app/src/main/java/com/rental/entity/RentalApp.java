@@ -1,10 +1,13 @@
 package com.rental.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,7 @@ public class RentalApp {
 	@Column(name="FORM_ID")
 	private int formId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	private transient Long userId;
 	
 	@Column(name="PRIOR_ADDR")
 	private String priorAddress;
@@ -76,38 +78,25 @@ public class RentalApp {
 	@Column(name="CONTACT_PERSON_PHONE")
 	private long contactPersonPhone;
 	
+	//Data Model Mappings
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
+	
+	//Getters and Setters
+	public RentalUsers getRentalUser() {
+		return rentalUser;
+	}
+
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
 	public RentalApp() {
 		super();
 	}
-
-	public RentalApp(int userId, String priorAddress, String priorCity, String priorState, String priorZip,
-			int timeAtPresentAddr, int timeAtPriorAddr, String priorLandlord, long landlordPhone, int numberOccAdults,
-			int numberOccChildren, int numberPets, int petsWeight, String employer, String occupation,
-			double currentSalary, int timeEmployed, String contactPersonFName, String contactPersonLName,
-			long contactPersonPhone) {
-		super();
-		this.userId = userId;
-		this.priorAddress = priorAddress;
-		this.priorCity = priorCity;
-		this.priorState = priorState;
-		this.priorZip = priorZip;
-		this.timeAtPresentAddr = timeAtPresentAddr;
-		this.timeAtPriorAddr = timeAtPriorAddr;
-		this.priorLandlord = priorLandlord;
-		this.landlordPhone = landlordPhone;
-		this.numberOccAdults = numberOccAdults;
-		this.numberOccChildren = numberOccChildren;
-		this.numberPets = numberPets;
-		this.petsWeight = petsWeight;
-		this.employer = employer;
-		this.occupation = occupation;
-		this.currentSalary = currentSalary;
-		this.timeEmployed = timeEmployed;
-		this.contactPersonFName = contactPersonFName;
-		this.contactPersonLName = contactPersonLName;
-		this.contactPersonPhone = contactPersonPhone;
-	}
-
+	
 	public int getFormId() {
 		return formId;
 	}
@@ -116,11 +105,11 @@ public class RentalApp {
 		this.formId = formId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

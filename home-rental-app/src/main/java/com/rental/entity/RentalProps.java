@@ -2,11 +2,14 @@ package com.rental.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +21,8 @@ public class RentalProps {
 	@Column(name="UNIT_ID")
 	private int unitId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+
+	private transient Long userId;
 	
 	@Column(name="START_DATE")
 	private Date startDate;
@@ -30,19 +33,21 @@ public class RentalProps {
 	@Column(name="RENT")
 	private double rent;
 	
+	public RentalUsers getRentalUser() {
+		return rentalUser;
+	}
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
 	
 	public RentalProps() {
 		super();
 	}
-
-	public RentalProps(int userId, Date startDate, int term, double rent) {
-		super();
-		this.userId = userId;
-		this.startDate = startDate;
-		this.term = term;
-		this.rent = rent;
-	}
-
 	public int getUnitId() {
 		return unitId;
 	}
@@ -51,11 +56,11 @@ public class RentalProps {
 		this.unitId = unitId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

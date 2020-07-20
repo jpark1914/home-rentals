@@ -1,10 +1,13 @@
 package com.rental.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,8 @@ public class VehicleInfo {
 	@Column(name="CAR_ID")
 	private int carId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	
+	private transient Long userId;
 	
 	@Column(name="MAKE")
 	private String make;
@@ -37,20 +40,15 @@ public class VehicleInfo {
 	@Column(name="STATE")
 	private String state;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
 	public VehicleInfo() {
 		super();
 	}
 
-	public VehicleInfo(int userId, String make, String model, int year, String color, int tagNumber, String state) {
-		super();
-		this.userId = userId;
-		this.make = make;
-		this.model = model;
-		this.year = year;
-		this.color = color;
-		this.tagNumber = tagNumber;
-		this.state = state;
-	}
+	
 
 	public int getCarId() {
 		return carId;
@@ -60,13 +58,25 @@ public class VehicleInfo {
 		this.carId = carId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
+	public RentalUsers getRentalUser() {
+		return rentalUser;
+	}
+
+
+
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
+
 
 	public String getMake() {
 		return make;

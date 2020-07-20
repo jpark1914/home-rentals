@@ -1,10 +1,13 @@
 package com.rental.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,7 @@ public class OtherInfo {
 	@Column(name="OTHER_ID")
 	private int otherId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	private transient long userId;
 	
 	@Column(name="BANKRUPTCY")
 	private boolean bankruptcy;
@@ -34,19 +36,21 @@ public class OtherInfo {
 	@Column(name="REFERRAL")
 	private String referral;
 	
-	public OtherInfo() {
-		super();
+	//Data Model Mappings
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
+	public RentalUsers getRentalUser() {
+		return rentalUser;
 	}
 
-	public OtherInfo(int userId, boolean bankruptcy, boolean evictNotice, boolean refusedRentPay,
-			boolean suedForUnlawfulDetainer, String referral) {
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
+	public OtherInfo() {
 		super();
-		this.userId = userId;
-		this.bankruptcy = bankruptcy;
-		this.evictNotice = evictNotice;
-		this.refusedRentPay = refusedRentPay;
-		this.suedForUnlawfulDetainer = suedForUnlawfulDetainer;
-		this.referral = referral;
 	}
 
 	public int getOtherId() {
@@ -57,11 +61,11 @@ public class OtherInfo {
 		this.otherId = otherId;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
