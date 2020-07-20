@@ -8,37 +8,40 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="RENTAL_USERS")
 public class RentalUsers {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="USER_SEQ")
 	@Column(name="USER_ID")
-	private int userId;
+	private long userId;
 	
-	@Column(name="EMAIL")
+	@Column(name="EMAIL", unique = true)
 	private String email;
 	
 	@Column(name="PASSWORD")
 	private String password;
+	
+	@Column(name="IS_ADMIN")
+	private String isAdmin;
 	
 	public RentalUsers() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public RentalUsers(int userId, String email, String password) {
+	public RentalUsers( String email, String password, String isAdmin) {
 		super();
-		this.userId = userId;
 		this.email = email;
 		this.password = password;
+		this.isAdmin = isAdmin;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
@@ -57,7 +60,14 @@ public class RentalUsers {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getIsAdmin() {
+		return this.isAdmin;
+	}
 
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	@Override
 	public String toString() {
 		return "RentalUsers [userId=" + userId + ", email=" + email + ", password=" + password + "]";
