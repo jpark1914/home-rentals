@@ -2,11 +2,14 @@ package com.rental.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +21,8 @@ public class SpouseInfo {
 	@Column(name="SPOUSE_ID")
 	private int spouseId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	
+	private transient Long userId;
 	
 	@Column(name="SPOUSE_NAME")
 	private String spouseName;
@@ -54,28 +57,27 @@ public class SpouseInfo {
 	@Column(name="CONTACT_PHONE")
 	private long contactPhone;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
+	public RentalUsers getRentalUser() {
+		return rentalUser;
+	}
+
+
+
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
+
+
 	public SpouseInfo() {
 		super();
 	}
 
-	public SpouseInfo(int spouseId, int userId, String spouseName, Date dOB, long spousePhone, long ssn,
-			String driverLicense, String employer, String occupation, double salary, int timeEmployed,
-			String contactPerson, long contactPhone) {
-		super();
-		this.spouseId = spouseId;
-		this.userId = userId;
-		this.spouseName = spouseName;
-		DOB = dOB;
-		this.spousePhone = spousePhone;
-		this.ssn = ssn;
-		this.driverLicense = driverLicense;
-		this.employer = employer;
-		this.occupation = occupation;
-		this.salary = salary;
-		this.timeEmployed = timeEmployed;
-		this.contactPerson = contactPerson;
-		this.contactPhone = contactPhone;
-	}
+
 
 	public int getSpouseId() {
 		return spouseId;
@@ -85,11 +87,11 @@ public class SpouseInfo {
 		this.spouseId = spouseId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

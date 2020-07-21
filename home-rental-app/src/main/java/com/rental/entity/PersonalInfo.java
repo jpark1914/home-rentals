@@ -2,74 +2,86 @@ package com.rental.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="PERSONAL_INFO")
 public class PersonalInfo {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO )
 	@Column
 	private int personId;
-	@Column
-	private int userId;
+	
+	private transient Long userId;
+	
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	@Column
 	private Date dateOfbirth;
+	
 	@Column
 	private String firstName;
+	
 	@Column
 	private String lastName;
+	
 	@Column
 	private long phoneNumber;
-	@Column
+	
+	@Column(unique = true)
 	private long driverLicense;
-	@Column
+	
+	@Column(unique = true)
 	private long ssn;
+	
 	@Column
 	private String address;
+	
 	@Column
 	private String city;
+	
 	@Column
 	private String state;
+	
 	@Column
 	private int zip;
 	
+	// Make instance of class to make reference to that classes Primary Key	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
 	
-	public PersonalInfo( int userId, Date dateOfbirth, String firstName, String lastName, long phoneNumber,
-			long driverLicense, long ssn, String address, String city, String state, int zip) {
-		super();
-		this.userId = userId;
-		this.dateOfbirth = dateOfbirth;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phoneNumber = phoneNumber;
-		this.driverLicense = driverLicense;
-		this.ssn = ssn;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-	}
+	
+	
 	public PersonalInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	//Getter and Setters
+	
 	public int getPersonId() {
 		return personId;
 	}
 	public void setPersonId(int personId) {
 		this.personId = personId;
 	}
-	public int getUserId() {
+	
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	public Date getDateOfbirth() {
@@ -133,6 +145,16 @@ public class PersonalInfo {
 		this.zip = zip;
 	}
 	
+	
+	
+	public RentalUsers getRentalUser() {
+		return rentalUser;
+	}
+
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
 	@Override
 	public String toString() {
 		return "PersonalInfo [personId=" + personId + ", userId=" + userId + ", dateOfbirth=" + dateOfbirth
