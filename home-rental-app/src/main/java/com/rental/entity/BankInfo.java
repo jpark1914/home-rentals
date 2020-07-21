@@ -1,10 +1,13 @@
 package com.rental.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,7 @@ public class BankInfo {
 	@Column(name="BANK_ID")
 	private int bankId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	private transient Long userId;
 	
 	@Column(name="BANK_NAME")
 	private String bankName;
@@ -43,23 +45,24 @@ public class BankInfo {
 	@Column(name="SAVINGS_NO")
 	private long savingsAccNo;
 	
+	//Model Mapping
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
+	
 	public BankInfo() {
 		super();
 	}
-
-	public BankInfo(int userId, String bankName, long phoneNumber, String bankAddress, String bankCity,
-			String bankState, int bankZip, long checkingAccNo, long savingsAccNo) {
-		super();
-		this.userId = userId;
-		this.bankName = bankName;
-		this.phoneNumber = phoneNumber;
-		this.bankAddress = bankAddress;
-		this.bankCity = bankCity;
-		this.bankState = bankState;
-		this.bankZip = bankZip;
-		this.checkingAccNo = checkingAccNo;
-		this.savingsAccNo = savingsAccNo;
+	
+	public RentalUsers getRentalUser() {
+		return rentalUser;
 	}
+
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
+	}
+
 
 	public int getBankId() {
 		return bankId;
@@ -69,11 +72,11 @@ public class BankInfo {
 		this.bankId = bankId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

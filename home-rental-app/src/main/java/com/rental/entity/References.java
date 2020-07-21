@@ -1,10 +1,13 @@
 package com.rental.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +19,7 @@ public class References {
 	@Column(name="REF_ID")
 	private int refId;
 	
-	@Column(name="USER_ID")
-	private int userId;
+	private transient Long userId;
 	
 	@Column(name="REF_FIRST_NAME")
 	private String refFirstName;
@@ -49,25 +51,24 @@ public class References {
 	@Column(name="GRANTOR_NO")
 	private long grantorNo;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "USER_ID")
+	private RentalUsers rentalUser;
+	
 	public References() {
 		super();
 	}
-
-	public References(int userId, String refFirstName, String refLastName, String relationship, long phoneNo,
-			String creditGrantor, String address, String city, String state, int zip, long grantorNo) {
-		super();
-		this.userId = userId;
-		this.refFirstName = refFirstName;
-		this.refLastName = refLastName;
-		this.relationship = relationship;
-		this.phoneNo = phoneNo;
-		this.creditGrantor = creditGrantor;
-		this.address = address;
-		this.city = city;
-		this.state = state;
-		this.zip = zip;
-		this.grantorNo = grantorNo;
+	
+	
+	public RentalUsers getRentalUsers() {
+		return rentalUser;
 	}
+
+
+	public void setRentalUsers(RentalUsers rentalUsers) {
+		this.rentalUser = rentalUsers;
+	}
+
 
 	public int getRefId() {
 		return refId;
@@ -77,11 +78,11 @@ public class References {
 		this.refId = refId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
