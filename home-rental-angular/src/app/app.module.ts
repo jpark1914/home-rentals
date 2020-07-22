@@ -8,8 +8,7 @@ import { LandingPageComponent } from './page-components/landing-page/landing-pag
 import { UserLoginPageComponent } from './page-components/user-login-page/user-login-page.component';
 import { AdminLoginPageComponent } from './page-components/admin-login-page/admin-login-page.component';
 import { LoginHeaderComponent } from './components/login-header/login-header.component';
-import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
-import { AdminLoginFormComponent } from './components/admin-login-form/admin-login-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { AdminLoginFormComponent } from './components/admin-login-form/admin-log
     UserLoginPageComponent,
     AdminLoginPageComponent,
     LoginHeaderComponent,
-    UserLoginFormComponent,
-    AdminLoginFormComponent
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
