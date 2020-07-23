@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 
 @Injectable({
@@ -13,6 +15,7 @@ export class LoginService {
     let user: RentalUser = { email, password, isAdmin };
     this.http.post<RentalUser>(environment.getUsersUrl, user).subscribe((returnedUser) => {
       this.loggedInUser = returnedUser;
+      this.redirect();
     });
   }
 
@@ -20,9 +23,10 @@ export class LoginService {
     if (this.loggedInUser === null) {
       console.log("User did not log in");
     } else {
-      console.log(`User ${loggedInUser} logged in`);
+      console.log(`User ${this.loggedInUser} logged in`);
+      this.router.navigate(['/landing']);
     }
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 }
