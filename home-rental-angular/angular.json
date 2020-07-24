@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "home-rental-angular"
+    }
+  },
+  "defaultProject": "home-rental-angular",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,8 +10,7 @@ import { LandingPageComponent } from './page-components/landing-page/landing-pag
 import { UserLoginPageComponent } from './page-components/user-login-page/user-login-page.component';
 import { AdminLoginPageComponent } from './page-components/admin-login-page/admin-login-page.component';
 import { LoginHeaderComponent } from './components/login-header/login-header.component';
-import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
-import { AdminLoginFormComponent } from './components/admin-login-form/admin-login-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,14 @@ import { AdminLoginFormComponent } from './components/admin-login-form/admin-log
     UserLoginPageComponent,
     AdminLoginPageComponent,
     LoginHeaderComponent,
-    UserLoginFormComponent,
-    AdminLoginFormComponent
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
