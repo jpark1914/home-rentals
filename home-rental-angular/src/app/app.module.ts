@@ -9,9 +9,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingPageComponent } from './page-components/landing-page/landing-page.component';
 import { UserLoginPageComponent } from './page-components/user-login-page/user-login-page.component';
 import { AdminLoginPageComponent } from './page-components/admin-login-page/admin-login-page.component';
-import { LoginHeaderComponent } from './components/login-header/login-header.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { FooterComponent } from './components/footer/footer.component';
     LandingPageComponent,
     UserLoginPageComponent,
     AdminLoginPageComponent,
-    LoginHeaderComponent,
     LoginFormComponent,
-    FooterComponent
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
