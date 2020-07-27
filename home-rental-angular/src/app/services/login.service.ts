@@ -9,14 +9,18 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 })
 export class LoginService {
 
-  loggedInUser: RentalUser = null;
+  private loggedInUser: RentalUser = null;
 
-  isLoggedIn() {
+  isLoggedIn() : boolean {
     return this.loggedInUser !== null;
   }
 
   logout() {
     this.loggedInUser = null;
+  }
+
+  getLoggedInUser() : RentalUser {
+    return this.loggedInUser;
   }
 
   login(email, password, isAdmin) {
