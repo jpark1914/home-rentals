@@ -11,6 +11,7 @@ import { UserLoginPageComponent } from './page-components/user-login-page/user-l
 import { AdminLoginPageComponent } from './page-components/admin-login-page/admin-login-page.component';
 import { LoginHeaderComponent } from './components/login-header/login-header.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     UserLoginPageComponent,
     AdminLoginPageComponent,
     LoginHeaderComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
