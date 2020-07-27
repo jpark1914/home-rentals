@@ -11,6 +11,14 @@ export class LoginService {
 
   loggedInUser: RentalUser = null;
 
+  isLoggedIn() {
+    return this.loggedInUser !== null;
+  }
+
+  logout() {
+    this.loggedInUser = null;
+  }
+
   login(email, password, isAdmin) {
     let user: RentalUser = { email, password, isAdmin };
     this.http.post<RentalUser>(environment.getUsersUrl, user).subscribe((returnedUser) => {
@@ -19,7 +27,7 @@ export class LoginService {
     });
   }
 
-  redirect() {
+  private redirect() {
     if (this.loggedInUser === null) {
       console.log("User did not log in");
     } else {

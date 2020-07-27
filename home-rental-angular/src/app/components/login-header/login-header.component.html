@@ -2,6 +2,7 @@
   <div class="flex-fill d-flex">
     <h4 class="my-3 mx-2" routerLink="/landing">Home Rentals</h4>
   </div>
-  <h6 class="mt-4 mb-3 mx-3" routerLink="/login-user">Login</h6>
-  <h6 class="mt-4 mb-3 mx-3" routerLink="/login-admin">Admin Login</h6>
+  <h6 class="mt-4 mb-3 mx-3" routerLink="/login-user" *ngIf="!ls.isLoggedIn()">Login</h6>
+  <h6 class="mt-4 mb-3 mx-3" routerLink="/login-admin" *ngIf="!ls.isLoggedIn()">Admin Login</h6>
+  <h6 class="mt-4 mb-3 mx-3" routerLink="/login-user" *ngIf="ls.isLoggedIn()">Logout</h6>
 </header>

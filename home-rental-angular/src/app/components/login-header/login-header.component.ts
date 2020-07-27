@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login-header',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public ls: LoginService) { }
 
   ngOnInit(): void {
+
   }
 
 }
