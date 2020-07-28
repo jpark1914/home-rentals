@@ -12,6 +12,8 @@ import { AdminLoginPageComponent } from './page-components/admin-login-page/admi
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { PersonalInfoPageComponent } from './page-components/personal-info-page/personal-info-page.component';
+import { PersonalInfoFormComponent } from './components/personal-info-form/personal-info-form.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HeaderComponent } from './components/header/header.component';
     AdminLoginPageComponent,
     LoginFormComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    PersonalInfoPageComponent,
+    PersonalInfoFormComponent,
   ],
   imports: [
     BrowserModule,
