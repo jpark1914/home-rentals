@@ -8,7 +8,7 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
   providedIn: 'root'
 })
 export class LoginService {
-  
+
   loggedInUser: RentalUser = null;
 
   login(email, password, isAdmin) {
@@ -23,7 +23,7 @@ export class LoginService {
     if (this.loggedInUser === null) {
       console.log("User did not log in");
     } else {
-      console.log(`User ${this.loggedInUser} logged in`);
+      console.log(`User ${this.loggedInUser.email} logged in`);
       this.router.navigate(['/landing']);
     }
   }
