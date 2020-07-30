@@ -298,3 +298,6 @@ INSERT INTO RENTAL_USERS VALUES(0, 'maurieg@gmail.com', 'StevieRay5!') [21002-20
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
 	at java.lang.Thread.run(Thread.java:748)
+2020-07-30 16:29:49 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE TABLE[*] RENTAL_USERS SET PASSWORD = '$2y$12$YiGE/M4QxMm6MMrwQSI6rOu3M6lxtDULjnBGse3SwIKQsK4KGKfGe' WHERE USER_ID = 0"; expected "identifier"; SQL statement:
+UPDATE TABLE RENTAL_USERS SET PASSWORD = '$2y$12$YiGE/M4QxMm6MMrwQSI6rOu3M6lxtDULjnBGse3SwIKQsK4KGKfGe' WHERE USER_ID = 0 [42001-200]

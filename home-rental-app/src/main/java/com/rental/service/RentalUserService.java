@@ -22,6 +22,9 @@ public class RentalUserService {
 		}
 		return null;
 	}
-		
 	
+	public void save(RentalUsers user) {
+		rur.save(user);
+	}
+			
 }
