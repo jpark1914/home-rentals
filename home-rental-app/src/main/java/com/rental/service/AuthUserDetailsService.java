@@ -38,15 +38,8 @@ public class AuthUserDetailsService implements UserDetailsService {
 	            throw new UsernameNotFoundException(email);
 	        } 
 		 
-<<<<<<< HEAD:home-rental-app/src/main/java/com/rental/service/JwtUserDetailsService.java
-		 if (user.getIsAdmin() != null) {
-			 if(user.getIsAdmin().equals("ADMIN")) {
-				 roles.add(new AdminAuthority());
-			 }
-=======
 		 if(user.getIsAdmin() != null && user.getIsAdmin().equals("ADMIN")) {
 			 roles.add(new AdminAuthority());
->>>>>>> 68fe88b2f960511ed900388c506748623480f598:home-rental-app/src/main/java/com/rental/service/AuthUserDetailsService.java
 		 }
 		 
 		return new User(user.getEmail(),user.getPassword(),roles);

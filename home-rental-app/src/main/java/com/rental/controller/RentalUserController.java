@@ -20,26 +20,12 @@ import com.rental.service.RentalUserService;
 public class RentalUserController {
 	
 	public RentalUserService rus;
-<<<<<<< HEAD
-	
-	@Autowired
-	public PasswordEncoder passwordEncoder;
-	
-//	@Autowired
-//	public RentalUserController(PasswordEncoder passwordEncoder) {
-//		this.passwordEncoder = passwordEncoder;
-//	}
-	
-	@Autowired
-	public RentalUserController(RentalUserService rus) {
-=======
 	
 	public PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public RentalUserController(RentalUserService rus, PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
->>>>>>> 68fe88b2f960511ed900388c506748623480f598
 		this.rus = rus;
 	}
 	
