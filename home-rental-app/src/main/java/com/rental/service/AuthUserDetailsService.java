@@ -16,11 +16,16 @@ import com.rental.entity.RentalUsers;
 import com.rental.repo.RentalUserRepo;
 
 @Service
-public class JwtUserDetailsService implements UserDetailsService {
+public class AuthUserDetailsService implements UserDetailsService {
 	
-	@Autowired
+	
 	private RentalUserRepo userRepo;
 	
+	@Autowired
+	public void setUserRepo(RentalUserRepo userRepo) {
+		this.userRepo = userRepo;
+	}
+
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
@@ -33,13 +38,19 @@ public class JwtUserDetailsService implements UserDetailsService {
 	            throw new UsernameNotFoundException(email);
 	        } 
 		 
+<<<<<<< HEAD:home-rental-app/src/main/java/com/rental/service/JwtUserDetailsService.java
 		 if (user.getIsAdmin() != null) {
 			 if(user.getIsAdmin().equals("ADMIN")) {
 				 roles.add(new AdminAuthority());
 			 }
+=======
+		 if(user.getIsAdmin() != null && user.getIsAdmin().equals("ADMIN")) {
+			 roles.add(new AdminAuthority());
+>>>>>>> 68fe88b2f960511ed900388c506748623480f598:home-rental-app/src/main/java/com/rental/service/AuthUserDetailsService.java
 		 }
 		 
 		return new User(user.getEmail(),user.getPassword(),roles);
+		//return new User("test@example.com","password", new ArrayList<>());
 	}
 	
 }

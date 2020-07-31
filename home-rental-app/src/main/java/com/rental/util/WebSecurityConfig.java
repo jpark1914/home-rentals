@@ -12,23 +12,34 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.rental.service.AuthUserDetailsService;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	private UserDetailsService userDetailsService;
+	
 	@Autowired
-	private UserDetailsService jwtUserDetailsService;
-		
+	public void setUserDetailsService(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
+
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// configure AuthenticationManager so that it knows from where to load
 		// user for matching credentials
 		// Use BCryptPasswordEncoder
-		auth.userDetailsService(jwtUserDetailsService);
+		auth.userDetailsService(userDetailsService);
 		//.passwordEncoder(passwordEncoder());
-		//auth.inMemoryAuthentication().withUser("Test").password(passwordEncoder().encode("password")).roles("USER");
+		//auth.inMemoryAuthentication().withUser("rama@gmail.com").password(passwordEncoder().encode("password")).roles("USER");
 	}
+	
+//	@Bean
+//	public UserDetailsService userDetailsService() {
+//		return new AuthUserDetailsService();
+//	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {

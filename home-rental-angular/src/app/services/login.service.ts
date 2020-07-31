@@ -9,7 +9,19 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 })
 export class LoginService {
 
-  loggedInUser: RentalUser = null;
+  private loggedInUser: RentalUser = null;
+
+  isLoggedIn() : boolean {
+    return this.loggedInUser !== null;
+  }
+
+  logout() {
+    this.loggedInUser = null;
+  }
+
+  getLoggedInUser() : RentalUser {
+    return this.loggedInUser;
+  }
 
   login(email, password, isAdmin) {
     let user: RentalUser = { email, password, isAdmin };
@@ -19,7 +31,7 @@ export class LoginService {
     });
   }
 
-  redirect() {
+  private redirect() {
     if (this.loggedInUser === null) {
       console.log("User did not log in");
     } else {
