@@ -31,12 +31,14 @@ public class JwtUserDetailsService implements UserDetailsService {
 		 
 		 if (user == null) {
 	            throw new UsernameNotFoundException(email);
-	        }
+	        } 
 		 
-		 if(user.getIsAdmin().equals("ADMIN")) {
-			 roles.add(new AdminAuthority());
+		 if (user.getIsAdmin() != null) {
+			 if(user.getIsAdmin().equals("ADMIN")) {
+				 roles.add(new AdminAuthority());
+			 }
 		 }
-		
+		 
 		return new User(user.getEmail(),user.getPassword(),roles);
 	}
 	

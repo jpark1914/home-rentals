@@ -16,12 +16,14 @@ import com.rental.service.RentalUserService;
 @RequestMapping("/users")
 public class RentalUserController {
 	public RentalUserService rus;
-	public PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public RentalUserController(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
+	public PasswordEncoder passwordEncoder;
+	
+//	@Autowired
+//	public RentalUserController(PasswordEncoder passwordEncoder) {
+//		this.passwordEncoder = passwordEncoder;
+//	}
 	
 	@Autowired
 	public RentalUserController(RentalUserService rus) {
