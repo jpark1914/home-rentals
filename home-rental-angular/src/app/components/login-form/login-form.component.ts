@@ -15,13 +15,13 @@ export class LoginFormComponent implements OnInit {
   password: string = "";
 
   onSubmit() {
-    this.loginService.login(this.email, this.password, this.isAdmin);
+    //this.loginService.login(this.email, this.password, this.isAdmin);
   }
 
   constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.loginService.logout();
+    //this.loginService.logout();
   }
 
 }

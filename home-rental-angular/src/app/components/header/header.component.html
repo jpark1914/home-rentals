@@ -3,6 +3,7 @@
     <h4 class="my-3 mx-2" routerLink="/landing">Home Rentals</h4>
   </div>
   <div class="mt-3 mb-2 mx-3" ngbDropdown *ngIf="!ls.isLoggedIn()">
+    <button class="btn" type="button" routerLink="/register">Register</button>
     <button class="btn dropdown-toggle" type="button" id="loginButton" ngbDropdownToggle>
       Login
     </button>

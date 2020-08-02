@@ -14,6 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PersonalInfoPageComponent } from './page-components/personal-info-page/personal-info-page.component';
 import { PersonalInfoFormComponent } from './components/personal-info-form/personal-info-form.component';
+import { RegisterPageComponent } from './page-components/register-page/register-page.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { PersonalInfoFormComponent } from './components/personal-info-form/perso
     HeaderComponent,
     PersonalInfoPageComponent,
     PersonalInfoFormComponent,
+    RegisterPageComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,
