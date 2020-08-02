@@ -26,5 +26,9 @@ public class RentalUserService {
 	public void save(RentalUsers user) {
 		rur.save(user);
 	}
+	
+	public long numUsers() {
+		return rur.count();
+	}
 			
 }

@@ -39,11 +39,11 @@ public class RentalUserController {
 	
 	@PostMapping(value = "/save")
 	public String newUser(@RequestBody RentalUsers user) {
-		RentalUsers newUser = new RentalUsers();
-		newUser.setEmail(user.getEmail());
-		newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-		newUser.setIsAdmin(user.getIsAdmin());
-		rus.save(newUser);
+		if (user.getUserId() == null) {
+			user.setUserId(rus.numUsers());
+		}
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		rus.save(user);
 		return "Success";
 	}
 	
