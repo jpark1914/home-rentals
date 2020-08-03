@@ -11,7 +11,8 @@ export class LoginService {
 
   private loggedInUser: RentalUser = null;
 
-  isLoggedIn() : boolean {
+
+  isLoggedIn(): boolean {
     return this.loggedInUser !== null;
   }
 
@@ -19,16 +20,22 @@ export class LoginService {
     this.loggedInUser = null;
   }
 
-  getLoggedInUser() : RentalUser {
+  getLoggedInUser(): RentalUser {
     return this.loggedInUser;
   }
 
-  login(email, password, isAdmin) {
-    let user: RentalUser = { email, password, isAdmin };
-    this.http.post<RentalUser>(environment.getUsersUrl, user).subscribe((returnedUser) => {
-      this.loggedInUser = returnedUser;
-      this.redirect();
-    });
+  login(email, password) {
+    // let user: RentalUser = { email, password, isAdmin };
+    this.http.get<RentalUser>(environment.getUsersUrl, {
+      headers: {
+        "Authorization": "Basic " + btoa(email + ":" + password)
+      },
+    }).subscribe(res => {
+      console.log("Success " + res.email + " is Logged in.");
+      this.loggedInUser = res;
+
+    }
+    );
   }
 
   private redirect() {

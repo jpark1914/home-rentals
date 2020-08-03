@@ -39,9 +39,9 @@ public class RentalUserController {
 	
 	@PostMapping(value = "/save")
 	public String newUser(@RequestBody RentalUsers user) {
-		if (user.getUserId() == null) {
-			user.setUserId(rus.numUsers());
-		}
+//		if (user.getUserId() == null) {
+//			user.setUserId(rus.numUsers());
+//		}
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		rus.save(user);
 		return "Success";
