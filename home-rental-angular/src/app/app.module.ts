@@ -9,8 +9,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingPageComponent } from './page-components/landing-page/landing-page.component';
 import { UserLoginPageComponent } from './page-components/user-login-page/user-login-page.component';
 import { AdminLoginPageComponent } from './page-components/admin-login-page/admin-login-page.component';
-import { LoginHeaderComponent } from './components/login-header/login-header.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { PersonalInfoPageComponent } from './page-components/personal-info-page/personal-info-page.component';
+import { PersonalInfoFormComponent } from './components/personal-info-form/personal-info-form.component';
+import { RegisterPageComponent } from './page-components/register-page/register-page.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { PasswordDirective } from './directives/password.directive';
 
 @NgModule({
   declarations: [
@@ -18,8 +24,14 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     LandingPageComponent,
     UserLoginPageComponent,
     AdminLoginPageComponent,
-    LoginHeaderComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    FooterComponent,
+    HeaderComponent,
+    PersonalInfoPageComponent,
+    PersonalInfoFormComponent,
+    RegisterPageComponent,
+    RegisterFormComponent,
+    PasswordDirective,
   ],
   imports: [
     BrowserModule,

@@ -23,11 +23,11 @@ public class PersonalInfo {
 	@Column
 	private int personId;
 	
-	private transient Long userId;
+	private transient long userId;
 	
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+//	public void setUserId(long userId) {
+//		this.userId = userId;
+//	}
 
 	@Column
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")

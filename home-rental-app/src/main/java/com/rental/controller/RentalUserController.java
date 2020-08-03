@@ -1,7 +1,11 @@
 package com.rental.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,20 +16,35 @@ import com.rental.service.RentalUserService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class RentalUserController {
+	
 	public RentalUserService rus;
 	
+	public PasswordEncoder passwordEncoder;
+	
 	@Autowired
-	public RentalUserController(RentalUserService rus) {
+	public RentalUserController(RentalUserService rus, PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
 		this.rus = rus;
 	}
 	
-	@PostMapping(value = "/getUser")
-	public RentalUsers getUser(@RequestBody RentalUsers user) {
+	@GetMapping(value = "/get")
+	public RentalUsers getUser(@AuthenticationPrincipal UserDetails user) {
 //		System.out.println(user.getEmail());
-		return rus.findUserByEmail(user.getEmail(), user.getPassword());
+		RentalUsers rentalUser = rus.findUserByEmail(user.getUsername());
+		rentalUser.setPassword("");
+		return rentalUser;
 	}
 	
+	@PostMapping(value = "/save")
+	public String newUser(@RequestBody RentalUsers user) {
+		if (user.getUserId() == null) {
+			user.setUserId(rus.numUsers());
+		}
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		rus.save(user);
+		return "Success";
+	}
 	
 }
