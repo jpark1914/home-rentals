@@ -8,6 +8,8 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 })
 export class RegisterFormComponent implements OnInit {
 
+  confirmPassword: string = "";
+
   user : RentalUser = {
     userId: null,
     email: "",

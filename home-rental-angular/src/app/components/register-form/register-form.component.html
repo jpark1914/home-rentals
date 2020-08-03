@@ -6,11 +6,15 @@
     <h6 class="font-weight-bold">Enter Email</h6>
     <input type="email" style="width: 20rem;" class="d-block p-2 mt-2 mb-3" [(ngModel)]="user.email" />
     <h6 class="font-weight-bold">Enter Password</h6>
-    <input type="email" style="width: 20rem;" class="d-block p-2 mt-2 mb-3" [(ngModel)]="user.password" />
+    <div style="width: 20rem;">
+      <input [(ngModel)]="user.password" appPassword />
+    </div>
     <h6 class="font-weight-bold">Confirm Password</h6>
-    <input type="email" style="width: 20rem;" class="d-block p-2 mt-2 mb-3" />
+    <div style="width: 20rem;">
+      <input [(ngModel)]="confirmPassword" appPassword />
+    </div>
     <h6 class="font-weight-bold">Account Type</h6>
-    <div class="btn-group btn-group-toggle d-flex justify-content-center mb-3" ngbRadioGroup name="isAdmin" [(ngModel)]="user.isAdmin">
+    <div class="btn-group btn-group-toggle d-flex justify-content-center mb-4" ngbRadioGroup name="isAdmin" [(ngModel)]="user.isAdmin">
       <label ngbButtonLabel class="btn-info">
         <input ngbButton type="radio" value="USER">User
       </label>
