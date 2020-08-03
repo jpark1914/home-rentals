@@ -16,11 +16,7 @@ public class RentalUserService {
 	}
 	
 	public RentalUsers findUserByEmail(String email) {
-		//RentalUsers pass = rur.passwordExists(password);
-		//if(pass != null) {
 			return rur.findRentalUsersByEmail(email);
-		//}
-		//return null;
 	}
 	
 	public void save(RentalUsers user) {

@@ -9,13 +9,13 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginFormComponent implements OnInit {
 
   @Input()
-  isAdmin : string = null;
+  isAdmin: string = null;
 
   email: string = "";
   password: string = "";
 
   onSubmit() {
-    //this.loginService.login(this.email, this.password, this.isAdmin);
+    this.loginService.login(this.email, this.password);
   }
 
   constructor(private loginService: LoginService) { }
