@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class PersonalInfoController {
 	}
 	
 	@PostMapping(value="/save")
-	public void savePersonalInfo(PersonalInfo pi) {
+	public void savePersonalInfo(@RequestBody PersonalInfo pi) {
 		pis.savePersonalInfo(pi);
 	}
 	
