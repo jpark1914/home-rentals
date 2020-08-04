@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +16,7 @@ import { PersonalInfoFormComponent } from './components/personal-info-form/perso
 import { RegisterPageComponent } from './page-components/register-page/register-page.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { PasswordDirective } from './directives/password.directive';
-import { StorgaeServiceModule, StorageServiceModule } from 'angular-webstorage-service';
+import { StorageServiceModule } from 'ngx-webstorage-service';
 
 @NgModule({
   declarations: [
