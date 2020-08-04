@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
+import { map, tap, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +13,11 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 export class LoginService {
 
   private loggedInUser: RentalUser = null;
+
+  constructor(private http: HttpClient,
+    private router: Router,
+    private messageService: MessageService,
+  ) { }
 
 
   isLoggedIn(): boolean {
@@ -26,26 +34,45 @@ export class LoginService {
 
   login(email, password) {
     // let user: RentalUser = { email, password, isAdmin };
-    this.http.get<RentalUser>(environment.getUsersUrl, {
+    return this.http.get<RentalUser>(environment.getUsersUrl, {
       headers: {
         "Authorization": "Basic " + btoa(email + ":" + password)
       },
-    }).subscribe(res => {
-      console.log("Success " + res.email + " is Logged in.");
-      this.loggedInUser = res;
-
-    }
-    );
+      observe: "response",
+    }).pipe(
+      catchError(this.handleError.bind(this))
+    )
+      .subscribe(this.extractData);
   }
 
-  private redirect() {
-    if (this.loggedInUser === null) {
-      console.log("User did not log in");
-    } else {
-      console.log(`User ${this.loggedInUser.email} logged in`);
-      this.router.navigate(['/landing']);
+  // private redirect() {
+  //   if (this.loggedInUser === null) {
+  //     console.log("User did not log in");
+  //   } else {
+  //     console.log(`User ${this.loggedInUser.email} logged in`);
+  //     this.router.navigate(['/landing']);
+  //   }
+  // }
+
+  private handleError(res: Response) {
+    if (res.status === 401) {
+      console.log("User has been unauthorized.")
+      this.messageService.setMsg("Incorrect email or password");
     }
+    return of(res);
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  private extractData(res: Response) {
+    if (res.status === 200) {
+      let body = res.body;
+      console.log(JSON.stringify(body));
+    }
+    return res;
+  }
+
+  public getCurrUser() {
+    return localStorage.getItem("currUser");
+  }
+
+
 }
