@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -6,6 +6,7 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class LoginService {
   constructor(private http: HttpClient,
     private router: Router,
     private messageService: MessageService,
+    @Inject(LOCAL_STORAGE) private storage: WebStorageService,
   ) { }
 
 

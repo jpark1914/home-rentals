@@ -17,6 +17,7 @@ import { PersonalInfoFormComponent } from './components/personal-info-form/perso
 import { RegisterPageComponent } from './page-components/register-page/register-page.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { PasswordDirective } from './directives/password.directive';
+import { StorgaeServiceModule, StorageServiceModule } from 'angular-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PasswordDirective } from './directives/password.directive';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StorageServiceModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
