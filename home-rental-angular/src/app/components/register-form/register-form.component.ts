@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
+import { RegisterService } from '../../services/register.service'
 
 @Component({
   selector: 'app-register-form',
@@ -10,7 +11,7 @@ export class RegisterFormComponent implements OnInit {
 
   confirmPassword: string = "";
 
-  user : RentalUser = {
+  user: RentalUser = {
     userId: null,
     email: "",
     password: "",
@@ -18,12 +19,13 @@ export class RegisterFormComponent implements OnInit {
   };
 
   onSubmit() {
-    console.log(JSON.stringify(this.user));
+    this.registerService.register(this.user, this.confirmPassword);
   }
 
-  constructor() { }
+  constructor(private registerService: RegisterService) { }
 
   ngOnInit(): void {
+
   }
 
 }

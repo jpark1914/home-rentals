@@ -6,14 +6,12 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { LOCAL_STORAGE, WebStorageService } from 'ngx-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  private loggedInUser: RentalUser = null;
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -23,15 +21,16 @@ export class LoginService {
 
 
   isLoggedIn(): boolean {
-    return this.loggedInUser !== null;
+    return this.storage.get('user') !== undefined;
   }
 
   logout() {
-    this.loggedInUser = null;
+    this.storage.clear();
+    this.router.navigate(['/login-user'])
   }
 
   getLoggedInUser(): RentalUser {
-    return this.loggedInUser;
+    return JSON.parse(this.storage.get('user'));;
   }
 
   login(email, password) {
@@ -44,7 +43,7 @@ export class LoginService {
     }).pipe(
       catchError(this.handleError.bind(this))
     )
-      .subscribe(this.extractData);
+      .subscribe(this.extractData.bind(this));
   }
 
   // private redirect() {
@@ -67,14 +66,12 @@ export class LoginService {
   private extractData(res: Response) {
     if (res.status === 200) {
       let body = res.body;
-      console.log(JSON.stringify(body));
+      console.log(this.storage.get('user'));
+      this.storage.set('user', JSON.stringify(body));
+      console.log(this.storage.get('user'));
+      this.router.navigate(['/landing']);
     }
     return res;
   }
-
-  public getCurrUser() {
-    return localStorage.getItem("currUser");
-  }
-
 
 }

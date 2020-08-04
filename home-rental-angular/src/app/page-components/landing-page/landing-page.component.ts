@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  houseList : object[] = [
+  houseList: object[] = [
     {
       price: "$1,420",
       address1: "4787 Yale Rd",
@@ -27,7 +27,7 @@ export class LandingPageComponent implements OnInit {
       type: "Single Family House"
     },
   ]
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -43,5 +43,7 @@ export class LandingPageComponent implements OnInit {
       });
     }
   }
+
+
 
 }
