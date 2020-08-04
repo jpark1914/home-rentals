@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center p-5">
+  <div class="bg-light border p-3">
+    <div class="text-center">
+      <h6 class="mt-2 mb-4">Sign Up to Home Rentals</h6>
+    </div>
+    <h6 class="font-weight-bold">Enter Email</h6>
+    <input type="email" style="width: 20rem;" class="d-block p-2 mt-2 mb-3" [(ngModel)]="user.email" />
+    <h6 class="font-weight-bold">Enter Password</h6>
+    <div style="width: 20rem;" class="p-2 mt-2 mb-3">
+      <input [(ngModel)]="user.password" appPassword />
+    </div>
+    <h6 class="font-weight-bold">Confirm Password</h6>
+    <div style="width: 20rem;" class="p-2 mt-2 mb-3">
+      <input [(ngModel)]="confirmPassword" appPassword />
+    </div>
+    <h6 class="font-weight-bold">Account Type</h6>
+    <div class="btn-group btn-group-toggle d-flex justify-content-center mb-4" ngbRadioGroup name="isAdmin" [(ngModel)]="user.isAdmin">
+      <label ngbButtonLabel class="btn-info">
+        <input ngbButton type="radio" value="USER">User
+      </label>
+      <label ngbButtonLabel class="btn-info">
+        <input ngbButton type="radio" value="ADMIN">Admin
+      </label>
+    </div>
+    <button class="btn btn-primary p-2 w-100" (click)="onSubmit()">Register</button>
+  </div>
+</div>

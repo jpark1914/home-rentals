@@ -16,15 +16,15 @@ public class RentalUserService {
 	}
 	
 	public RentalUsers findUserByEmail(String email) {
-		//RentalUsers pass = rur.passwordExists(password);
-		//if(pass != null) {
 			return rur.findRentalUsersByEmail(email);
-		//}
-		//return null;
 	}
 	
 	public void save(RentalUsers user) {
 		rur.save(user);
+	}
+	
+	public long numUsers() {
+		return rur.count();
 	}
 			
 }

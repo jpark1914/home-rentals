@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  getUsersUrl: 'http://localhost:9000/users/getUser'
+  getUsersUrl: 'http://localhost:9000/user/get'
 };
 
 /*
