@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LandingPageComponent } from './page-components/landing-page/landing-page.component';
-import { UserLoginPageComponent } from './page-components/user-login-page/user-login-page.component';
-import { AdminLoginPageComponent } from './page-components/admin-login-page/admin-login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -17,13 +15,12 @@ import { RegisterPageComponent } from './page-components/register-page/register-
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { PasswordDirective } from './directives/password.directive';
 import { StorageServiceModule } from 'ngx-webstorage-service';
+import { LoginPageComponent } from './page-components/login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    UserLoginPageComponent,
-    AdminLoginPageComponent,
     LoginFormComponent,
     FooterComponent,
     HeaderComponent,
@@ -32,6 +29,7 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
     RegisterPageComponent,
     RegisterFormComponent,
     PasswordDirective,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,

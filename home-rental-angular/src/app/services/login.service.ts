@@ -26,7 +26,7 @@ export class LoginService {
 
   logout() {
     this.storage.clear();
-    this.router.navigate(['/login-user'])
+    this.router.navigate(['/login'])
   }
 
   getLoggedInUser(): RentalUser {

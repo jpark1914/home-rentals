@@ -21,7 +21,7 @@ export class RegisterService {
       this.messageService.setMsg("Passwords must match")
     } else {
       this.http.post(environment.register, user, { responseType: "text" }).subscribe(res => {
-        this.router.navigate(['/login-user'])
+        this.router.navigate(['/login'])
       });
 
     }
