@@ -26,7 +26,7 @@ export class LoginService {
 
   logout() {
     this.storage.clear();
-    this.router.navigate(['/login-user'])
+    this.router.navigate(['/login'])
   }
 
   getLoggedInUser(): RentalUser {
@@ -58,7 +58,7 @@ export class LoginService {
   private handleError(res: Response) {
     if (res.status === 401) {
       console.log("User has been unauthorized.")
-      this.messageService.setMsg("Incorrect email or password");
+      this.messageService.setMsg("danger", "Incorrect email or password");
     }
     return of(res);
   }

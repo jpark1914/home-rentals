@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/services/message.service';
 
 @Component({
-  selector: 'app-user-login-page',
-  templateUrl: './user-login-page.component.html',
-  styleUrls: ['./user-login-page.component.css']
+  selector: 'app-alert',
+  templateUrl: './alert.component.html',
+  styleUrls: ['./alert.component.css']
 })
-export class UserLoginPageComponent implements OnInit {
+export class AlertComponent implements OnInit {
 
   constructor(public messageService: MessageService) { }
 
@@ -14,6 +14,7 @@ export class UserLoginPageComponent implements OnInit {
   }
 
   close() {
-    this.messageService.setMsg("");
+    this.messageService.clearMsg();
   }
+
 }

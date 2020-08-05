@@ -1,6 +1,9 @@
 package com.rental.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,14 +32,20 @@ public class PersonalInfoController {
 	}
 	
 	@PostMapping(value="/save")
-	public void savePersonalInfo(@RequestBody PersonalInfo pi) {
+	public String savePersonalInfo(@RequestBody PersonalInfo pi) {
 		pis.savePersonalInfo(pi);
+		return "Success";
 	}
 	
 	@GetMapping(value="/get")
-	public PersonalInfo getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
+	public ResponseEntity<PersonalInfo> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
 		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
-		return pis.getPersonalInfo(userId);
+		Optional<PersonalInfo> opPersonal = pis.getPersonalInfo(userId);
+		if (opPersonal.isPresent()) {
+			return ResponseEntity.ok(opPersonal.get());
+		} else {
+			return ResponseEntity.noContent().build();
+		}
 	}
 
 }

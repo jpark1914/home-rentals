@@ -1,7 +1,6 @@
-<div class="d-flex justify-content-center p-5">
+<div class="d-flex justify-content-center">
     <div class="bg-light border p-3 text-center">
-      <h6 class="mt-2 mb-4" *ngIf="isAdmin === null">User Login</h6>
-      <h6 class="mt-2 mb-4" *ngIf="isAdmin !== null">Admin Login</h6>
+      <h6 class="mt-2 mb-4">Login to Home Rentals</h6>
       <input type="email" placeholder="Enter Email" style="width: 20rem;" class="d-block p-2 my-3" [(ngModel)]="email" /> 
       <input type="password" placeholder="Enter Password" style="width: 20rem;" class="d-block p-2 my-3" [(ngModel)]="password" /> 
       <button class="w-100 p-2 my-3 btn btn-primary" (click)="onSubmit()">Login</button> 

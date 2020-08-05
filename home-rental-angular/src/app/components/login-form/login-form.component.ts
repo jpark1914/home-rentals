@@ -8,9 +8,6 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  @Input()
-  isAdmin: string = null;
-
   email: string = "";
   password: string = "";
 
