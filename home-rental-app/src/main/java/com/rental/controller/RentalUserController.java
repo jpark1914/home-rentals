@@ -33,7 +33,6 @@ public class RentalUserController {
 	public RentalUsers getUser(@AuthenticationPrincipal UserDetails user) {
 //		System.out.println(user.getEmail());
 		RentalUsers rentalUser = rus.findUserByEmail(user.getUsername());
-		rentalUser.setPassword("");
 		return rentalUser;
 	}
 	

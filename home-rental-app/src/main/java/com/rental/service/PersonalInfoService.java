@@ -1,6 +1,7 @@
 package com.rental.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,10 @@ public class PersonalInfoService {
 		pir.save(pi);
 	}
 	
-	public PersonalInfo getPersonalInfo(long userId) {
-		return pir.findPersonalInfoOfUser(userId);
+	public Optional<PersonalInfo> getPersonalInfo(long userId) {
+		PersonalInfo pi = pir.findPersonalInfoOfUser(userId);
+		pi.getRentalUser().setPassword(null);
+		return Optional.ofNullable(pi);
 	}
 
 }
