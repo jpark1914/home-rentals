@@ -17,7 +17,6 @@ public class RentalUserService {
 	
 	public RentalUsers findUserByEmail(String email) {
 		RentalUsers ru =  rur.findRentalUsersByEmail(email);
-		ru.setPassword(null);
 		return ru;
 	}
 	

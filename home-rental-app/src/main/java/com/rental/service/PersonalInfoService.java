@@ -27,7 +27,6 @@ public class PersonalInfoService {
 	
 	public Optional<PersonalInfo> getPersonalInfo(long userId) {
 		PersonalInfo pi = pir.findPersonalInfoOfUser(userId);
-		pi.getRentalUser().setPassword(null);
 		return Optional.ofNullable(pi);
 	}
 
