@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-login-page',
@@ -8,13 +7,9 @@ import { MessageService } from 'src/app/services/message.service';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(public messageService: MessageService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
   
-  close() {
-    this.messageService.setMsg("");
-  }
-
 }

@@ -58,7 +58,7 @@ export class LoginService {
   private handleError(res: Response) {
     if (res.status === 401) {
       console.log("User has been unauthorized.")
-      this.messageService.setMsg("Incorrect email or password");
+      this.messageService.setMsg("danger", "Incorrect email or password");
     }
     return of(res);
   }

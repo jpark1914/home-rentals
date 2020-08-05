@@ -16,6 +16,7 @@ import { RegisterFormComponent } from './components/register-form/register-form.
 import { PasswordDirective } from './directives/password.directive';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LoginPageComponent } from './page-components/login-page/login-page.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LoginPageComponent } from './page-components/login-page/login-page.comp
     RegisterFormComponent,
     PasswordDirective,
     LoginPageComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

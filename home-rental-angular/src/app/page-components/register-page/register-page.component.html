@@ -1,9 +1,7 @@
 <div id="page" class="d-flex flex-column">
   <app-header></app-header>
   <div class="flex-fill">
-    <ngb-alert *ngIf="messageService.getMsg() !== '' " type="warning" (close)="close()">
-      {{ messageService.getMsg() }}
-    </ngb-alert>
+    <app-alert></app-alert>
     <app-register-form></app-register-form>
   </div>
   <app-footer></app-footer>
