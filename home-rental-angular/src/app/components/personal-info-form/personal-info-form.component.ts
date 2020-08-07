@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalInfo } from 'src/app/interfaces/personalInfo.interface';
-import { PersonalInfoService } from '../../services/personal-info.service'
+import { PersonalInfoService } from 'src/app/services/personal-info.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-personal-info-form',
@@ -38,15 +39,35 @@ export class PersonalInfoFormComponent implements OnInit {
     zip: null,
   };
 
-  constructor(private personalInfoService: PersonalInfoService) { }
+  constructor(
+    private personalInfoService: PersonalInfoService,
+    private loginService: LoginService
+  ) { }
 
-  ngOnInit(): void {
+  checkLogin() {
+    if (this.loginService.isLoggedIn()) {
+      this.personalInfo.rentalUser = this.loginService.getLoggedInUser();
+    } else {
+      this.loginService.logout();
+    }
+  }
+
+  checkPersonalInfo() {
+    this.personalInfoService.init();
     this.personalInfoService.getPersonalInfo().subscribe(res => {
       if (res.status === 200) {
         this.personalInfo = res.body;
       }
     });
+  }
 
+  submitPersonalInfo() {
+    this.personalInfoService.savePersonalInfo(this.personalInfo);
+  }
+
+  ngOnInit(): void {
+    this.checkLogin();
+    this.checkPersonalInfo();
   }
 
 }

@@ -19,6 +19,9 @@ export class LoginService {
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
   ) { }
 
+  init() {
+    this.messageService.clearMsg();
+  }
 
   isLoggedIn(): boolean {
     return this.storage.get('user') !== undefined;
