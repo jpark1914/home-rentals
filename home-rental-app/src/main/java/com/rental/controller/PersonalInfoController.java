@@ -33,6 +33,7 @@ public class PersonalInfoController {
 	
 	@PostMapping(value="/save")
 	public String savePersonalInfo(@RequestBody PersonalInfo pi) {
+		System.out.println(pi);
 		pis.savePersonalInfo(pi);
 		return "Success";
 	}
