@@ -3,7 +3,6 @@ import { RentalUser } from './rentalUser.interface';
 export interface PersonalInfo {
   personId?: number;
   userId?: number;
-  rentalUser?: RentalUser;
   dateOfBirth: string;
   firstName: string;
   lastName: string;
@@ -14,4 +13,5 @@ export interface PersonalInfo {
   city: string;
   state: string;
   zip: number;
+  rentalUser?: RentalUser;
 }

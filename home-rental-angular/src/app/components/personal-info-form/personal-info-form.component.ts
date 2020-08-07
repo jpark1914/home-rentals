@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalInfo } from 'src/app/interfaces/personalInfo.interface';
 import { PersonalInfoService } from '../../services/personal-info.service'
+import { LoginService } from 'src/app/services/login.service';
+import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 
 @Component({
   selector: 'app-personal-info-form',
@@ -21,11 +23,11 @@ export class PersonalInfoFormComponent implements OnInit {
   //   driverLicense: 111222333,
   //   ssn: 111222333
   // }
+  user: RentalUser = this.loginService.getLoggedInUser();
 
   personalInfo: PersonalInfo = {
     personId: null,
-    userId: null,
-    rentalUser: null,
+    userId: this.user.userId,
     dateOfBirth: null,
     firstName: "",
     lastName: "",
@@ -36,9 +38,11 @@ export class PersonalInfoFormComponent implements OnInit {
     city: "",
     state: "",
     zip: null,
+    rentalUser: null,
   };
 
-  constructor(private personalInfoService: PersonalInfoService) { }
+  constructor(private personalInfoService: PersonalInfoService,
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.personalInfoService.getPersonalInfo().subscribe(res => {
@@ -47,6 +51,11 @@ export class PersonalInfoFormComponent implements OnInit {
       }
     });
 
+  }
+
+  onSubmit() {
+    console.log(this.personalInfo);
+    this.personalInfoService.savePersonalInfo(this.personalInfo)
   }
 
 }
