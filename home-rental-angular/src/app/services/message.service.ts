@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Message } from 'src/app/interfaces/message.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  msg: string = "";
+  private msg: Message = null;
 
   constructor() { }
 
-  public getMsg(): string {
+  public getMsg(): Message {
     return this.msg;
   }
 
-  setMsg(message: string) {
-    this.msg = message;
+  public setMsg(alertType : string, alertString: string) {
+    this.msg = { alertType, alertString };
   }
+
+  public clearMsg()  {
+    this.msg = null;
+  }
+
 }

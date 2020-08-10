@@ -23,7 +23,7 @@ public class PersonalInfo {
 	@Column
 	private int personId;
 	
-	private transient long userId;
+	private transient Long userId;
 	
 //	public void setUserId(long userId) {
 //		this.userId = userId;
@@ -31,7 +31,7 @@ public class PersonalInfo {
 
 	@Column
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-	private Date dateOfbirth;
+	private Date dateOfBirth;
 	
 	@Column
 	private String firstName;
@@ -81,17 +81,17 @@ public class PersonalInfo {
 		this.personId = personId;
 	}
 	
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public Date getDateOfbirth() {
-		return dateOfbirth;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
-	public void setDateOfbirth(Date dateOfbirth) {
-		this.dateOfbirth = dateOfbirth;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -160,7 +160,7 @@ public class PersonalInfo {
 
 	@Override
 	public String toString() {
-		return "PersonalInfo [personId=" + personId + ", userId=" + userId + ", dateOfbirth=" + dateOfbirth
+		return "PersonalInfo [personId=" + personId + ", userId=" + userId + ", dateOfbirth=" + dateOfBirth
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", ssn="
 				+ ssn + ", address=" + address + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
 	}

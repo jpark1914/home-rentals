@@ -6,14 +6,12 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { LOCAL_STORAGE, WebStorageService } from 'ngx-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  private loggedInUser: RentalUser = null;
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -23,28 +21,30 @@ export class LoginService {
 
 
   isLoggedIn(): boolean {
-    return this.loggedInUser !== null;
+    return this.storage.get('user') !== undefined;
   }
 
   logout() {
-    this.loggedInUser = null;
+    this.storage.clear();
+    this.router.navigate(['/login'])
   }
 
   getLoggedInUser(): RentalUser {
-    return this.loggedInUser;
+    return JSON.parse(this.storage.get('user'));;
   }
 
   login(email, password) {
     // let user: RentalUser = { email, password, isAdmin };
+    this.storage.set('authorization', "Basic " + btoa(email + ":" + password));
     return this.http.get<RentalUser>(environment.getUsersUrl, {
       headers: {
-        "Authorization": "Basic " + btoa(email + ":" + password)
+        "Authorization": this.storage.get('authorization')
       },
       observe: "response",
     }).pipe(
       catchError(this.handleError.bind(this))
     )
-      .subscribe(this.extractData);
+      .subscribe(this.extractData.bind(this));
   }
 
   // private redirect() {
@@ -59,7 +59,7 @@ export class LoginService {
   private handleError(res: Response) {
     if (res.status === 401) {
       console.log("User has been unauthorized.")
-      this.messageService.setMsg("Incorrect email or password");
+      this.messageService.setMsg("danger", "Incorrect email or password");
     }
     return of(res);
   }
@@ -67,14 +67,11 @@ export class LoginService {
   private extractData(res: Response) {
     if (res.status === 200) {
       let body = res.body;
-      console.log(JSON.stringify(body));
+      this.storage.set('user', JSON.stringify(body));
+      console.log(this.storage.get('user'));
+      this.router.navigate(['/landing']);
     }
     return res;
   }
-
-  public getCurrUser() {
-    return localStorage.getItem("currUser");
-  }
-
 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { LOCAL_STORAGE, WebStorageService } from 'ngx-webstorage-service';
 
 @Component({
   selector: 'app-root',

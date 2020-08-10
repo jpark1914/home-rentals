@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  getUsersUrl: 'http://localhost:9000/user/get'
+  getUsersUrl: 'http://localhost:9000/user/get',
+  register: 'http://localhost:9000/user/save',
+  getInfo: 'http://localhost:9000/personal/get',
+  save: 'http://localhost:9000/personal/save',
 };
 
 /*

@@ -12,13 +12,13 @@ export class PasswordDirective {
   }
 
   setup() {
-    
+
     const par = this.el.nativeElement.parentNode;
-    par.setAttribute("class", par.getAttribute("class") + " d-flex border border-dark bg-white");
-    
+    par.setAttribute("class", par.getAttribute("class") + " d-flex border bg-white");
+
     this.el.nativeElement.setAttribute("class", "flex-fill border-0 p-0 my-0 ml-0 mr-1");
-    this.el.nativeElement.setAttribute("type", "password"); 
-    
+    this.el.nativeElement.setAttribute("type", "password");
+
     const img = document.createElement('img');
     img.setAttribute("src", "../../assets/eye-slash.svg");
     img.style.cssText = "cursor: pointer;";
@@ -32,9 +32,9 @@ export class PasswordDirective {
         img.setAttribute("src", "../../assets/eye-slash.svg");
       }
     });
-    
+
     par.appendChild(img);
   }
-  
+
 
 }

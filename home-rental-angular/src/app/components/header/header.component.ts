@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
+import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,10 @@ import { LoginService } from 'src/app/services/login.service';
 export class HeaderComponent implements OnInit {
 
   constructor(public ls: LoginService) { }
+  user: RentalUser;
 
   ngOnInit(): void {
+
   }
 
 }
