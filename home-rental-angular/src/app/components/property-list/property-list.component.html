@@ -2,7 +2,7 @@
   <h4>Find the Perfect Home</h4>
 </div>
 <ul class="flex-fill d-flex justify-content-center p-2 mx-0 mt-0 mb-4 flex-wrap">
-  <li style="list-style-type: none; width: 26rem;" class="text-center border p-2 m-2" *ngFor="let house of houseList">
+  <li class="text-center border p-2 m-2" *ngFor="let house of houseList" [routerLink]="['/property-details', house.unitId]">
     <div id="logo-div"></div>
     <h2>{{ house.rentAmount | currency }}</h2>
     <p class="m-0">{{ house.unitAddress }}</p> 

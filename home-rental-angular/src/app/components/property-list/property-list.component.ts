@@ -15,6 +15,7 @@ export class PropertyListComponent implements OnInit {
   ngOnInit(): void {
     for (let i = 0; i < 12; i++) {
       this.houseList.push({
+        unitId: i,
         unitAddress: "4787 Yale Rd",
         unitCity: "Memphis",
         unitState: "Tennessee",
