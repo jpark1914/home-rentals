@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalInfo } from 'src/app/interfaces/personalInfo.interface';
-<<<<<<< HEAD
-import { PersonalInfoService } from 'src/app/services/personal-info.service';
-import { LoginService } from 'src/app/services/login.service';
-=======
 import { PersonalInfoService } from '../../services/personal-info.service'
 import { LoginService } from 'src/app/services/login.service';
 import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
->>>>>>> master
 
 @Component({
   selector: 'app-personal-info-form',
@@ -28,11 +23,11 @@ export class PersonalInfoFormComponent implements OnInit {
   //   driverLicense: 111222333,
   //   ssn: 111222333
   // }
-  user: RentalUser = this.loginService.getLoggedInUser();
+  //user: RentalUser = this.loginService.getLoggedInUser();
 
   personalInfo: PersonalInfo = {
     personId: null,
-    userId: this.user.userId,
+    userId: null,
     dateOfBirth: null,
     firstName: "",
     lastName: "",
@@ -51,7 +46,7 @@ export class PersonalInfoFormComponent implements OnInit {
 
   checkLogin() {
     if (this.loginService.isLoggedIn()) {
-      this.personalInfo.rentalUser = this.loginService.getLoggedInUser();
+      this.personalInfo.userId = this.loginService.getLoggedInUser().userId;
     } else {
       this.loginService.logout();
     }
@@ -62,6 +57,7 @@ export class PersonalInfoFormComponent implements OnInit {
     this.personalInfoService.getPersonalInfo().subscribe(res => {
       if (res.status === 200) {
         this.personalInfo = res.body;
+        this.personalInfo.userId = res.body.rentalUser.userId;
       }
     });
   }
