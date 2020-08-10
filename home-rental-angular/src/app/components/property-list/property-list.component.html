@@ -1,0 +1,19 @@
+<div class="text-center pt-3 pb-2 px-2">
+  <h4>Find the Perfect Home</h4>
+</div>
+<ul class="flex-fill d-flex justify-content-center p-2 mx-0 mt-0 mb-4 flex-wrap">
+  <li style="list-style-type: none; width: 26rem;" class="text-center border p-2 m-2" *ngFor="let house of houseList">
+    <div id="logo-div"></div>
+    <h2>{{ house.rentAmount | currency }}</h2>
+    <p class="m-0">{{ house.unitAddress }}</p> 
+    <p class="m-0">{{ house.unitCity }}, {{ house.unitState }}</p>
+    <p class="m-0">{{ house.unitZip }}, {{ house.unitCountry }}</p>
+    <br>
+    <h5 class="m-0">{{ house.unitNumBedrooms }} Bedrooms, {{ house.unitNumBathrooms }} Bathrooms</h5>
+    <h5 class="m-0">{{ house.unitSquareFeet }} Square Feet</h5>
+    <br>
+    <h3>{{ house.unitType }}</h3>
+    <br>
+  </li>
+</ul>
+

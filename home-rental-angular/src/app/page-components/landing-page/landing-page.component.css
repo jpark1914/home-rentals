@@ -4,12 +4,3 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-#logo-div {
-  width: 25rem;
-  height: 20rem;
-  background-image: url("/assets/logo.svg");
-  background-size: 25rem; 
-  background-image: center; 
-}
-
