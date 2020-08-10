@@ -6,7 +6,11 @@ import { LOCAL_STORAGE, WebStorageService } from 'ngx-webstorage-service';
 import { map } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
+=======
+import { PersonalInfo } from '../interfaces/personalInfo.interface';
+>>>>>>> master
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +26,19 @@ export class PersonalInfoService {
     this.messageService.clearMsg();
   }
 
-  getPersonalInfo(): Observable<HttpResponse<PersonalInfo>> {
+  savePersonalInfo(personalInfo: PersonalInfo) {
+    this.http.post(environment.save, personalInfo, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response",
+      responseType: "text"
+    }).subscribe(res => {
+      this.messageService.setMsg("success", "Your personal info has been updated");
+    })
+  }
+
+  getPersonalInfo() {
     return this.http.get(environment.getInfo, {
       headers: {
         "Authorization": this.storage.get('authorization')
@@ -55,4 +71,15 @@ export class PersonalInfoService {
     }
     return res;
   }
+
+  // private handleSaveError(res: Response) {
+  //   if (res.status === 401) {
+  //     console.log("Either user is unauthorized.")
+  //     this.messageService.setMsg("warning", "No personal info found");
+  //   } else if (res.status === 400) {
+  //     console.log("You have a bad request. The form isn't correct")
+  //     this.messageService.setMsg("warning", "Please fill out form correctly.");
+  //   }
+  //   return of(res);
+  // }
 }

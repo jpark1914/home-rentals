@@ -70,7 +70,6 @@ export class LoginService {
   private extractData(res: Response) {
     if (res.status === 200) {
       let body = res.body;
-      console.log(this.storage.get('user'));
       this.storage.set('user', JSON.stringify(body));
       console.log(this.storage.get('user'));
       this.router.navigate(['/landing']);

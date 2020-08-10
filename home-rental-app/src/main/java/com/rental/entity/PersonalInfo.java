@@ -23,7 +23,7 @@ public class PersonalInfo {
 	@Column
 	private int personId;
 	
-	private transient long userId;
+	private transient Long userId;
 	
 //	public void setUserId(long userId) {
 //		this.userId = userId;
@@ -81,10 +81,10 @@ public class PersonalInfo {
 		this.personId = personId;
 	}
 	
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public Date getDateOfBirth() {

@@ -18,7 +18,7 @@
     <div class="d-flex flex-wrap ">
       <div class="p-3">
         <h6 class="font-weight-bold">Date of Birth</h6>
-        <input type="text" [(ngModel)]="personalInfo.dateOfBirth" class="mb-3 p-2" size="40" />
+        <input type="date" [(ngModel)]="personalInfo.dateOfBirth" class="mb-3 p-2" size="40" />
       </div>
     </div>
     <h4 class="mt-3 ml-3">Address</h4>
@@ -69,4 +69,5 @@
     <div class="d-flex justify-content-center">
       <button class="btn btn-primary" style="width: 80%;" (click)="submitPersonalInfo()">Save Profile Information</button>
     </div>
+  </div>
 </div>
