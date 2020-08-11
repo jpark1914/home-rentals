@@ -1,5 +1,16 @@
-<div class="p-3">
-  <div class="bg-light border p-3 text-center">
-    <h3 class="mb-3">Property Details for {{ unitId }}</h3>
+<div class="p-3 d-flex justify-content-center">
+  <div class="bg-light border p-3">
+    <div class="d-flex">
+      <h3 class="mb-0 flex-fill">Property Details for {{ unitId }}</h3>
+      <button class="btn btn-info" (click)="goBack()">Back</button>
+    </div>
+    <hr class="mb-4 mt-2">
+    <ngb-carousel *ngIf="images" class="bg-dark text-center mb-3" style="width: 40rem; height: 32rem;">
+    <ng-template ngbSlide *ngFor="let image of images">
+      <div class="picsum-img-wrapper h-100">
+        <img [src]="image">
+      </div>
+    </ng-template>
+    </ngb-carousel>
   </div>
 </div>

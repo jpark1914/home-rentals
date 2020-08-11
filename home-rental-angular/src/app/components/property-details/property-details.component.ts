@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-property-details',
@@ -10,7 +11,13 @@ export class PropertyDetailsComponent implements OnInit {
 
   unitId : number = null;
 
-  constructor(private activatedRoute : ActivatedRoute) { }
+  images = ['/assets/logo.svg','/assets/living-room.svg', '/assets/bedroom.svg', '/assets/kitchen.svg']
+
+  constructor(private activatedRoute : ActivatedRoute, private location : Location) { }
+
+  goBack() {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
