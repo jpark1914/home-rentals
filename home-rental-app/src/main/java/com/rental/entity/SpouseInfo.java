@@ -57,8 +57,33 @@ public class SpouseInfo {
 	@Column(name="TIME_EMPLOYED")
 	private int timeEmployed;
 	
-	@Column(name="CONTACT_PERSON")
-	private String contactPerson;
+	@Column(name="CONTACT_FIRST_NAME")
+	private String contactFirstName;
+	
+	public String getContactFirstName() {
+		return contactFirstName;
+	}
+
+
+
+	public void setContactFirstName(String contactFirstName) {
+		this.contactFirstName = contactFirstName;
+	}
+
+
+
+	public String getContactLastName() {
+		return contactLastName;
+	}
+
+
+
+	public void setContactLastName(String contactLastName) {
+		this.contactLastName = contactLastName;
+	}
+
+	@Column(name="CONTACT_LAST_NAME")
+	private String contactLastName;
 	
 	@Column(name="CONTACT_PHONE")
 	private long contactPhone;
@@ -181,13 +206,6 @@ public class SpouseInfo {
 		this.timeEmployed = timeEmployed;
 	}
 
-	public String getContactPerson() {
-		return contactPerson;
-	}
-
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
-	}
 
 	public long getContactPhone() {
 		return contactPhone;

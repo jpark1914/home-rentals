@@ -19,9 +19,10 @@ public class SpouseInfoService {
 		this.rur = rur;
 	}
 	
-	public void saveSpouse(SpouseInfo spouse) {
+	public String saveSpouse(SpouseInfo spouse) {
 		spouse.setRentalUser(rur.findById(spouse.getUserId()).get());
 		sir.save(spouse);
+		return "Spouse info saved";
 	}
 	
 	

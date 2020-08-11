@@ -1181,3 +1181,6 @@ select personalin0_.person_id as person_i1_2_, personalin0_.address as address2_
 2020-08-11 11:41:15 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONAL_INFO" not found; SQL statement:
 insert into personal_info (address, city, date_of_birth, driver_license, first_name, last_name, phone_number, user_id, ssn, state, zip, person_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [42102-200]
+2020-08-11 14:30:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SPOUSE_INFO" not found; SQL statement:
+DROP TABLE SPOUSE_INFO [42102-200]
