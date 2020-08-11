@@ -25,7 +25,7 @@ export class RegisterFormComponent implements OnInit {
   constructor(private registerService: RegisterService) { }
 
   ngOnInit(): void {
-
+    this.registerService.init();
   }
 
 }
