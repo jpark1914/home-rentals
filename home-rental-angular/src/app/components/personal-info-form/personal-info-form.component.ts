@@ -23,11 +23,11 @@ export class PersonalInfoFormComponent implements OnInit {
   //   driverLicense: 111222333,
   //   ssn: 111222333
   // }
-  user: RentalUser = this.loginService.getLoggedInUser();
+  //user: RentalUser = this.loginService.getLoggedInUser();
 
   personalInfo: PersonalInfo = {
     personId: null,
-    userId: this.user.userId,
+    userId: null,
     dateOfBirth: null,
     firstName: "",
     lastName: "",
@@ -44,18 +44,32 @@ export class PersonalInfoFormComponent implements OnInit {
   constructor(private personalInfoService: PersonalInfoService,
     private loginService: LoginService) { }
 
-  ngOnInit(): void {
+  checkLogin() {
+    if (this.loginService.isLoggedIn()) {
+      this.personalInfo.userId = this.loginService.getLoggedInUser().userId;
+    } else {
+      this.loginService.logout();
+    }
+  }
+
+  checkPersonalInfo() {
+    this.personalInfoService.init();
     this.personalInfoService.getPersonalInfo().subscribe(res => {
       if (res.status === 200) {
         this.personalInfo = res.body;
+        this.personalInfo.userId = res.body.rentalUser.userId;
       }
     });
-
   }
 
-  onSubmit() {
+  submitPersonalInfo() {
     console.log(this.personalInfo);
-    this.personalInfoService.savePersonalInfo(this.personalInfo)
+    this.personalInfoService.savePersonalInfo(this.personalInfo);
+  }
+
+  ngOnInit(): void {
+    this.checkLogin();
+    this.checkPersonalInfo();
   }
 
 }

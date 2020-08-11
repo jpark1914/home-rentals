@@ -17,6 +17,9 @@ import { PasswordDirective } from './directives/password.directive';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LoginPageComponent } from './page-components/login-page/login-page.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { PropertyListComponent } from './components/property-list/property-list.component';
+import { PropertyDetailsPageComponent } from './page-components/property-details-page/property-details-page.component';
+import { PropertyDetailsComponent } from './components/property-details/property-details.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { AlertComponent } from './components/alert/alert.component';
     PasswordDirective,
     LoginPageComponent,
     AlertComponent,
+    PropertyListComponent,
+    PropertyDetailsPageComponent,
+    PropertyDetailsComponent,
   ],
   imports: [
     BrowserModule,
