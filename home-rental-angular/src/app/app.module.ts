@@ -20,6 +20,8 @@ import { AlertComponent } from './components/alert/alert.component';
 import { PropertyListComponent } from './components/property-list/property-list.component';
 import { PropertyDetailsPageComponent } from './page-components/property-details-page/property-details-page.component';
 import { PropertyDetailsComponent } from './components/property-details/property-details.component';
+import { SpouseInfoPageComponent } from './page-components/spouse-info-page/spouse-info-page.component';
+import { SpouseInfoFormComponent } from './components/spouse-info-form/spouse-info-form.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { PropertyDetailsComponent } from './components/property-details/property
     PropertyListComponent,
     PropertyDetailsPageComponent,
     PropertyDetailsComponent,
+    SpouseInfoPageComponent,
+    SpouseInfoFormComponent,
   ],
   imports: [
     BrowserModule,
