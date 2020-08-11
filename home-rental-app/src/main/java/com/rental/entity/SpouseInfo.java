@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table
 public class SpouseInfo {
@@ -24,11 +26,15 @@ public class SpouseInfo {
 	
 	private transient Long userId;
 	
-	@Column(name="SPOUSE_NAME")
-	private String spouseName;
+	@Column(name="SPOUSE_FIRST_NAME")
+	private String spouseFirstName;
+	
+	@Column(name="SPOUSE_LAST_NAME")
+	private String spouseLastName;
 	
 	@Column(name="DOB")
-	private Date DOB;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	private String DOB;
 	
 	@Column(name="SPOUSE_PHONE")
 	private long spousePhone;
@@ -95,20 +101,28 @@ public class SpouseInfo {
 		this.userId = userId;
 	}
 
-	public String getSpouseName() {
-		return spouseName;
+	public String getSpouseFirstName() {
+		return spouseFirstName;
 	}
 
-	public void setSpouseName(String spouseName) {
-		this.spouseName = spouseName;
+	public void setSpouseFirstName(String spouseFirstName) {
+		this.spouseFirstName = spouseFirstName;
+	}
+	
+	public String getSpouseLastName() {
+		return spouseLastName;
 	}
 
-	public Date getDOB() {
+	public void setSpouseLastName(String spouseLastName) {
+		this.spouseLastName = spouseLastName;
+	}
+
+	public String getDOB() {
 		return DOB;
 	}
 
-	public void setDOB(Date dOB) {
-		DOB = dOB;
+	public void setDOB(String DOB) {
+		this.DOB = DOB;
 	}
 
 	public long getSpousePhone() {

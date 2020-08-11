@@ -1175,3 +1175,9 @@ Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection wa
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:622)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 18 more
+2020-08-11 11:40:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONAL_INFO" not found; SQL statement:
+select personalin0_.person_id as person_i1_2_, personalin0_.address as address2_2_, personalin0_.city as city3_2_, personalin0_.date_of_birth as date_of_4_2_, personalin0_.driver_license as driver_l5_2_, personalin0_.first_name as first_na6_2_, personalin0_.last_name as last_nam7_2_, personalin0_.phone_number as phone_nu8_2_, personalin0_.user_id as user_id12_2_, personalin0_.ssn as ssn9_2_, personalin0_.state as state10_2_, personalin0_.zip as zip11_2_ from personal_info personalin0_ where personalin0_.user_id=? [42102-200]
+2020-08-11 11:41:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PERSONAL_INFO" not found; SQL statement:
+insert into personal_info (address, city, date_of_birth, driver_license, first_name, last_name, phone_number, user_id, ssn, state, zip, person_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [42102-200]

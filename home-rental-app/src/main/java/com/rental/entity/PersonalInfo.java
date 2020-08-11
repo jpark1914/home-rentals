@@ -31,7 +31,7 @@ public class PersonalInfo {
 
 	@Column
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	
 	@Column
 	private String firstName;
@@ -87,10 +87,10 @@ public class PersonalInfo {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getFirstName() {
