@@ -5,24 +5,25 @@
   <div class="mt-3 mb-2 mx-3" ngbDropdown *ngIf="!ls.isLoggedIn()">
     <button class="btn" type="button" routerLink="/register">Register</button>
     <button class="btn" type="button" routerLink="/login">Login</button> 
-    <!--
+  </div>
+  <div class="mx-1" style="margin-top: 1.25rem;" ngbDropdown *ngIf="ls.isLoggedIn()">
     <button class="btn dropdown-toggle" type="button" id="loginButton" ngbDropdownToggle>
-      Login
+      Information
     </button>
     <div ngbDropdownMenu aria-labelledby="loginButton">
-      <a ngbDropdownItem routerLink="/login-user">User Login</a>
-      <a ngbDropdownItem routerLink="/login-admin">Admin Login</a>
-    </div> 
-    -->
+      <a ngbDropdownItem routerLink="/personal-info">Personal</a>
+      <a ngbDropdownItem disabled>Spouse</a>
+      <a ngbDropdownItem disabled>Vehicle</a>
+      <a ngbDropdownItem disabled>Bank</a>
+    </div>
   </div>
-  <h6 class="mt-3 mb-2 mx-3" ngbDropdown *ngIf="ls.isLoggedIn()">
+  <div class="mt-3 mb-2 ml-1 mr-3" ngbDropdown *ngIf="ls.isLoggedIn()">
     <button class="btn dropdown-toggle" type="button" id="loginButton" ngbDropdownToggle>
-      <img src="/assets/person-circle.svg"> 
+      <img id="user" src="/assets/person-circle.svg"> 
     </button>
     <div ngbDropdownMenu aria-labelledby="loginButton">
       <p ngbDropdownItem class="mb-1" disabled>{{ ls.getLoggedInUser().email }}</p>
-      <a ngbDropdownItem routerLink="/personal-info">Profile</a>
       <a ngbDropdownItem (click)="ls.logout()">Logout</a>
     </div>
-  </h6>
+  </div>
 </header>
