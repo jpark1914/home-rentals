@@ -6,6 +6,7 @@ import { RegisterPageComponent } from './page-components/register-page/register-
 import { LoginPageComponent } from './page-components/login-page/login-page.component';
 import { PropertyDetailsPageComponent } from './page-components/property-details-page/property-details-page.component';
 import { SpouseInfoPageComponent } from './page-components/spouse-info-page/spouse-info-page.component';
+import { VehicleInfoPageComponent } from './page-components/vehicle-info-page/vehicle-info-page.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'property-details/:unitId', component: PropertyDetailsPageComponent },
   { path: 'spouse-info', component: SpouseInfoPageComponent },
+  { path: 'vehicle-info', component: VehicleInfoPageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];
 
