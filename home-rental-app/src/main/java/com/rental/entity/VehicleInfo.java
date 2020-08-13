@@ -10,12 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table
 public class VehicleInfo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="CAR_SEQ")
 	@Column(name="CAR_ID")
 	private int carId;
 	
@@ -35,13 +38,14 @@ public class VehicleInfo {
 	private String color;
 	
 	@Column(name="TAG_NUMBER")
-	private int tagNumber;
+	private String tagNumber;
 	
 	@Column(name="STATE")
 	private String state;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
 	private RentalUsers rentalUser;
 	
 	public VehicleInfo() {
@@ -110,11 +114,11 @@ public class VehicleInfo {
 		this.color = color;
 	}
 
-	public int getTagNumber() {
+	public String getTagNumber() {
 		return tagNumber;
 	}
 
-	public void setTagNumber(int tagNumber) {
+	public void setTagNumber(String tagNumber) {
 		this.tagNumber = tagNumber;
 	}
 

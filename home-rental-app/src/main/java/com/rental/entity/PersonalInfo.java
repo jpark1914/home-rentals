@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class PersonalInfo {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO )
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="PERSONAL_SEQ")
 	@Column
 	private int personId;
 	

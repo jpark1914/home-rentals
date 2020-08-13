@@ -14,7 +14,7 @@ public class VehicleInfoService {
 	private RentalUserRepo rur;
 	
 	@Autowired
-	public VehicleInfoService(VehicleInfoRepo vir) {
+	public VehicleInfoService(VehicleInfoRepo vir, RentalUserRepo rur) {
 		this.vir = vir;
 		this.rur = rur;
 	}

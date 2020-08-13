@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class References {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="REFERENCE_SEQ")
 	@Column(name="REF_ID")
 	private int refId;
 	

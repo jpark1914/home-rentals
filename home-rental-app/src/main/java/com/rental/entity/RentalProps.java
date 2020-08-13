@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class RentalProps {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="PROP_SEQ")
 	@Column(name="UNIT_ID")
 	private int unitId;
 	

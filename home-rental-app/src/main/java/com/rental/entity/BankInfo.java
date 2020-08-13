@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class BankInfo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="BANK_SEQ")
 	@Column(name="BANK_ID")
 	private int bankId;
 	

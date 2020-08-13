@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class SpouseInfo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="SPOUSE_SEQ")
 	@Column(name="SPOUSE_ID")
 	private int spouseId;
 	

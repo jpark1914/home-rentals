@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class OtherInfo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="OTHER_INFO_SEQ")
 	@Column(name="OTHER_ID")
 	private int otherId;
 	
@@ -26,20 +26,32 @@ public class OtherInfo {
 	
 	@Column(name="EVICT_NOTICE")
 	private boolean evictNotice;
-	
+
 	@Column(name="REFUSED_PAY")
 	private boolean refusedRentPay;
 	
 	@Column(name="SUED_UNLAWFL_DETAINER")
 	private boolean suedForUnlawfulDetainer;
-
-	@Column(name="REFERRAL")
-	private String referral;
 	
+	@Column(name = "REFERRAL_DESC")
+	private String referralDesc;
+	
+	private transient long referralId;
+
 	//Data Model Mappings
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "REFERRAL_ID")
+	private Referral referral;
+	
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private RentalUsers rentalUser;
+	
+	public OtherInfo() {
+		super();
+	}
+
 	
 	public RentalUsers getRentalUser() {
 		return rentalUser;
@@ -49,9 +61,6 @@ public class OtherInfo {
 		this.rentalUser = rentalUser;
 	}
 
-	public OtherInfo() {
-		super();
-	}
 
 	public int getOtherId() {
 		return otherId;
@@ -100,14 +109,33 @@ public class OtherInfo {
 	public void setSuedForUnlawfulDetainer(boolean suedForUnlawfulDetainer) {
 		this.suedForUnlawfulDetainer = suedForUnlawfulDetainer;
 	}
-
-	public String getReferral() {
+	
+	public Referral getReferral() {
 		return referral;
 	}
-
-	public void setReferral(String referral) {
+	public void setReferral(Referral referral) {
 		this.referral = referral;
 	}
+	
+	public String getReferralDesc() {
+		return referralDesc;
+	}
+
+
+	public void setReferralDesc(String referralDesc) {
+		this.referralDesc = referralDesc;
+	}
+
+
+	public Long getReferralId() {
+		return referralId;
+	}
+
+
+	public void setReferralId(Long referralId) {
+		this.referralId = referralId;
+	}
+
 
 	@Override
 	public String toString() {
