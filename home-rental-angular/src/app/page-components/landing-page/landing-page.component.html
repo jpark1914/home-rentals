@@ -1,29 +1,7 @@
 <div id="page" style="overflow-y: auto; overflow-x: hidden;" class="d-flex flex-column">
   <app-header></app-header>
-<!--  <div class="flex-fill">
-    <div class="d-flex justify-content-center p-2">
-      <div id="logo-div"></div>
-    </div>
-    <div class="text-center">
-      <h2>Find the Perfect Home</h2>
-    </div>
-  </div> -->
-  <div class="text-center pt-3 pb-2 px-2">
-    <h4>Find the Perfect Home</h4>
-  </div>
-    <ul class="flex-fill d-flex justify-content-center p-2 m-0 flex-wrap">
-      <li style="list-style-type: none; width: 26rem;" class="text-center border p-2 m-2" *ngFor="let house of houseList">
-        <div id="logo-div"></div>
-        <h2>{{ house.price }}</h2>
-        <p class="m-0">{{ house.address1 }}</p> 
-        <p class="m-0">{{ house.address2 }}</p>
-        <br>
-        <h5 class="m-0">{{ house.numBed }} Bedrooms, {{ house.numBath }} Bathrooms</h5>
-        <h5 class="m-0">{{ house.sqFeet }} Square Feet</h5>
-        <br>
-        <h3>{{ house.type }}</h3>
-      </li>
-    </ul>
+  <div class="flex-fill">
+    <app-property-list></app-property-list>
+  </div> 
   <app-footer></app-footer>
 </div>
-<!-- <img style="width: 20rem; height: 20rem;"  src="../assets/logo.svg" /> -->
