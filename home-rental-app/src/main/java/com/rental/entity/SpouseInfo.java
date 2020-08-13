@@ -12,23 +12,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table
 public class SpouseInfo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="SPOUSE_SEQ")
 	@Column(name="SPOUSE_ID")
 	private int spouseId;
 	
 	
 	private transient Long userId;
 	
-	@Column(name="SPOUSE_NAME")
-	private String spouseName;
+	@Column(name="SPOUSE_FIRST_NAME")
+	private String spouseFirstName;
+	
+	@Column(name="SPOUSE_LAST_NAME")
+	private String spouseLastName;
 	
 	@Column(name="DOB")
-	private Date DOB;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	private String DOB;
 	
 	@Column(name="SPOUSE_PHONE")
 	private long spousePhone;
@@ -51,8 +57,33 @@ public class SpouseInfo {
 	@Column(name="TIME_EMPLOYED")
 	private int timeEmployed;
 	
-	@Column(name="CONTACT_PERSON")
-	private String contactPerson;
+	@Column(name="CONTACT_FIRST_NAME")
+	private String contactFirstName;
+	
+	public String getContactFirstName() {
+		return contactFirstName;
+	}
+
+
+
+	public void setContactFirstName(String contactFirstName) {
+		this.contactFirstName = contactFirstName;
+	}
+
+
+
+	public String getContactLastName() {
+		return contactLastName;
+	}
+
+
+
+	public void setContactLastName(String contactLastName) {
+		this.contactLastName = contactLastName;
+	}
+
+	@Column(name="CONTACT_LAST_NAME")
+	private String contactLastName;
 	
 	@Column(name="CONTACT_PHONE")
 	private long contactPhone;
@@ -95,20 +126,28 @@ public class SpouseInfo {
 		this.userId = userId;
 	}
 
-	public String getSpouseName() {
-		return spouseName;
+	public String getSpouseFirstName() {
+		return spouseFirstName;
 	}
 
-	public void setSpouseName(String spouseName) {
-		this.spouseName = spouseName;
+	public void setSpouseFirstName(String spouseFirstName) {
+		this.spouseFirstName = spouseFirstName;
+	}
+	
+	public String getSpouseLastName() {
+		return spouseLastName;
 	}
 
-	public Date getDOB() {
+	public void setSpouseLastName(String spouseLastName) {
+		this.spouseLastName = spouseLastName;
+	}
+
+	public String getDOB() {
 		return DOB;
 	}
 
-	public void setDOB(Date dOB) {
-		DOB = dOB;
+	public void setDOB(String DOB) {
+		this.DOB = DOB;
 	}
 
 	public long getSpousePhone() {
@@ -167,13 +206,6 @@ public class SpouseInfo {
 		this.timeEmployed = timeEmployed;
 	}
 
-	public String getContactPerson() {
-		return contactPerson;
-	}
-
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
-	}
 
 	public long getContactPhone() {
 		return contactPhone;

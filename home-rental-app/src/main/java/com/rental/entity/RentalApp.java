@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class RentalApp {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO, generator="APP_SEQ")
 	@Column(name="FORM_ID")
 	private int formId;
 	
