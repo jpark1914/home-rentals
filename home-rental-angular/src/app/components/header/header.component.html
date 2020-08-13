@@ -13,8 +13,8 @@
     <div ngbDropdownMenu aria-labelledby="loginButton">
       <a ngbDropdownItem routerLink="/personal-info">Personal</a>
       <a ngbDropdownItem routerLink="/spouse-info">Spouse</a>
-      <a ngbDropdownItem disabled>Vehicle</a>
-      <a ngbDropdownItem disabled>Bank</a>
+      <a ngbDropdownItem routerLink="/vehicle-info">Vehicle</a>
+      <a ngbDropdownItem routerLink="/bank-info">Bank</a>
     </div>
   </div>
   <div class="mt-3 mb-2 ml-1 mr-3" ngbDropdown *ngIf="ls.isLoggedIn()">
