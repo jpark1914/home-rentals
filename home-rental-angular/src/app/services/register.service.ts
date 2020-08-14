@@ -19,12 +19,12 @@ export class RegisterService {
   init() {
     this.messageService.clearMsg();
   }
-  
+
   register(user: RentalUser, confirmPass: string) {
     if (user.password !== confirmPass) {
       this.messageService.setMsg("warning", "Passwords must match");
     } else {
-      this.http.post(environment.register, user, { responseType: "text" }).subscribe(res => {
+      this.http.post(environment.user.register, user, { responseType: "text" }).subscribe(res => {
         this.messageService.setMsg("success", `New user ${user.email} registered`);
         this.router.navigate(['/login'])
       });

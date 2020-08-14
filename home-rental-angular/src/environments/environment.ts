@@ -4,10 +4,24 @@
 
 export const environment = {
   production: false,
-  getUsersUrl: 'http://localhost:9000/user/get',
-  register: 'http://localhost:9000/user/save',
-  getInfo: 'http://localhost:9000/personal/get',
-  save: 'http://localhost:9000/personal/save',
+  user: {
+    getUser: 'http://localhost:9000/user/get',
+    register: 'http://localhost:9000/user/save',
+  },
+  personal: {
+    get: 'http://localhost:9000/personal/get',
+    save: 'http://localhost:9000/personal/save',
+  },
+  spouse: {
+    save: 'http://localhost:9000/spouse/save',
+  },
+  vehicle: {
+    save: 'http://localhost:9000/vehicle/save'
+  },
+  bank: {
+    save: 'http://localhost:9000/bank/save'
+  }
+
 };
 
 /*
