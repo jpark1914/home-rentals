@@ -22,7 +22,7 @@ export class PersonalInfoService {
     this.messageService.clearMsg();
   }
 
-  savePersonalInfo(personalInfo: PersonalInfo) {
+  savePersonalInfo(personalInfo: PersonalInfo, redirect: string) {
     this.http.post(environment.personal.save, personalInfo, {
       headers: {
         "Authorization": this.storage.get('authorization')
@@ -31,8 +31,14 @@ export class PersonalInfoService {
       responseType: "text"
     }).subscribe((res: HttpResponse<string>) => {
       if (res.status === 200) {
-        this.messageService.setMsg("success", "Your personal info has been updated");
-        document.querySelector("#page").scroll(0, 0);
+        if (redirect === "stay") {
+          this.messageService.setMsg("success", "Your personal info has been updated");
+          document.querySelector("#page").scroll(0, 0);
+        } else if (redirect === "next") {
+          this.router.navigate(['/spouse-info'])
+        } else {
+          this.router.navigate(['/landing'])
+        }
       }
     });
   }

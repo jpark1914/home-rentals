@@ -47,17 +47,17 @@ export class SpouseInfoFormComponent implements OnInit {
 
   checkSpouseInfo() {
     this.spouseInfoService.init();
-    // this.personalInfoService.getPersonalInfo().subscribe(res => {
-    //   if (res.status === 200) {
-    //     this.personalInfo = res.body;
-    //     this.personalInfo.userId = res.body.rentalUser.userId;
-    //   }
-    // });
+    this.spouseInfoService.getSpouseInfo().subscribe(res => {
+      if (res.status === 200) {
+        this.spouseInfo = res.body;
+        this.spouseInfo.userId = res.body.rentalUser.userId;
+      }
+    });
   }
 
-  submitSpouseInfo() {
+  submitSpouseInfo(redirect: string) {
     console.log(this.spouseInfo);
-    this.spouseInfoService.saveSpouseInfo(this.spouseInfo);
+    this.spouseInfoService.saveSpouseInfo(this.spouseInfo, redirect);
   }
 
 }

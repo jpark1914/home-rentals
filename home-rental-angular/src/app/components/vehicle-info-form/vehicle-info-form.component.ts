@@ -41,17 +41,17 @@ export class VehicleInfoFormComponent implements OnInit {
 
   checkVehicleInfo() {
     this.vehicleInfoService.init();
-    // this.personalInfoService.getPersonalInfo().subscribe(res => {
-    //   if (res.status === 200) {
-    //     this.personalInfo = res.body;
-    //     this.personalInfo.userId = res.body.rentalUser.userId;
-    //   }
-    // });
+    this.vehicleInfoService.getVehicleInfo().subscribe(res => {
+      if (res.status === 200) {
+        this.vehicleInfo = res.body;
+        this.vehicleInfo.userId = res.body.rentalUser.userId;
+      }
+    });
   }
 
-  submitVehicleInfo() {
+  submitVehicleInfo(redirect: string) {
     console.log(this.vehicleInfo);
-    this.vehicleInfoService.saveSpouseInfo(this.vehicleInfo);
+    this.vehicleInfoService.saveSpouseInfo(this.vehicleInfo, redirect);
   }
 
 }

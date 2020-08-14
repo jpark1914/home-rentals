@@ -5,6 +5,8 @@ import { MessageService } from './message.service';
 import { WebStorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { environment } from 'src/environments/environment';
 import { BankInfo } from '../interfaces/bankInfo.interface';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class BankInfoService {
     this.messageService.clearMsg();
   }
 
-  saveBankInfo(bankInfo: BankInfo) {
+  saveBankInfo(bankInfo: BankInfo, redirect: string) {
     this.http.post(environment.bank.save, bankInfo, {
       headers: {
         "Authorization": this.storage.get('authorization')
@@ -29,27 +31,33 @@ export class BankInfoService {
       responseType: "text"
     }).subscribe((res: HttpResponse<string>) => {
       if (res.status === 200) {
-        this.messageService.setMsg("success", "Your bank information has been updated");
-        document.querySelector("#page").scroll(0, 0);
+        if (redirect === "stay") {
+          this.messageService.setMsg("success", "Your bank info has been updated");
+          document.querySelector("#page").scroll(0, 0);
+        } else if (redirect === "next") {
+          this.router.navigate(['/landing'])
+        } else {
+          this.router.navigate(['/vehicle-info'])
+        }
       }
     });
   }
 
-  // getSpouseInfo(): Observable<HttpResponse<SpouseInfo>> {
-  //   return this.http.get(environment.get, {
-  //     headers: {
-  //       "Authorization": this.storage.get('authorization')
-  //     },
-  //     observe: "response",
-  //   }).pipe(
-  //     map(this.handleNoContent.bind(this))
-  //   );
-  // }
+  getBankInfo(): Observable<HttpResponse<BankInfo>> {
+    return this.http.get(environment.bank.get, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response",
+    }).pipe(
+      map(this.handleNoContent.bind(this))
+    );
+  }
 
   private handleNoContent(res: HttpResponse<any>) {
     if (res.status === 204) {
-      console.log("No personal info found")
-      this.messageService.setMsg("info", "Your profile has not been set yet. Enter your info and click save to set your profile.");
+      console.log("No bank info found")
+      this.messageService.setMsg("info", "Your bank info has not been set yet. Enter your info and click save.");
     }
     return res;
   }

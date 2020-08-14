@@ -13,13 +13,16 @@ export const environment = {
     save: 'http://localhost:9000/personal/save',
   },
   spouse: {
+    get: 'http://localhost:9000/spouse/get',
     save: 'http://localhost:9000/spouse/save',
   },
   vehicle: {
-    save: 'http://localhost:9000/vehicle/save'
+    save: 'http://localhost:9000/vehicle/save',
+    get: 'http://localhost:9000/vehicle/get'
   },
   bank: {
-    save: 'http://localhost:9000/bank/save'
+    save: 'http://localhost:9000/bank/save',
+    get: 'http://localhost:9000/bank/get'
   }
 
 };
