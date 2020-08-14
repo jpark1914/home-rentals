@@ -42,8 +42,8 @@ public class PersonalInfo {
 	@Column
 	private long phoneNumber;
 	
-	@Column(unique = true)
-	private long driverLicense;
+	@Column
+	private String driverLicense;
 	
 	@Column(unique = true)
 	private long ssn;
@@ -111,10 +111,10 @@ public class PersonalInfo {
 	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public long getDriverLicense() {
+	public String getDriverLicense() {
 		return driverLicense;
 	}
-	public void setDriverLicense(long driverLicense) {
+	public void setDriverLicense(String driverLicense) {
 		this.driverLicense = driverLicense;
 	}
 	public long getSsn() {

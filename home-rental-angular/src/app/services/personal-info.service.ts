@@ -23,22 +23,22 @@ export class PersonalInfoService {
   }
 
   savePersonalInfo(personalInfo: PersonalInfo) {
-    this.http.post(environment.save, personalInfo, {
+    this.http.post(environment.personal.save, personalInfo, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },
       observe: "response",
       responseType: "text"
-    }).subscribe((res : HttpResponse<string>) => {
+    }).subscribe((res: HttpResponse<string>) => {
       if (res.status === 200) {
         this.messageService.setMsg("success", "Your personal info has been updated");
-        document.querySelector("#page").scroll(0,0);
+        document.querySelector("#page").scroll(0, 0);
       }
     });
   }
 
-  getPersonalInfo() : Observable<HttpResponse<PersonalInfo>> {
-    return this.http.get(environment.getInfo, {
+  getPersonalInfo(): Observable<HttpResponse<PersonalInfo>> {
+    return this.http.get(environment.personal.get, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },
