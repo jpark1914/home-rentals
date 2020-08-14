@@ -23,9 +23,9 @@ export class BankInfoFormComponent implements OnInit {
     rentalUser: null
   }
 
-  submitBankInfo() {
+  submitBankInfo(redirect: string) {
     console.log(this.bankInfo);
-    this.bankInfoService.saveBankInfo(this.bankInfo);
+    this.bankInfoService.saveBankInfo(this.bankInfo, redirect);
   }
 
   constructor(
@@ -48,11 +48,11 @@ export class BankInfoFormComponent implements OnInit {
 
   checkBankInfo() {
     this.bankInfoService.init();
-    // this.bankInfoService.getBankInfo().subscribe(res => {
-    //   if (res.status === 200) {
-    //     this.bankInfo = res.body;
-    //     this.bankInfo.userId = res.body.rentalUser.userId;
-    //   }
-    // });
+    this.bankInfoService.getBankInfo().subscribe(res => {
+      if (res.status === 200) {
+        this.bankInfo = res.body;
+        this.bankInfo.userId = res.body.rentalUser.userId;
+      }
+    });
   }
 }

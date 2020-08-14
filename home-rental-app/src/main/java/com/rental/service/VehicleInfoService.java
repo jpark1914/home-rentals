@@ -1,5 +1,7 @@
 package com.rental.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,10 @@ public class VehicleInfoService {
 	public void saveVehicleInfo(VehicleInfo vehicle) {
 		vehicle.setRentalUser(rur.findById(vehicle.getUserId()).get());
 		vir.save(vehicle);
+	}
+	
+	public Optional<VehicleInfo> getVehicleInfo(long userId) {
+		VehicleInfo vi = vir.findVehicleInfoOfUser(userId);
+		return Optional.ofNullable(vi);
 	}
 }

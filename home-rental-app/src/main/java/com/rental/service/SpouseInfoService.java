@@ -1,5 +1,7 @@
 package com.rental.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,11 @@ public class SpouseInfoService {
 		spouse.setRentalUser(rur.findById(spouse.getUserId()).get());
 		sir.save(spouse);
 		return "Spouse info saved";
+	}
+	
+	public Optional<SpouseInfo> getSpouseInfo(long userId) {
+		SpouseInfo si = sir.findSpouseInfoOfUser(userId);
+		return Optional.ofNullable(si);
 	}
 	
 	
