@@ -5,7 +5,10 @@
     </div>
     <div style="width: 50rem;" class="border">
       <div class="border" *ngFor= "let ri of riArray; let i = index"> 
-        <div class="p-2 clickable" (click)="select(i)"><h4>Reference {{i+1}}</h4></div>
+        <div class="d-flex p-2">
+          <h4 class="flex-fill clickable" (click)="select(i)">Reference {{i+1}}</h4>
+          <button class="btn btn-info" (click)="deleteReference(i)">Delete</button>
+        </div>
         <div *ngIf="riSelected === i">
           <h5 class="mt-3 ml-3">About</h5>
           <hr class="mt-1 mb-3 mx-2">
@@ -64,11 +67,22 @@
               <h6 class="font-weight-bold">Grantor Number</h6>
               <input type="number" [(ngModel)]="referenceInfo.grantorNo" class="mb-3 p-2" size="30" />
             </div>
-          </div>
-          
+          </div> 
         </div>
       </div>
     </div>
+    <div class="px-2 py-4 d-flex justify-content-center">
+      <button (click)="addReference()" class="btn btn-info">Add Reference</button>
+    </div>
+    <hr class="mt-3 mb-5">
+    <div class="d-flex justify-content-around">
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('back')">Go Back
+      </button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('stay')">Save
+      </button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('next')">Save &
+        Continue</button>
+    </div> 
   </div>
 </div>
 

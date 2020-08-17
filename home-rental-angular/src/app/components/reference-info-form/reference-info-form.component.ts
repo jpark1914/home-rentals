@@ -26,7 +26,7 @@ export class ReferenceInfoFormComponent implements OnInit {
     rentalUser: null
   }
 
-  riArray: Reference[] = [this.referenceInfo, this.referenceInfo, this.referenceInfo];
+  riArray: Reference[] = [this.referenceInfo];
   riSelected: number = null;
 
   select(i: number){
@@ -35,6 +35,16 @@ export class ReferenceInfoFormComponent implements OnInit {
     } else {
       this.riSelected = null;
     }
+  }
+
+  addReference(){
+    this.riArray.push(this.referenceInfo);
+  }
+
+  deleteReference(i: number){
+    if(confirm("Are you sure you want to delete?")){
+      this.riArray.splice(i,1);
+    } 
   }
 
   submitReferenceInfo(redirect) {
