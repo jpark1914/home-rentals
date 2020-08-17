@@ -27,6 +27,10 @@ export class LoginService {
     return this.storage.get('user') !== undefined;
   }
 
+  isAdmin(): boolean {
+    return this.isLoggedIn() && this.getLoggedInUser().isAdmin === "ADMIN";
+  }
+
   logout() {
     this.storage.clear();
     this.router.navigate(['/login'])
