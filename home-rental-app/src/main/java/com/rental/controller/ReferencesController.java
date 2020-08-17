@@ -33,8 +33,8 @@ public class ReferencesController {
 	}
 	
 	@PostMapping(value = "/save")
-	public String saveRefs(@RequestBody References reference) {
-		return refS.saveRef(reference);
+	public String saveRefs(@RequestBody References[] references) {
+		return refS.saveRef(references);
 	}
 	
 	@GetMapping(value="/get")
