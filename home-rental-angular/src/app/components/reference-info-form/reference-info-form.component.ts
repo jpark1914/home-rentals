@@ -26,35 +26,46 @@ export class ReferenceInfoFormComponent implements OnInit {
     rentalUser: null
   }
 
+  riArray: Reference[] = [this.referenceInfo, this.referenceInfo, this.referenceInfo];
+  riSelected: number = null;
+
+  select(i: number){
+    if(this.riSelected !== i){
+      this.riSelected = i;
+    } else {
+      this.riSelected = null;
+    }
+  }
+
   submitReferenceInfo(redirect) {
     console.log(this.referenceInfo);
-    this.referenceInfoService.saveReferenceInfo(this.referenceInfo,redirect);
+    //this.referenceInfoService.saveReferenceInfo(this.referenceInfo,redirect);
   }
 
   constructor(private referenceInfoService : ReferenceInfoService, private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.checkLogin();
-    this.checkReferenceInfo();
+    // this.checkLogin();
+    // this.checkReferenceInfo();
   }
 
-  checkLogin() {
-    if (this.loginService.isLoggedIn()) {
-      this.referenceInfo.userId = this.loginService.getLoggedInUser().userId;
-      console.log(this.loginService.getLoggedInUser().userId);
-    } else {
-      this.loginService.logout();
-    }
-  }
+  // checkLogin() {
+  //   if (this.loginService.isLoggedIn()) {
+  //     this.referenceInfo.userId = this.loginService.getLoggedInUser().userId;
+  //     console.log(this.loginService.getLoggedInUser().userId);
+  //   } else {
+  //     this.loginService.logout();
+  //   }
+  // }
 
-  checkReferenceInfo() {
-    this.referenceInfoService.init();
-    this.referenceInfoService.getReferenceInfo().subscribe(res => {
-      if (res.status === 200) {
-        this.referenceInfo = res.body;
-        console.log(res.body);
-        this.referenceInfo.userId = res.body.rentalUser.userId;
-      }
-    });
-  }
+  // checkReferenceInfo() {
+  //   this.referenceInfoService.init();
+  //   this.referenceInfoService.getReferenceInfo().subscribe(res => {
+  //     if (res.status === 200) {
+  //       this.referenceInfo = res.body;
+  //       console.log(res.body);
+  //       this.referenceInfo.userId = res.body.rentalUser.userId;
+  //     }
+  //   });
+  // }
 }
