@@ -39,7 +39,7 @@ export class LoginService {
   login(email, password) {
     // let user: RentalUser = { email, password, isAdmin };
     this.storage.set('authorization', "Basic " + btoa(email + ":" + password));
-    return this.http.get<RentalUser>(environment.getUsersUrl, {
+    return this.http.get<RentalUser>(environment.user.getUser, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },

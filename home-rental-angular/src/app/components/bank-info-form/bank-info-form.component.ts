@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BankInfo } from 'src/app/interfaces/bankInfo.interface';
-
+import { LoginService } from 'src/app/services/login.service';
+import { BankInfoService } from 'src/app/services/bank-info.service'
 @Component({
   selector: 'app-bank-info-form',
   templateUrl: './bank-info-form.component.html',
@@ -8,7 +9,7 @@ import { BankInfo } from 'src/app/interfaces/bankInfo.interface';
 })
 export class BankInfoFormComponent implements OnInit {
 
-  bankInfo : BankInfo = {
+  bankInfo: BankInfo = {
     bankId: null,
     userId: null,
     bankName: "",
@@ -22,13 +23,36 @@ export class BankInfoFormComponent implements OnInit {
     rentalUser: null
   }
 
-  submitBankInfo() {
+  submitBankInfo(redirect: string) {
     console.log(this.bankInfo);
+    this.bankInfoService.saveBankInfo(this.bankInfo, redirect);
   }
 
-  constructor() { }
+  constructor(
+    private bankInfoService: BankInfoService,
+    private loginService: LoginService
+  ) { }
 
   ngOnInit(): void {
+    this.checkLogin();
+    this.checkBankInfo();
   }
 
+  checkLogin() {
+    if (this.loginService.isLoggedIn()) {
+      this.bankInfo.userId = this.loginService.getLoggedInUser().userId;
+    } else {
+      this.loginService.logout();
+    }
+  }
+
+  checkBankInfo() {
+    this.bankInfoService.init();
+    this.bankInfoService.getBankInfo().subscribe(res => {
+      if (res.status === 200) {
+        this.bankInfo = res.body;
+        this.bankInfo.userId = res.body.rentalUser.userId;
+      }
+    });
+  }
 }

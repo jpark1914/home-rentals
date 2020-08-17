@@ -38,8 +38,13 @@
       </div>
     </div>
     <hr class="mt-3 mb-5">
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-primary" style="width: 80%;" (click)="submitVehicleInfo()">Save Vehicle Information</button>
+    <div class="d-flex justify-content-around">
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitVehicleInfo('back')">Go Back
+      </button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitVehicleInfo('stay')">Save
+      </button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitVehicleInfo('next')">Save &
+        Continue</button>
     </div>
   </div>
 </div>

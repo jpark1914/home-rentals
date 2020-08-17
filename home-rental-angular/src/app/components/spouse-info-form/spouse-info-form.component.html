@@ -65,9 +65,30 @@
         <input type="tel" [(ngModel)]="spouseInfo.contactPhone" class="mb-3 p-2" size="40" />
       </div>
     </div>
+    <h4 class="mt-3 ml-3">Identification</h4>
+    <hr class="mt-1 mb-3">
+    <div class="d-flex flex-wrap ">
+      <div class="p-3">
+        <h6 class="font-weight-bold">Drivers License</h6>
+        <div class="mb-3 p-2">
+          <input [(ngModel)]="spouseInfo.driverLicense" size="30" appPassword />
+        </div>
+      </div>
+      <div class="p-3">
+        <h6 class="font-weight-bold">SSN</h6>
+        <div class="mb-3 p-2">
+          <input [(ngModel)]="spouseInfo.ssn" size="30" appPassword />
+        </div>
+      </div>
+    </div>
     <hr class="mt-3 mb-5">
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-primary" style="width: 80%;" (click)="submitSpouseInfo()">Save Spouse Information</button>
+    <div class="d-flex justify-content-around">
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitSpouseInfo('back')">Go Back
+      </button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitSpouseInfo('stay')"> Save
+      </button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitSpouseInfo('next')"> Save &
+        Continue</button>
     </div>
   </div>
 </div>
