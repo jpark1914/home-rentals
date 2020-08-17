@@ -8,6 +8,7 @@ import { PropertyDetailsPageComponent } from './page-components/property-details
 import { SpouseInfoPageComponent } from './page-components/spouse-info-page/spouse-info-page.component';
 import { VehicleInfoPageComponent } from './page-components/vehicle-info-page/vehicle-info-page.component';
 import { BankInfoPageComponent } from './page-components/bank-info-page/bank-info-page.component';
+import { ReferenceInfoPageComponent } from './page-components/reference-info-page/reference-info-page.component';
 
 const routes: Routes = [
   { path: 'landing', component:  LandingPageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'spouse-info', component: SpouseInfoPageComponent },
   { path: 'vehicle-info', component: VehicleInfoPageComponent },
   { path: 'bank-info', component: BankInfoPageComponent },
+  { path: 'reference-info', component: ReferenceInfoPageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];
 
