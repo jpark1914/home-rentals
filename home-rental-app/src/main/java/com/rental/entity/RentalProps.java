@@ -30,9 +30,14 @@ public class RentalProps {
 	@Column(name="TERM")
 	private int term;
 	
+	//Make a fk to propDetails
 	@Column(name="RENT")
 	private double rent;
 	
+	/*
+	 * @Column(name = available)
+	 * private boolean available
+	 */
 	public RentalUsers getRentalUser() {
 		return rentalUser;
 	}
