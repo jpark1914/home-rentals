@@ -60,13 +60,13 @@ public class References {
 	}
 	
 	
-	public RentalUsers getRentalUsers() {
+	public RentalUsers getRentalUser() {
 		return rentalUser;
 	}
 
 
-	public void setRentalUsers(RentalUsers rentalUsers) {
-		this.rentalUser = rentalUsers;
+	public void setRentalUser(RentalUsers rentalUser) {
+		this.rentalUser = rentalUser;
 	}
 
 
