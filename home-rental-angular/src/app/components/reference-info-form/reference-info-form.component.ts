@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Reference } from 'src/app/interfaces/reference.interface';
+import { ReferenceInfoService } from 'src/app/services/reference-info.service'
+import { LoginService } from 'src/app/services/login.service'
 
 @Component({
   selector: 'app-reference-info-form',
@@ -25,13 +27,34 @@ export class ReferenceInfoFormComponent implements OnInit {
   }
 
   submitReferenceInfo(redirect) {
-    console.log(redirect);
     console.log(this.referenceInfo);
+    this.referenceInfoService.saveReferenceInfo(this.referenceInfo,redirect);
   }
 
-  constructor() { }
+  constructor(private referenceInfoService : ReferenceInfoService, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.checkLogin();
+    this.checkReferenceInfo();
   }
 
+  checkLogin() {
+    if (this.loginService.isLoggedIn()) {
+      this.referenceInfo.userId = this.loginService.getLoggedInUser().userId;
+      console.log(this.loginService.getLoggedInUser().userId);
+    } else {
+      this.loginService.logout();
+    }
+  }
+
+  checkReferenceInfo() {
+    this.referenceInfoService.init();
+    this.referenceInfoService.getReferenceInfo().subscribe(res => {
+      if (res.status === 200) {
+        this.referenceInfo = res.body;
+        console.log(res.body);
+        this.referenceInfo.userId = res.body.rentalUser.userId;
+      }
+    });
+  }
 }

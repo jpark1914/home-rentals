@@ -1,5 +1,7 @@
 package com.rental.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,9 +25,14 @@ public class ReferencesService {
 	}
 	
 	public String saveRef(References ref) {
-		ref.setRentalUsers(rur.findById(ref.getUserId()).get());
+		ref.setRentalUser(rur.findById(ref.getUserId()).get());
 		refR.save(ref);
 		return "Reference saved";
+	}
+	
+	public Optional<References> getRef(long userId) {
+		References r = refR.findReferencesOfUser(userId);
+		return Optional.ofNullable(r);
 	}
 	
 }

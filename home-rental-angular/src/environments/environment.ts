@@ -23,6 +23,10 @@ export const environment = {
   bank: {
     save: 'http://localhost:9000/bank/save',
     get: 'http://localhost:9000/bank/get'
+  },
+  reference: {
+    save: 'http://localhost:9000/references/save',
+    get: 'http://localhost:9000/references/get'
   }
 
 };
