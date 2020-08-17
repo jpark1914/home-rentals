@@ -26,6 +26,8 @@ import { VehicleInfoPageComponent } from './page-components/vehicle-info-page/ve
 import { VehicleInfoFormComponent } from './components/vehicle-info-form/vehicle-info-form.component';
 import { BankInfoPageComponent } from './page-components/bank-info-page/bank-info-page.component';
 import { BankInfoFormComponent } from './components/bank-info-form/bank-info-form.component';
+import { ReferenceInfoPageComponent } from './page-components/reference-info-page/reference-info-page.component';
+import { ReferenceInfoFormComponent } from './components/reference-info-form/reference-info-form.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { BankInfoFormComponent } from './components/bank-info-form/bank-info-for
     VehicleInfoFormComponent,
     BankInfoPageComponent,
     BankInfoFormComponent,
+    ReferenceInfoPageComponent,
+    ReferenceInfoFormComponent,
   ],
   imports: [
     BrowserModule,

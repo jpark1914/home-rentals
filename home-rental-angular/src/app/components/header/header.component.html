@@ -6,6 +6,11 @@
     <button class="btn" type="button" routerLink="/register">Register</button>
     <button class="btn" type="button" routerLink="/login">Login</button> 
   </div>
+  <div class="mx-1" style="margin-top: 1.25rem;" *ngIf="ls.isAdmin()">
+    <button class="btn" type="button" id="properties">
+      Properties
+    </button>
+  </div>
   <div class="mx-1" style="margin-top: 1.25rem;" ngbDropdown *ngIf="ls.isLoggedIn()">
     <button class="btn dropdown-toggle" type="button" id="loginButton" ngbDropdownToggle>
       Information
@@ -15,6 +20,7 @@
       <a ngbDropdownItem routerLink="/spouse-info">Spouse</a>
       <a ngbDropdownItem routerLink="/vehicle-info">Vehicle</a>
       <a ngbDropdownItem routerLink="/bank-info">Bank</a>
+      <a ngbDropdownItem routerLink="/reference-info">Reference</a>
     </div>
   </div>
   <div class="mt-3 mb-2 ml-1 mr-3" ngbDropdown *ngIf="ls.isLoggedIn()">
