@@ -34,7 +34,8 @@ export class VehicleInfoService {
       if (res.status === 200) {
         if (redirect === "stay") {
           this.messageService.setMsg("success", "Your vehicle info has been updated");
-          document.querySelector("#page").scroll(0, 0);
+          //document.querySelector("#page").scroll(0, 0);
+          location.reload();
         } else if (redirect === "next") {
           this.router.navigate(['/bank-info'])
         } else {

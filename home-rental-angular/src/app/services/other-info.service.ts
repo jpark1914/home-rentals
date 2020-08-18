@@ -3,15 +3,15 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MessageService } from './message.service';
 import { LOCAL_STORAGE, WebStorageService } from 'ngx-webstorage-service';
-import { SpouseInfo } from '../interfaces/spouseInfo.interface';
-import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { OtherInfo } from '../interfaces/otherInfo.interface';
+import { map, windowWhen } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SpouseInfoService {
+export class OtherInfoService {
 
   constructor(private http: HttpClient,
     private router: Router,
@@ -22,30 +22,8 @@ export class SpouseInfoService {
     this.messageService.clearMsg();
   }
 
-  saveSpouseInfo(spouseInfo: SpouseInfo, redirect: string) {
-    this.http.post(environment.spouse.save, spouseInfo, {
-      headers: {
-        "Authorization": this.storage.get('authorization')
-      },
-      observe: "response",
-      responseType: "text"
-    }).subscribe((res: HttpResponse<string>) => {
-      if (res.status === 200) {
-        if (redirect === "stay") {
-          this.messageService.setMsg("success", "Your spouse info has been updated");
-          //document.querySelector("#page").scroll(0, 0);
-          location.reload();
-        } else if (redirect === "next") {
-          this.router.navigate(['/vehicle-info'])
-        } else {
-          this.router.navigate(['/personal-info'])
-        }
-      }
-    });
-  }
-
-  getSpouseInfo(): Observable<HttpResponse<SpouseInfo>> {
-    return this.http.get(environment.spouse.get, {
+  getOtherInfo(): Observable<HttpResponse<OtherInfo>>{
+    return this.http.get(environment.other.get, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },
@@ -55,13 +33,33 @@ export class SpouseInfoService {
     );
   }
 
+  saveOtherInfo(otherInfo: OtherInfo, redirect: string){
+    this.http.post(environment.other.save, otherInfo,{
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response",
+      responseType: "text"
+    }).subscribe((res: HttpResponse<string>) => {
+      if (res.status === 200) {
+        if (redirect === "stay") {
+          //document.querySelector("#page").scroll(0, 0);
+          location.reload();
+          this.messageService.setMsg("success", "Your other info has been updated");
+        } else if (redirect === "next") {
+          this.router.navigate(['/landing'])
+        } else {
+          this.router.navigate(['/reference'])
+        }
+      }
+    });
+  }
 
   private handleNoContent(res: HttpResponse<any>) {
     if (res.status === 204) {
-      console.log("No spouse info found")
-      this.messageService.setMsg("info", "Your spouse information has not been set yet. Enter your info and click save.");
+      console.log("No other info found")
+      this.messageService.setMsg("info", "Your other info has not been set yet. Enter your info and click save.");
     }
     return res;
   }
-
 }

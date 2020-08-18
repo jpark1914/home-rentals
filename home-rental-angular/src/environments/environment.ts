@@ -27,6 +27,10 @@ export const environment = {
   reference: {
     save: 'http://localhost:9000/references/save',
     get: 'http://localhost:9000/references/get'
+  },
+  other: {
+    save: 'http://localhost:9000/other/save',
+    get: 'http://localhost:9000/other/get'
   }
 
 };

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OtherInfo } from 'src/app/interfaces/otherInfo.interface'
+import { OtherInfoService } from 'src/app/services/other-info.service'
+import { LoginService } from 'src/app/services/login.service'
 
 @Component({
   selector: 'app-other-info-form',
@@ -13,16 +15,37 @@ export class OtherInfoFormComponent implements OnInit {
     evictNotice: false,
     refusedRentPay: false,
     suedForUnlawfulDetainer: false,
-    referralDesc: "",
-    referralId: null,
-    //referral: Referral,
     userId: null,
     rentalUser: null,
   }
 
-  constructor() { }
+  constructor(private otherInfoService: OtherInfoService, private loginService: LoginService) { }
 
-  ngOnInit(): void {
+  checkLogin() {
+    if (this.loginService.isLoggedIn()) {
+      this.otherInfo.userId = this.loginService.getLoggedInUser().userId;
+    } else {
+      this.loginService.logout();
+    }
   }
 
+  checkOtherInfo(){
+    //this.otherInfoService.init();
+    this.otherInfoService.getOtherInfo().subscribe(res => {
+      if(res.status === 200){
+        this.otherInfo = res.body;
+        this.otherInfo.userId = res.body.rentalUser.userId;
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    this.checkLogin();
+    this.checkOtherInfo();
+  }
+
+  submitOtherInfo(redirect){
+    console.log(this.otherInfo);
+    this.otherInfoService.saveOtherInfo(this.otherInfo, redirect);
+  }
 }
