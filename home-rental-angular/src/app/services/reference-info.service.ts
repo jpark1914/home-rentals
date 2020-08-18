@@ -18,48 +18,48 @@ export class ReferenceInfoService {
     private messageService: MessageService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,) { }
 
-    init() {
-      this.messageService.clearMsg();
-    }
-  
-    saveReferenceInfo(referenceInfo: Reference, redirect: string) {
-      this.http.post(environment.reference.save, referenceInfo, {
-        headers: {
-          "Authorization": this.storage.get('authorization')
-        },
-        observe: "response",
-        responseType: "text"
-      }).subscribe((res: HttpResponse<string>) => {
-        if (res.status === 200) {
-          if (redirect === "stay") {
-            this.messageService.setMsg("success", "Your reference info has been updated");
-            document.querySelector("#page").scroll(0, 0);
-          } else if (redirect === "next") {
-            this.router.navigate(['/bank-info'])
-          } else {
-            this.router.navigate(['/landing'])
-          }
-        }
-      });
-    }
+  init() {
+    this.messageService.clearMsg();
+  }
 
-    getReferenceInfo(): Observable<HttpResponse<Reference>> {
-      return this.http.get(environment.reference.get, {
-        headers: {
-          "Authorization": this.storage.get('authorization')
-        },
-        observe: "response",
-      }).pipe(
-        map(this.handleNoContent.bind(this))
-      );
-    }
-  
-    private handleNoContent(res: HttpResponse<any>) {
-      if (res.status === 204) {
-        console.log("No reference info found")
-        this.messageService.setMsg("info", "Your references have not been set yet. Enter your info and click save.");
+  saveReferenceInfo(referenceInfo: Reference[], redirect: string) {
+    this.http.post(environment.reference.save, referenceInfo, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response",
+      responseType: "text"
+    }).subscribe((res: HttpResponse<string>) => {
+      if (res.status === 200) {
+        if (redirect === "stay") {
+          this.messageService.setMsg("success", "Your reference info has been updated");
+          document.querySelector("#page").scroll(0, 0);
+        } else if (redirect === "next") {
+          this.router.navigate(['/landing'])
+        } else {
+          this.router.navigate(['/bank-info'])
+        }
       }
-      return res;
+    });
+  }
+
+  getReferenceInfo(): Observable<HttpResponse<Reference[]>> {
+    return this.http.get(environment.reference.get, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response",
+    }).pipe(
+      map(this.handleNoContent.bind(this))
+    );
+  }
+
+  private handleNoContent(res: HttpResponse<any>) {
+    if (res.status === 204) {
+      console.log("No reference info found")
+      this.messageService.setMsg("info", "Your references have not been set yet. Enter your info and click save.");
     }
+    return res;
+  }
 
 }

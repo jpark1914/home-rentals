@@ -27,18 +27,20 @@ public class ReferencesService {
 	}
 	
 	public String saveRef(References[] ref) {
+		System.out.println(ref[0].getUserId());
+		refR.deleteAllByUserId(ref[0].getUserId());
 		List<References> theRefs = new ArrayList<References>();
 		for(References r: ref) {
 			r.setRentalUser(rur.findById(r.getUserId()).get());
 			theRefs.add(r);
 		}
 		refR.saveAll(theRefs);
-		return "Reference saved";
+		return "References saved";
 	}
 	
-	public Optional<References> getRef(long userId) {
-		References r = refR.findReferencesOfUser(userId);
-		return Optional.ofNullable(r);
+	public Optional<List<References>> getRef(long userId) {
+		List<References> theRefs = refR.findReferencesOfUser(userId);
+		return Optional.ofNullable(theRefs);
 	}
 	
 }

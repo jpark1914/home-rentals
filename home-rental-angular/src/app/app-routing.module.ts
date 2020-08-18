@@ -9,9 +9,10 @@ import { SpouseInfoPageComponent } from './page-components/spouse-info-page/spou
 import { VehicleInfoPageComponent } from './page-components/vehicle-info-page/vehicle-info-page.component';
 import { BankInfoPageComponent } from './page-components/bank-info-page/bank-info-page.component';
 import { ReferenceInfoPageComponent } from './page-components/reference-info-page/reference-info-page.component';
+import { OtherInfoPageComponent } from './page-components/other-info-page/other-info-page.component';
 
 const routes: Routes = [
-  { path: 'landing', component:  LandingPageComponent },
+  { path: 'landing', component: LandingPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'personal-info', component: PersonalInfoPageComponent },
   { path: 'register', component: RegisterPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'vehicle-info', component: VehicleInfoPageComponent },
   { path: 'bank-info', component: BankInfoPageComponent },
   { path: 'reference-info', component: ReferenceInfoPageComponent },
+  { path: 'other-info', component: OtherInfoPageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];
 
