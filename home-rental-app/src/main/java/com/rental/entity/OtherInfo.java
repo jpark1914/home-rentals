@@ -33,15 +33,15 @@ public class OtherInfo {
 	@Column(name="SUED_UNLAWFL_DETAINER")
 	private boolean suedForUnlawfulDetainer;
 	
-	@Column(name = "REFERRAL_DESC")
-	private String referralDesc;
-	
-	private transient long referralId;
-
-	//Data Model Mappings
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "REFERRAL_ID")
-	private Referral referral;
+//	@Column(name = "REFERRAL_DESC")
+//	private String referralDesc;
+//	
+//	private transient long referralId;
+//
+//	//Data Model Mappings
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "REFERRAL_ID")
+//	private Referral referral;
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -110,38 +110,38 @@ public class OtherInfo {
 		this.suedForUnlawfulDetainer = suedForUnlawfulDetainer;
 	}
 	
-	public Referral getReferral() {
-		return referral;
-	}
-	public void setReferral(Referral referral) {
-		this.referral = referral;
-	}
-	
-	public String getReferralDesc() {
-		return referralDesc;
-	}
-
-
-	public void setReferralDesc(String referralDesc) {
-		this.referralDesc = referralDesc;
-	}
-
-
-	public Long getReferralId() {
-		return referralId;
-	}
-
-
-	public void setReferralId(Long referralId) {
-		this.referralId = referralId;
-	}
+//	public Referral getReferral() {
+//		return referral;
+//	}
+//	public void setReferral(Referral referral) {
+//		this.referral = referral;
+//	}
+//	
+//	public String getReferralDesc() {
+//		return referralDesc;
+//	}
+//
+//
+//	public void setReferralDesc(String referralDesc) {
+//		this.referralDesc = referralDesc;
+//	}
+//
+//
+//	public Long getReferralId() {
+//		return referralId;
+//	}
+//
+//
+//	public void setReferralId(Long referralId) {
+//		this.referralId = referralId;
+//	}
 
 
 	@Override
 	public String toString() {
 		return "OtherInfo [otherId=" + otherId + ", userId=" + userId + ", bankruptcy=" + bankruptcy + ", evictNotice="
 				+ evictNotice + ", refusedRentPay=" + refusedRentPay + ", suedForUnlawfulDetainer="
-				+ suedForUnlawfulDetainer + ", referral=" + referral + "]";
+				+ suedForUnlawfulDetainer + ", referral=" +  "]";
 	}
 	
 }

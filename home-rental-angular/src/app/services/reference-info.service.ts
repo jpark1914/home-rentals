@@ -33,9 +33,10 @@ export class ReferenceInfoService {
       if (res.status === 200) {
         if (redirect === "stay") {
           this.messageService.setMsg("success", "Your reference info has been updated");
-          document.querySelector("#page").scroll(0, 0);
+          //document.querySelector("#page").scroll(0, 0);
+          location.reload();
         } else if (redirect === "next") {
-          this.router.navigate(['/landing'])
+          this.router.navigate(['/other-info'])
         } else {
           this.router.navigate(['/bank-info'])
         }
