@@ -1,5 +1,7 @@
 package com.rental.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,13 @@ public class ReferencesService {
 		this.rur = rur;
 	}
 	
-	public String saveRef(References ref) {
-		ref.setRentalUser(rur.findById(ref.getUserId()).get());
-		refR.save(ref);
+	public String saveRef(References[] ref) {
+		List<References> theRefs = new ArrayList<References>();
+		for(References r: ref) {
+			r.setRentalUser(rur.findById(r.getUserId()).get());
+			theRefs.add(r);
+		}
+		refR.saveAll(theRefs);
 		return "Reference saved";
 	}
 	
