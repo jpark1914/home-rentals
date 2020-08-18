@@ -28,6 +28,8 @@ import { BankInfoPageComponent } from './page-components/bank-info-page/bank-inf
 import { BankInfoFormComponent } from './components/bank-info-form/bank-info-form.component';
 import { ReferenceInfoPageComponent } from './page-components/reference-info-page/reference-info-page.component';
 import { ReferenceInfoFormComponent } from './components/reference-info-form/reference-info-form.component';
+import { OtherInfoPageComponent } from './page-components/other-info-page/other-info-page.component';
+import { OtherInfoFormComponent } from './components/other-info-form/other-info-form.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { ReferenceInfoFormComponent } from './components/reference-info-form/ref
     BankInfoFormComponent,
     ReferenceInfoPageComponent,
     ReferenceInfoFormComponent,
+    OtherInfoPageComponent,
+    OtherInfoFormComponent,
   ],
   imports: [
     BrowserModule,

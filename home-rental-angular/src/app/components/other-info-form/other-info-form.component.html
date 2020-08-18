@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center py-4 px-2">
+    <div class="border p-3">
+        <div class="text-center">
+            <h3 class="mb-3">Other Information</h3>
+        </div>
+        <h4 class="mt-3 ml-3">Bankruptcy</h4>
+        <hr class="m-1">
+        <div class="d-flex flex-wrap">
+            <div class="p-3">
+                <h6 class="font-weight-bold">
+                    Have You Ever Filed for Bankruptcy?
+                </h6>
+                <div class=" mt-4 d-flex justify-content-center" style="width: 50rem;">
+                    <div ngbRadioGroup class="btn-group btn-group-toggle mb-4">
+                        <label style="width: 10rem;" ngbButtonLabel class="btn-info mx-2">
+                            <input ngbButton [value]="true" type="radio"> Yes
+                        </label>
+                        <label style="width: 10rem;" ngbButtonLabel class=" btn-info mx-2">
+                            <input ngbButton [value]="false" type="radio"> No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="mt-3 ml-3">Eviction</h4>
+        <hr class="m-1">
+        <div class="d-flex flex-wrap">
+            <div class="p-3">
+                <h6 class="font-weight-bold">
+                    Have you ever been served an eviction-notice or been asked to vacate a property you were renting?
+                </h6>
+                <div class=" mt-4 d-flex justify-content-center" style="width: 50rem;">
+                    <div ngbRadioGroup class="btn-group btn-group-toggle mb-4">
+                        <label style="width: 10rem;" ngbButtonLabel class="btn-info mx-2">
+                            <input ngbButton [value]="true" type="radio"> Yes
+                        </label>
+                        <label style="width: 10rem;" ngbButtonLabel class=" btn-info mx-2">
+                            <input ngbButton [value]="false" type="radio"> No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h4 class="mt-3 ml-3">Payment Refusal</h4>
+        <hr class="m-1">
+        <div class="d-flex flex-wrap">
+            <div class="p-3">
+                <h6 class="font-weight-bold">
+                    Have you ever WILLFULLY or INTENTIONALLY refused to pay rent when payment was due?
+                </h6>
+                <div class=" mt-4 d-flex justify-content-center" style="width: 50rem;">
+                    <div ngbRadioGroup class="btn-group btn-group-toggle mb-4">
+                        <label style="width: 10rem;" ngbButtonLabel class="btn-info mx-2">
+                            <input ngbButton [value]="true" type="radio"> Yes
+                        </label>
+                        <label style="width: 10rem;" ngbButtonLabel class=" btn-info mx-2">
+                            <input ngbButton [value]="false" type="radio"> No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="mt-3 ml-3">Unlawful Detainment</h4>
+        <hr class="m-1">
+        <div class="d-flex flex-wrap">
+            <div class="p-3">
+                <h6 class="font-weight-bold">
+                    Have you ever been sued for unlawful detainer?
+                </h6>
+                <div class=" mt-4 d-flex justify-content-center" style="width: 50rem;">
+                    <div ngbRadioGroup class="btn-group btn-group-toggle mb-4">
+                        <label style="width: 10rem;" ngbButtonLabel class="btn-info mx-2">
+                            <input ngbButton [value]="true" type="radio"> Yes
+                        </label>
+                        <label style="width: 10rem;" ngbButtonLabel class=" btn-info mx-2">
+                            <input ngbButton [value]="false" type="radio"> No
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="d-flex flex-wrap ">
+            <div class="p-3">
+                <h6 class="font-weight-bold">First Name</h6>
+                <input type="radio" [(ngModel)]="personalInfo.firstName" class="mb-3 p-2" size="40" />
+            </div>
+            <div class="p-3">
+                <h6 class="font-weight-bold">Last Name</h6>
+                <input type="text" [(ngModel)]="personalInfo.lastName" class="mb-3 p-2" size="40" />
+            </div>
+        </div>
+        <div class="d-flex flex-wrap ">
+            <div class="p-3">
+                <h6 class="font-weight-bold">Date of Birth</h6>
+                <input type="date" [(ngModel)]="personalInfo.dateOfBirth" class="mb-3 p-2" size="40" />
+            </div>
+        </div>
+        <h4 class="mt-3 ml-3">Address</h4>
+        <hr class="mt-1 mb-3">
+        <div class="d-flex flex-wrap ">
+            <div class="p-3">
+                <h6 class="font-weight-bold">Address</h6>
+                <input type="text" [(ngModel)]="personalInfo.address" class="mb-3 p-2" size="65" />
+            </div>
+        </div>
+        <div class="d-flex flex-wrap ">
+            <div class="p-3">
+                <h6 class="font-weight-bold">City</h6>
+                <input type="text" [(ngModel)]="personalInfo.city" class="mb-3 p-2" size="30" />
+            </div>
+            <div class="p-3">
+                <h6 class="font-weight-bold">State</h6>
+                <input type="text" [(ngModel)]="personalInfo.state" class="mb-3 p-2" size="30" />
+            </div>
+        </div>
+        <div class="d-flex flex-wrap ">
+            <div class="p-3">
+                <h6 class="font-weight-bold">Zip Code</h6>
+                <input type="text" [(ngModel)]="personalInfo.zip" class="mb-3 p-2" size="30" />
+            </div>
+            <div class="p-3">
+                <h6 class="font-weight-bold">Phone Number</h6>
+                <input type="tel" [(ngModel)]="personalInfo.phoneNumber" class="mb-3 p-2" size="30" />
+            </div>
+        </div>
+        <h4 class="mt-3 ml-3">Identification</h4>
+        <hr class="mt-1 mb-3">
+        <div class="d-flex flex-wrap ">
+            <div class="p-3">
+                <h6 class="font-weight-bold">Drivers License</h6>
+                <div class="mb-3 p-2">
+                    <input [(ngModel)]="personalInfo.driverLicense" size="30" appPassword />
+                </div>
+            </div>
+            <div class="p-3">
+                <h6 class="font-weight-bold">SSN</h6>
+                <div class="mb-3 p-2">
+                    <input [(ngModel)]="personalInfo.ssn" size="30" appPassword />
+                </div>
+            </div>
+        </div>
+        <hr class="mt-3 mb-5">
+        <div class="d-flex justify-content-around">
+            <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitPersonalInfo('back')">Go Back
+            </button>
+            <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitPersonalInfo('stay')">Save
+            </button>
+            <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitPersonalInfo('next')">Save &
+                Continue</button>
+        </div> -->
+    </div>
+</div>

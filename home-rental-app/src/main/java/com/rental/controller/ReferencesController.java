@@ -1,5 +1,6 @@
 package com.rental.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rental.entity.PersonalInfo;
 import com.rental.entity.References;
 import com.rental.service.ReferencesService;
 import com.rental.service.RentalUserService;
@@ -38,9 +38,9 @@ public class ReferencesController {
 	}
 	
 	@GetMapping(value="/get")
-	public ResponseEntity<References> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
+	public ResponseEntity<List<References>> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
 		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
-		Optional<References> opReferences = refS.getRef(userId);
+		Optional<List<References>> opReferences = refS.getRef(userId);
 		if (opReferences.isPresent()) {
 			return ResponseEntity.ok(opReferences.get());
 		} else {
