@@ -1,6 +1,9 @@
 <div class="text-center pt-3 pb-2 px-2">
   <h4>My Properties</h4>
 </div>
+<div class="d-flex justify-content-center p-3">
+  <button class="btn btn-primary">Add Property</button>
+</div>
 <ul class="flex-fill d-flex justify-content-center p-2 mx-0 mt-0 mb-4 flex-wrap">
   <li class="text-center border p-2 m-2" *ngFor="let house of houseList" [routerLink]="['/property-details', house.unitId]">
     <div id="logo-div"></div>
@@ -16,6 +19,3 @@
     <br>
   </li>
 </ul>
-<div class="d-flex justify-content-center pb-5">
-  <button class="btn btn-primary">Add Property</button>
-</div>

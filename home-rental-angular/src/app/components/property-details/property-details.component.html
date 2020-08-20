@@ -1,16 +1,103 @@
-<div class="p-3 d-flex justify-content-center">
+<div class="p-3">
   <div class="bg-light border p-3">
     <div class="d-flex">
-      <h3 class="mb-0 flex-fill">Property Details for {{ unitId }}</h3>
+      <h2 class="mb-0 flex-fill">Property Details</h2>
       <button class="btn btn-info" (click)="goBack()">Back</button>
     </div>
     <hr class="mb-4 mt-2">
-    <ngb-carousel *ngIf="images" class="bg-dark text-center mb-3" style="width: 40rem; height: 32rem;">
-    <ng-template ngbSlide *ngFor="let image of images">
-      <div class="picsum-img-wrapper h-100">
-        <img [src]="image">
+    <div class="d-flex flex-wrap">
+      <ngb-carousel *ngIf="images" class="bg-dark text-center mb-3" style="width: 40rem; height: 32rem;">
+      <ng-template ngbSlide *ngFor="let image of images">
+        <div class="picsum-img-wrapper h-100">
+          <img [src]="image">
+        </div>
+      </ng-template>
+      </ngb-carousel>
+      <div class="p-4 flex-fill">
+        <h1>{{ property.unitAddress }}</h1>
+        <h4>{{ property.unitCity }}, {{ property.unitState }} {{ property.unitZip }}</h4>
+        <h4>{{ property.unitCountry }}</h4>
+        <br>
+        <h5>Rent Amount:</h5>
+        <h1>{{ property.rentAmount | currency }}</h1>
+        <br>
+        <h5>Description:</h5>
+          <p style="max-width: 35rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus auctor dolor ac aliquet. Phasellus porttitor aliquet velit, sit amet faucibus arcu congue eu. Vivamus vel nisi sit amet orci ultrices finibus. Etiam et ipsum neque. Donec vestibulum egestas dui, sed convallis purus malesuada ac. Ut ut ultrices ligula. Duis nec urna eros. Praesent commodo nec ex et condimentum. Praesent auctor vel nunc non pretium. Vivamus pretium blandit odio cursus accumsan.</p>
       </div>
-    </ng-template>
-    </ngb-carousel>
+    </div>
+    <div class="pt-3 pb-2 pl-2">
+      <h2>Property</h2>
+    </div>
+    <table class="table table-striped mb-4">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Square Feet</th>
+          <th>Number of Bedrooms</th>
+          <th>Number of Bathrooms</th>
+          <th>Washer/Dryer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ property.unitType }}</td>
+          <td>{{ property.unitSquareFeet }}</td>
+          <td>{{ property.unitNumBedrooms }}</td>
+          <td>{{ property.unitNumBathrooms }}</td>
+          <td>Both</td>
+        </tr>
+      </tbody>  
+    </table>
+    <div class="pt-3 pb-2 pl-2">
+      <h2>Utilities</h2>
+    </div>
+    <table class="table table-striped mb-4">
+      <thead>
+        <tr>
+          <th>Electricity</th>
+          <th>Water/Sewage</th>
+          <th>Heat</th>
+          <th>Air Conditioning</th>
+          <th>Trash/Recycling</th>
+          <th>Wifi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes, Centralized</td>
+          <td>Yes, separated ACs in each room</td>
+          <td>Every Monday</td>
+          <td>Optimum Cable</td>
+        </tr>
+      </tbody>  
+    </table>
+    <div class="pt-3 pb-2 pl-2">
+      <h2>Owner</h2>
+    </div>
+    <table class="table table-striped mb-4">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Full Address</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Naughty</td>
+        <td>Nas</td>
+        <td>naughtynas@gmail.com</td>
+        <td>4321 Example Dr. Memphis, Tennessee 12345</td>
+        <td>+1 (232)-234-3456</td>
+      </tr>
+    </tbody>  
+    </table>
+    <div class="d-flex justify-content-center p-3">
+      <button class="btn btn-primary">Submit a Rental Application</button> 
+    </div>
   </div>
 </div>
