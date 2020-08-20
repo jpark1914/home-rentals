@@ -42,10 +42,10 @@ export class OtherInfoService {
       responseType: "text"
     }).subscribe((res: HttpResponse<string>) => {
       if (res.status === 200) {
+        this.messageService.setMsg("success", "Your other info has been updated");
         if (redirect === "stay") {
           //document.querySelector("#page").scroll(0, 0);
           location.reload();
-          this.messageService.setMsg("success", "Your other info has been updated");
         } else if (redirect === "next") {
           this.router.navigate(['/landing'])
         } else {

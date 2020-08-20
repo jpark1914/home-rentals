@@ -83,7 +83,6 @@ export class ReferenceInfoFormComponent implements OnInit {
   }
 
   checkReferenceInfo() {
-    this.referenceInfoService.init();
     this.referenceInfoService.getReferenceInfo().subscribe(res => {
       if (res.status === 200) {
         this.riArray = res.body;

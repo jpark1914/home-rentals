@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center pt-5 pb-0 px-0">
-  <ngb-alert [type]="messageService.getMsg().alertType" (close)="close()" *ngIf="messageService.getMsg() !== null">
+  <ngb-alert [type]="messageService.getMsg().alertType" (close)="close()" *ngIf="messageService.getMsg() !== undefined">
     {{ messageService.getMsg().alertString }}
   </ngb-alert>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RentalProperty } from 'src/app/interfaces/rentalProperty.interface';
+import { RentalPropertyService } from 'src/app/services/rental-property.service';
 
 @Component({
   selector: 'app-property-list',
@@ -10,9 +11,10 @@ export class PropertyListComponent implements OnInit {
   
   houseList: RentalProperty[] = [];
 
-  constructor() { }
+  constructor(private rentalPropertyService : RentalPropertyService) { }
 
   ngOnInit(): void {
+    //this.rentalPropertyService.init();
     for (let i = 0; i < 12; i++) {
       this.houseList.push({
         unitId: i,
