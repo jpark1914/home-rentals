@@ -46,7 +46,6 @@ export class SpouseInfoFormComponent implements OnInit {
   }
 
   checkSpouseInfo() {
-    this.spouseInfoService.init();
     this.spouseInfoService.getSpouseInfo().subscribe(res => {
       if (res.status === 200) {
         this.spouseInfo = res.body;

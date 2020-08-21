@@ -31,13 +31,14 @@ export class LoginService {
     return this.isLoggedIn() && this.getLoggedInUser().isAdmin === "ADMIN";
   }
 
-  logout() {
-    this.storage.clear();
-    this.router.navigate(['/login'])
-  }
-
   getLoggedInUser(): RentalUser {
     return JSON.parse(this.storage.get('user'));;
+  }
+
+  logout() {
+    this.storage.remove('user');
+    this.storage.remove('authorization');
+    this.router.navigate(['/login'])
   }
 
   login(email, password) {
@@ -76,6 +77,7 @@ export class LoginService {
       let body = res.body;
       this.storage.set('user', JSON.stringify(body));
       console.log(this.storage.get('user'));
+      this.messageService.clearMsg();
       this.router.navigate(['/landing']);
     }
     return res;

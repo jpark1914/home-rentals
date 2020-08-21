@@ -6,8 +6,13 @@
     <button class="btn" type="button" routerLink="/register">Register</button>
     <button class="btn" type="button" routerLink="/login">Login</button>
   </div>
-  <div class="mx-1" style="margin-top: 1.25rem;" *ngIf="ls.isAdmin()">
+  <div class="mx-1" style="margin-top: 1.25rem;" *ngIf="ls.isLoggedIn()">
     <button class="btn" type="button" id="properties">
+      Applications
+    </button>
+  </div>
+  <div class="mx-1" style="margin-top: 1.25rem;" *ngIf="ls.isAdmin()">
+    <button class="btn" type="button" id="properties" routerLink="/rental-admin">
       Properties
     </button>
   </div>
@@ -29,7 +34,7 @@
       <img id="user" src="/assets/person-circle.svg">
     </button>
     <div ngbDropdownMenu aria-labelledby="loginButton">
-      <p ngbDropdownItem class="mb-1" disabled>{{ ls.getLoggedInUser().email }}</p>
+      <p ngbDropdownItem class="mb-1" disabled>{{ ls.getLoggedInUser().email }} ({{ ls.getLoggedInUser().isAdmin | titlecase }})</p>
       <a ngbDropdownItem (click)="ls.logout()">Logout</a>
     </div>
   </div>

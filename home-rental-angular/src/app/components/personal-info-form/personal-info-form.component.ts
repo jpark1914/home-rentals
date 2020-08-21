@@ -53,7 +53,6 @@ export class PersonalInfoFormComponent implements OnInit {
   }
 
   checkPersonalInfo() {
-    this.personalInfoService.init();
     this.personalInfoService.getPersonalInfo().subscribe(res => {
       if (res.status === 200) {
         this.personalInfo = res.body;

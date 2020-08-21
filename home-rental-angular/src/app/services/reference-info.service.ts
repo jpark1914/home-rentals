@@ -31,8 +31,8 @@ export class ReferenceInfoService {
       responseType: "text"
     }).subscribe((res: HttpResponse<string>) => {
       if (res.status === 200) {
+        this.messageService.setMsg("success", "Your reference info has been updated");
         if (redirect === "stay") {
-          this.messageService.setMsg("success", "Your reference info has been updated");
           //document.querySelector("#page").scroll(0, 0);
           location.reload();
         } else if (redirect === "next") {

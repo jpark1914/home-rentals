@@ -30,7 +30,6 @@ export class OtherInfoFormComponent implements OnInit {
   }
 
   checkOtherInfo(){
-    //this.otherInfoService.init();
     this.otherInfoService.getOtherInfo().subscribe(res => {
       if(res.status === 200){
         this.otherInfo = res.body;

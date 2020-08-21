@@ -40,7 +40,6 @@ export class VehicleInfoFormComponent implements OnInit {
   }
 
   checkVehicleInfo() {
-    this.vehicleInfoService.init();
     this.vehicleInfoService.getVehicleInfo().subscribe(res => {
       if (res.status === 200) {
         this.vehicleInfo = res.body;

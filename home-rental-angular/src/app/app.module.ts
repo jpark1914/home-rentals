@@ -30,6 +30,10 @@ import { ReferenceInfoPageComponent } from './page-components/reference-info-pag
 import { ReferenceInfoFormComponent } from './components/reference-info-form/reference-info-form.component';
 import { OtherInfoPageComponent } from './page-components/other-info-page/other-info-page.component';
 import { OtherInfoFormComponent } from './components/other-info-form/other-info-form.component';
+import { RentalsAdminPageComponent } from './page-components/rentals-admin-page/rentals-admin-page.component';
+import { RentalAdminListComponent } from './components/rental-admin-list/rental-admin-list.component';
+import { RentalsAdminSavePageComponent } from './page-components/rentals-admin-save-page/rentals-admin-save-page.component';
+import { RentalAdminSaveComponent } from './components/rental-admin-save/rental-admin-save.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +62,10 @@ import { OtherInfoFormComponent } from './components/other-info-form/other-info-
     ReferenceInfoFormComponent,
     OtherInfoPageComponent,
     OtherInfoFormComponent,
+    RentalsAdminPageComponent,
+    RentalAdminListComponent,
+    RentalsAdminSavePageComponent,
+    RentalAdminSaveComponent,
   ],
   imports: [
     BrowserModule,

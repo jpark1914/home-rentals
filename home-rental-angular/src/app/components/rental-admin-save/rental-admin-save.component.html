@@ -1,0 +1,78 @@
+<div class="p-3">
+  <div class="bg-light border p-3">
+    <div class="d-flex">
+      <h2 class="mb-0 flex-fill">Edit Property Details</h2>
+      <button class="btn btn-primary" (click)="saveProperty()">Save</button> 
+    </div>
+    <hr class="mb-4 mt-2">
+    <div class="d-flex flex-wrap">
+      <ngb-carousel class="bg-dark text-center mb-3" style="width: 40rem; height: 32rem;">
+        <ng-template ngbSlide class="h-100">
+          <h4 style="margin-top: 15rem;" class="text-light clickable" (click)="insertPicture()">Click to add images</h4>
+        </ng-template>
+        <ng-template ngbSlide class="h-100" *ngFor="let image of images">
+          <div class="picsum-img-wrapper h-100">
+            <img [src]="image">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+      <div class="py-2 px-3">
+        <input type="text" style="font-size: 2rem;" placeholder="Address" class="px-2 mr-2 my-1"><br>
+        <input type="text" style="font-size: 1.5rem;" placeholder="City" class="px-2 mr-2 my-1">
+        <input type="text" style="font-size: 1.5rem;" placeholder="State" class="px-2 mr-2 my-1"><br>
+        <input type="number" style="font-size: 1.5rem;" placeholder="Zip" class="px-2 mr-2 my-1">
+        <input type="text" style="font-size: 1.5rem;" placeholder="Country" class="px-2 mr-2 my-1"><br><br>
+        <input type="number" style="font-size: 2rem" placeholder="Rent Amount" class="px-2 mr-2 my-1"><br><br>
+        <textarea cols="70" rows="9" placeholder="Description" class="px-2 mr-2 my-1"></textarea>
+      </div>
+    </div>
+    <div class="pt-3 pb-2 pl-2">
+      <h2>Property</h2>
+    </div>
+    <table class="table table-striped mb-4">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Square Feet</th>
+          <th>Number of Bedrooms</th>
+          <th>Number of Bathrooms</th>
+          <th>Washer/Dryer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" class="p-1" size="20"></td>
+          <td><input type="number" class="p-1" style="width: 10rem;"></td>
+          <td><input type="number" class="p-1" style="width: 5rem;"></td>
+          <td><input type="number" class="p-1" style="width: 5rem;"></td>
+          <td><input type="text" class="p-1" size="5"></td>
+        </tr>
+      </tbody>  
+    </table>
+    <div class="pt-3 pb-2 pl-2">
+      <h2>Utilities</h2>
+    </div>
+    <table class="table table-striped mb-4">
+      <thead>
+        <tr>
+          <th>Electricity</th>
+          <th>Water/Sewage</th>
+          <th>Heat</th>
+          <th>Air Conditioning</th>
+          <th>Trash/Recycling</th>
+          <th>Wifi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" class="p-1" size="15"></td>
+          <td><input type="text" class="p-1" size="15"></td>
+          <td><input type="text" class="p-1" size="15"></td>
+          <td><input type="text" class="p-1" size="15"></td>
+          <td><input type="text" class="p-1" size="15"></td>
+          <td><input type="text" class="p-1" size="15"></td>
+        </tr>
+      </tbody>  
+    </table>
+  </div>
+</div> 

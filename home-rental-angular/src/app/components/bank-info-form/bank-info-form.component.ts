@@ -47,7 +47,6 @@ export class BankInfoFormComponent implements OnInit {
   }
 
   checkBankInfo() {
-    this.bankInfoService.init();
     this.bankInfoService.getBankInfo().subscribe(res => {
       if (res.status === 200) {
         this.bankInfo = res.body;
