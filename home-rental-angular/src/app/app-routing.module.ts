@@ -11,6 +11,7 @@ import { BankInfoPageComponent } from './page-components/bank-info-page/bank-inf
 import { ReferenceInfoPageComponent } from './page-components/reference-info-page/reference-info-page.component';
 import { OtherInfoPageComponent } from './page-components/other-info-page/other-info-page.component';
 import { RentalsAdminPageComponent } from './page-components/rentals-admin-page/rentals-admin-page.component';
+import { RentalsAdminSavePageComponent } from './page-components/rentals-admin-save-page/rentals-admin-save-page.component'; 
 
 const routes: Routes = [
   { path: 'landing', component: LandingPageComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'reference-info', component: ReferenceInfoPageComponent },
   { path: 'other-info', component: OtherInfoPageComponent },
   { path: 'rental-admin', component: RentalsAdminPageComponent },
+  { path: 'rental-admin-save', component: RentalsAdminSavePageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];
 

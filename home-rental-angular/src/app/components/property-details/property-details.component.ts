@@ -12,7 +12,7 @@ export class PropertyDetailsComponent implements OnInit {
 
   images = ['/assets/logo.svg','/assets/living-room.svg', '/assets/bedroom.svg', '/assets/kitchen.svg']
 
-  property : RentalProperty = {
+  property = {
     unitId: null,
     unitAddress: "4787 Yale Rd",
     unitCity: "Memphis",

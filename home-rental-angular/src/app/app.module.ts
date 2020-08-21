@@ -32,6 +32,8 @@ import { OtherInfoPageComponent } from './page-components/other-info-page/other-
 import { OtherInfoFormComponent } from './components/other-info-form/other-info-form.component';
 import { RentalsAdminPageComponent } from './page-components/rentals-admin-page/rentals-admin-page.component';
 import { RentalAdminListComponent } from './components/rental-admin-list/rental-admin-list.component';
+import { RentalsAdminSavePageComponent } from './page-components/rentals-admin-save-page/rentals-admin-save-page.component';
+import { RentalAdminSaveComponent } from './components/rental-admin-save/rental-admin-save.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { RentalAdminListComponent } from './components/rental-admin-list/rental-
     OtherInfoFormComponent,
     RentalsAdminPageComponent,
     RentalAdminListComponent,
+    RentalsAdminSavePageComponent,
+    RentalAdminSaveComponent,
   ],
   imports: [
     BrowserModule,
