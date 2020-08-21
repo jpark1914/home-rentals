@@ -1,6 +1,9 @@
 <div class="p-3">
   <div class="bg-light border p-3">
-    <h2 class="mb-0">Edit Property Details</h2>
+    <div class="d-flex">
+      <h2 class="mb-0 flex-fill">Edit Property Details</h2>
+      <button class="btn btn-primary" (click)="saveProperty()">Save</button> 
+    </div>
     <hr class="mb-4 mt-2">
     <div class="d-flex flex-wrap">
       <ngb-carousel class="bg-dark text-center mb-3" style="width: 40rem; height: 32rem;">
@@ -71,8 +74,5 @@
         </tr>
       </tbody>  
     </table>
-    <div class="d-flex justify-content-center p-3 mt-3">
-      <button class="btn btn-primary" (click)="saveProperty()">Save Rental Property</button> 
-    </div>
   </div>
 </div> 

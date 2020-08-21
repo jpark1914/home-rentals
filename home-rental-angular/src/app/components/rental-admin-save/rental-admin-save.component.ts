@@ -16,7 +16,7 @@ export class RentalAdminSaveComponent implements OnInit {
   }
 
   insertPicture() {
-    alert("Hi");
+    alert("Need to write code to accept file inputs");
   }
 
   saveProperty() {

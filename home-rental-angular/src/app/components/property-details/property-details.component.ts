@@ -10,6 +10,8 @@ import { RentalProperty } from 'src/app/interfaces/rentalProperty.interface';
 })
 export class PropertyDetailsComponent implements OnInit {
 
+  adminProperty : boolean = false;
+
   images = ['/assets/logo.svg','/assets/living-room.svg', '/assets/bedroom.svg', '/assets/kitchen.svg']
 
   property = {
@@ -35,6 +37,9 @@ export class PropertyDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
       this.property.unitId = parseInt(params.get("unitId"));
+      if (this.property.unitId === 0) {
+        this.adminProperty = true;
+      }
     });
   }
 

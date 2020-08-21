@@ -3,6 +3,7 @@
     <div class="d-flex">
       <h2 class="mb-0 flex-fill">Property Details</h2>
       <button class="btn btn-info" (click)="goBack()">Back</button>
+      <button class="btn btn-primary mx-2" routerLink="/rental-admin-save" *ngIf="adminProperty">Edit</button>
     </div>
     <hr class="mb-4 mt-2">
     <div class="d-flex flex-wrap">
@@ -73,10 +74,10 @@
         </tr>
       </tbody>  
     </table>
-    <div class="pt-3 pb-2 pl-2">
+    <div class="pt-3 pb-2 pl-2" *ngIf="!adminProperty">
       <h2>Owner</h2>
     </div>
-    <table class="table table-striped mb-4">
+    <table class="table table-striped mb-4" *ngIf="!adminProperty">
     <thead>
       <tr>
         <th>First Name</th>
@@ -96,7 +97,7 @@
       </tr>
     </tbody>  
     </table>
-    <div class="d-flex justify-content-center p-3">
+    <div class="d-flex justify-content-center p-3" *ngIf="!adminProperty">
       <button class="btn btn-primary">Submit a Rental Application</button> 
     </div>
   </div>
