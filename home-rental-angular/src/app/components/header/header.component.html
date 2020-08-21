@@ -34,7 +34,7 @@
       <img id="user" src="/assets/person-circle.svg">
     </button>
     <div ngbDropdownMenu aria-labelledby="loginButton">
-      <p ngbDropdownItem class="mb-1" disabled>{{ ls.getLoggedInUser().email }}</p>
+      <p ngbDropdownItem class="mb-1" disabled>{{ ls.getLoggedInUser().email }} ({{ ls.getLoggedInUser().isAdmin | titlecase }})</p>
       <a ngbDropdownItem (click)="ls.logout()">Logout</a>
     </div>
   </div>
