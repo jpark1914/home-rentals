@@ -21,20 +21,57 @@ public class RentalProps {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="PROP_SEQ")
-	@Column(name="UNIT_ID")
+	@Column
 	private int unitId;	
-
-	private transient Long userId;
 	
-	@Column(name="START_DATE")
-	private Date startDate;
+	@Column
+	private String unitAddress;
+	@Column
+	private String unitCity;
+	@Column 
+	private String unitState;
+	@Column
+	private String unitCountry;
+	@Column
+	private Integer unitZip;
 	
-	@Column(name="TERM")
+	@Column
+	private String unitDescription;
+	@Column
+	private double rentAmount;
+	
+	@Column
+	private String unitType;
+	@Column
+	private Double unitSquareFeet;
+	@Column
+	private Integer unitNumBedrooms;
+	@Column
+	private Integer unitNumBathrooms;
+	@Column
+	private String unitWasherDryer;
+	
+	@Column
+	private String unitElectric;
+	@Column 
+	private String unitWaterSewage;
+	@Column
+	private String unitHeat;
+	@Column
+	private String unitAC;
+	@Column
+	private String unitTrashRecycle;
+	@Column
+	private String unitWifi;
+	
+	@Column
+	private String status;
+	@Column
+	private String startDate;
+	@Column
 	private int term;
 	
-	//Make a fk to propDetails
-	@Column(name="RENT")
-	private double rent;
+	private transient Long userId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
