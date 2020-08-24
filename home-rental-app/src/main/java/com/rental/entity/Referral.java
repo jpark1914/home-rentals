@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table
+@Data
 public class Referral {
 	
 	@Id
@@ -18,32 +21,5 @@ public class Referral {
 	
 	@Column(name = "REFERRAL_TYPE")
 	private String referralType;
-	
-	
-	public Referral() {
-		super();
-	}
-
-	public Long getReferralId() {
-		return referralId;
-	}
-
-	public void setReferralId(Long referralId) {
-		this.referralId = referralId;
-	}
-
-	public String getReferralType() {
-		return referralType;
-	}
-
-	public void setReferralType(String referralType) {
-		this.referralType = referralType;
-	}
-
-	@Override
-	public String toString() {
-		return "Referral [referralId=" + referralId + ", referralType=" + referralType + "]";
-	}
-	
 	
 }

@@ -14,15 +14,17 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Data;
+
 @Entity
 @Table
+@Data
 public class SpouseInfo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="SPOUSE_SEQ")
 	@Column(name="SPOUSE_ID")
 	private int spouseId;
-	
 	
 	private transient Long userId;
 	
@@ -59,28 +61,7 @@ public class SpouseInfo {
 	
 	@Column(name="CONTACT_FIRST_NAME")
 	private String contactFirstName;
-	
-	public String getContactFirstName() {
-		return contactFirstName;
-	}
 
-
-
-	public void setContactFirstName(String contactFirstName) {
-		this.contactFirstName = contactFirstName;
-	}
-
-
-
-	public String getContactLastName() {
-		return contactLastName;
-	}
-
-
-
-	public void setContactLastName(String contactLastName) {
-		this.contactLastName = contactLastName;
-	}
 
 	@Column(name="CONTACT_LAST_NAME")
 	private String contactLastName;
@@ -91,128 +72,5 @@ public class SpouseInfo {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private RentalUsers rentalUser;
-	
-	public RentalUsers getRentalUser() {
-		return rentalUser;
-	}
-
-
-
-	public void setRentalUser(RentalUsers rentalUser) {
-		this.rentalUser = rentalUser;
-	}
-
-
-
-	public SpouseInfo() {
-		super();
-	}
-
-
-
-	public int getSpouseId() {
-		return spouseId;
-	}
-
-	public void setSpouseId(int spouseId) {
-		this.spouseId = spouseId;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public String getSpouseFirstName() {
-		return spouseFirstName;
-	}
-
-	public void setSpouseFirstName(String spouseFirstName) {
-		this.spouseFirstName = spouseFirstName;
-	}
-	
-	public String getSpouseLastName() {
-		return spouseLastName;
-	}
-
-	public void setSpouseLastName(String spouseLastName) {
-		this.spouseLastName = spouseLastName;
-	}
-
-	public String getDOB() {
-		return DOB;
-	}
-
-	public void setDOB(String DOB) {
-		this.DOB = DOB;
-	}
-
-	public long getSpousePhone() {
-		return spousePhone;
-	}
-
-	public void setSpousePhone(long spousePhone) {
-		this.spousePhone = spousePhone;
-	}
-
-	public long getSsn() {
-		return ssn;
-	}
-
-	public void setSsn(long ssn) {
-		this.ssn = ssn;
-	}
-
-	public String getDriverLicense() {
-		return driverLicense;
-	}
-
-	public void setDriverLicense(String driverLicense) {
-		this.driverLicense = driverLicense;
-	}
-
-	public String getEmployer() {
-		return employer;
-	}
-
-	public void setEmployer(String employer) {
-		this.employer = employer;
-	}
-
-	public String getOccupation() {
-		return occupation;
-	}
-
-	public void setOccupation(String occupation) {
-		this.occupation = occupation;
-	}
-
-	public double getSalary() {
-		return salary;
-	}
-
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-
-	public int getTimeEmployed() {
-		return timeEmployed;
-	}
-
-	public void setTimeEmployed(int timeEmployed) {
-		this.timeEmployed = timeEmployed;
-	}
-
-
-	public long getContactPhone() {
-		return contactPhone;
-	}
-
-	public void setContactPhone(long contactPhone) {
-		this.contactPhone = contactPhone;
-	}
 	
 }

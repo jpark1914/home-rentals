@@ -14,8 +14,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.Data;
+
 @Entity
 @Table(name="PERSONAL_INFO")
+@Data
 public class PersonalInfo {
 	
 	@Id
@@ -24,10 +27,6 @@ public class PersonalInfo {
 	private int personId;
 	
 	private transient Long userId;
-	
-//	public void setUserId(long userId) {
-//		this.userId = userId;
-//	}
 
 	@Column
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
@@ -64,107 +63,5 @@ public class PersonalInfo {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private RentalUsers rentalUser;
-	
-	
-	
-	public PersonalInfo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	//Getter and Setters
-	
-	public int getPersonId() {
-		return personId;
-	}
-	public void setPersonId(int personId) {
-		this.personId = personId;
-	}
-	
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public long getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(long phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-	public String getDriverLicense() {
-		return driverLicense;
-	}
-	public void setDriverLicense(String driverLicense) {
-		this.driverLicense = driverLicense;
-	}
-	public long getSsn() {
-		return ssn;
-	}
-	public void setSsn(long ssn) {
-		this.ssn = ssn;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public int getZip() {
-		return zip;
-	}
-	public void setZip(int zip) {
-		this.zip = zip;
-	}
-	
-	
-	
-	public RentalUsers getRentalUser() {
-		return rentalUser;
-	}
-
-	public void setRentalUser(RentalUsers rentalUser) {
-		this.rentalUser = rentalUser;
-	}
-
-	@Override
-	public String toString() {
-		return "PersonalInfo [personId=" + personId + ", userId=" + userId + ", dateOfbirth=" + dateOfBirth
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", ssn="
-				+ ssn + ", address=" + address + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
-	}
-	
-	
 
 }

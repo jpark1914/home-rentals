@@ -13,15 +13,17 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import lombok.Data;
+
 @Entity
 @Table
+@Data
 public class VehicleInfo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="CAR_SEQ")
 	@Column(name="CAR_ID")
 	private int carId;
-	
 	
 	private transient Long userId;
 	
@@ -47,93 +49,5 @@ public class VehicleInfo {
 	@JoinColumn(name = "USER_ID")
 	//@OnDelete(action = OnDeleteAction.CASCADE)
 	private RentalUsers rentalUser;
-	
-	public VehicleInfo() {
-		super();
-	}
 
-	
-
-	public int getCarId() {
-		return carId;
-	}
-
-	public void setCarId(int carId) {
-		this.carId = carId;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public RentalUsers getRentalUser() {
-		return rentalUser;
-	}
-
-
-
-	public void setRentalUser(RentalUsers rentalUser) {
-		this.rentalUser = rentalUser;
-	}
-
-
-
-	public String getMake() {
-		return make;
-	}
-
-	public void setMake(String make) {
-		this.make = make;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getTagNumber() {
-		return tagNumber;
-	}
-
-	public void setTagNumber(String tagNumber) {
-		this.tagNumber = tagNumber;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	@Override
-	public String toString() {
-		return "VehicleInfo [carId=" + carId + ", userId=" + userId + ", make=" + make + ", model=" + model + ", year="
-				+ year + ", color=" + color + ", tagNumber=" + tagNumber + ", state=" + state + "]";
-	}
-	
 }
