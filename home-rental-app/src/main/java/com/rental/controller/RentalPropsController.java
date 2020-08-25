@@ -43,7 +43,6 @@ public class RentalPropsController {
 	
 	@GetMapping(value="/get/{unitId}")
 	public ResponseEntity<RentalProps> getRentalProps(@PathVariable Integer unitId, @AuthenticationPrincipal UserDetails user) {
-		RentalUsers rentalUser = this.rus.findUserByEmail(user.getUsername());
 		Optional<RentalProps> oprp = this.rps.getRentalPropertyById(unitId);
 		
 		if (!oprp.isPresent()) {	
@@ -52,6 +51,10 @@ public class RentalPropsController {
 		
 		RentalProps rp = oprp.get();
 		
+		if (user == null) {
+			return ResponseEntity.status(203).body(rp);
+		}
+		RentalUsers rentalUser = this.rus.findUserByEmail(user.getUsername());
 		if (!rp.getRentalUser().equals(rentalUser)) {
 			return ResponseEntity.status(203).body(rp);
 		}
