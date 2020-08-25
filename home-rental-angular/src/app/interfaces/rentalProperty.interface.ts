@@ -7,13 +7,22 @@ export interface RentalProperty {
   unitState: string;
   unitZip: number;
   unitCountry: string;
+  unitDescription: string;
+  rentAmount: number;
+  unitType: string;
+  unitSquareFeet: number;
   unitNumBedrooms: number;
   unitNumBathrooms: number;
-  unitSquareFeet: number;
-  unitType: string;
-  rentAmount: number;
-  leaseStart?: string;
-  leaseTerm?: number;
+  unitWasherDryer: string;
+  unitElectric: string;
+  unitWaterSewage: string;
+  unitHeat: string;
+  unitAC: string;
+  unitTrashRecycle: string;
+  unitWifi: string;
+  status?: string;
+  startDate?: string;
+  term?: number;
   userId?: number;
   rentalUser?: RentalUser;
 }

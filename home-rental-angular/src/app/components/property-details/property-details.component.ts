@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { RentalProperty } from 'src/app/interfaces/rentalProperty.interface';
+import { RentalPropertyService } from 'src/app/services/rental-property.service';
 
 @Component({
   selector: 'app-property-details',
@@ -16,19 +17,27 @@ export class PropertyDetailsComponent implements OnInit {
 
   property = {
     unitId: null,
-    unitAddress: "4787 Yale Rd",
-    unitCity: "Memphis",
-    unitState: "Tennessee",
-    unitZip: 38128,
-    unitCountry: "United States",
-    unitNumBedrooms: 3,
-    unitNumBathrooms: 2,
-    unitSquareFeet: 2100,
-    unitType: "Single Family House",
-    rentAmount: 1420 
+    unitAddress: "",
+    unitCity: "",
+    unitState: "",
+    unitZip: null,
+    unitCountry: "",
+    unitDescription: "",
+    rentAmount: null,
+    unitType: "",
+    unitSquareFeet: null,
+    unitNumBedrooms: null,
+    unitNumBathrooms: null,
+    unitWasherDryer: "",
+    unitElectric: "",
+    unitWaterSewage: "",
+    unitHeat: "",
+    unitAC: "",
+    unitTrashRecycle: "",
+    unitWifi: "",
   }
 
-  constructor(private activatedRoute : ActivatedRoute, private location : Location) { }
+  constructor(private activatedRoute : ActivatedRoute, private location : Location, private rentalPropertyService : RentalPropertyService) { }
 
   goBack() {
     this.location.back();
@@ -36,10 +45,16 @@ export class PropertyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.property.unitId = parseInt(params.get("unitId"));
-      if (this.property.unitId === 0) {
-        this.adminProperty = true;
-      }
+      let id = parseInt(params.get("unitId"));
+      this.rentalPropertyService.getProperty(id).subscribe(res => {
+        if (res.status === 200) {
+          this.property = res.body;
+          this.adminProperty = true;
+        } else if (res.status === 203) {
+          this.property = res.body;
+          this.adminProperty = false;
+        }
+      });
     });
   }
 

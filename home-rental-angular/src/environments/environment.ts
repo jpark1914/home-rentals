@@ -31,8 +31,13 @@ export const environment = {
   other: {
     save: 'http://localhost:9000/other/save',
     get: 'http://localhost:9000/other/get'
+  },
+  rentalprops: {
+    save: 'http://localhost:9000/rentalprops/save',
+    getProp: 'http://localhost:9000/rentalprops/get/',
+    getPage: 'http://localhost:9000/rentalprops/getPage/'
   }
-
+  
 };
 
 /*

@@ -14,9 +14,9 @@ export class PropertyListComponent implements OnInit {
   constructor(private rentalPropertyService : RentalPropertyService) { }
 
   ngOnInit(): void {
-    this.rentalPropertyService.getMockListedProperties().subscribe(res => {
+    this.rentalPropertyService.getListedProperties(0).subscribe(res => {
       if (res.status === 200) {
-        this.houseList = res.body;
+        this.houseList = res.body.content;
       }
     });
   }
