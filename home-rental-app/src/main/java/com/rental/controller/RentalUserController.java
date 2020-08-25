@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,12 +39,20 @@ public class RentalUserController {
 	
 	@PostMapping(value = "/save")
 	public String newUser(@RequestBody RentalUsers user) {
-//		if (user.getUserId() == null) {
-//			user.setUserId(rus.numUsers());
-//		}
+		user.setUserId(null);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		rus.save(user);
 		return "Success";
+	}
+	
+	@PutMapping(value = "/update")
+	public RentalUsers updateUser(@RequestBody RentalUsers rentalUser, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers newRentalUser = this.rus.findUserByEmail(user.getUsername());
+		newRentalUser.setEmail(rentalUser.getEmail());
+		newRentalUser.setPassword(passwordEncoder.encode(rentalUser.getPassword()));
+		newRentalUser.setIsAdmin(rentalUser.getIsAdmin());
+		this.rus.save(newRentalUser);
+		return newRentalUser;
 	}
 	
 }

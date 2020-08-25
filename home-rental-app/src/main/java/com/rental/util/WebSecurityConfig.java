@@ -60,6 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.cors().and()
 				.authorizeRequests().antMatchers("/user/save").permitAll().and()
+				.authorizeRequests().antMatchers("/rentalprops/getPage/**").permitAll().and()
+				.authorizeRequests().antMatchers("/rentalprops/get/**").permitAll().and()
 				.authorizeRequests().antMatchers("/h2-console/**").permitAll().
 				//.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().
 				// all other requests need to be authenticated

@@ -12,91 +12,69 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table
+@Data
 public class RentalProps {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="PROP_SEQ")
-	@Column(name="UNIT_ID")
-	private int unitId;
+	@Column
+	private int unitId;	
 	
-
-	private transient Long userId;
+	@Column
+	private String unitAddress;
+	@Column
+	private String unitCity;
+	@Column 
+	private String unitState;
+	@Column
+	private String unitCountry;
+	@Column
+	private Integer unitZip;
 	
-	@Column(name="START_DATE")
-	private Date startDate;
+	@Column
+	private String unitDescription;
+	@Column
+	private double rentAmount;
 	
-	@Column(name="TERM")
+	@Column
+	private String unitType;
+	@Column
+	private Double unitSquareFeet;
+	@Column
+	private Integer unitNumBedrooms;
+	@Column
+	private Integer unitNumBathrooms;
+	@Column
+	private String unitWasherDryer;
+	
+	@Column
+	private String unitElectric;
+	@Column 
+	private String unitWaterSewage;
+	@Column
+	private String unitHeat;
+	@Column
+	private String unitAC;
+	@Column
+	private String unitTrashRecycle;
+	@Column
+	private String unitWifi;
+	
+	@Column
+	private String status;
+	@Column
+	private String startDate;
+	@Column
 	private int term;
 	
-	//Make a fk to propDetails
-	@Column(name="RENT")
-	private double rent;
+	private transient Long userId;
 	
-	/*
-	 * @Column(name = available)
-	 * private boolean available
-	 */
-	public RentalUsers getRentalUser() {
-		return rentalUser;
-	}
-	public void setRentalUser(RentalUsers rentalUser) {
-		this.rentalUser = rentalUser;
-	}
-
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private RentalUsers rentalUser;
 	
-	
-	public RentalProps() {
-		super();
-	}
-	public int getUnitId() {
-		return unitId;
-	}
-
-	public void setUnitId(int unitId) {
-		this.unitId = unitId;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public double getRent() {
-		return rent;
-	}
-
-	public void setRent(double rent) {
-		this.rent = rent;
-	}
-
-	public int getTerm() {
-		return term;
-	}
-
-	public void setTerm(int term) {
-		this.term = term;
-	}
-
-	@Override
-	public String toString() {
-		return "RentalProps [unitId=" + unitId + ", userId=" + userId + ", startDate=" + startDate + ", term=" + term
-				+ ", rent=" + rent + "]";
-	}
-
 }
