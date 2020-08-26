@@ -1,6 +1,7 @@
 package com.rental.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.rental.entity.RentalUsers;
@@ -18,6 +19,13 @@ public class RentalUserService {
 	public RentalUsers findUserByEmail(String email) {
 		RentalUsers ru =  rur.findRentalUsersByEmail(email);
 		return ru;
+	}
+	
+	public RentalUsers findUserByUserDetails(UserDetails user) {
+		if (user == null) {
+			return null;
+		}
+		return rur.findRentalUsersByEmail(user.getUsername());
 	}
 	
 	public void save(RentalUsers user) {
