@@ -29,7 +29,7 @@ public class RentalPropsService {
 		this.rpr.save(rentalProp);
 	}
 	
-	public Optional<RentalProps> getRentalPropertyById(Long id) {
+	public Optional<RentalProps> getRentalPropertyById(Integer id) {
 		return this.rpr.findById(id);
 	}
 	
