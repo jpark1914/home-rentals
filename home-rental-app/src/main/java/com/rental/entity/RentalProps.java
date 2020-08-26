@@ -22,7 +22,7 @@ public class RentalProps {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="PROP_SEQ")
 	@Column
-	private int unitId;	
+	private Long unitId;	
 	
 	@Column
 	private String unitAddress;
@@ -69,12 +69,12 @@ public class RentalProps {
 	@Column
 	private String startDate;
 	@Column
-	private int term;
+	private Integer term;
 	
-	private transient Long userId;
+	private transient Long personId;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_ID")
-	private RentalUsers rentalUser;
+	@JoinColumn(name = "PERSON_ID")
+	private PersonalInfo personalInfo;
 	
 }
