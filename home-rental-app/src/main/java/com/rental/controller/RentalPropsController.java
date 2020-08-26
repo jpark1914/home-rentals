@@ -41,6 +41,12 @@ public class RentalPropsController {
 		return ResponseEntity.ok(this.rps.getRentalPropertiesUnauthorized(pageNum));
 	}
 	
+	@GetMapping(value = "/getPageAdmin/{pageNum}")
+	public ResponseEntity<Page<RentalProps>> getAdminRentalPropsPage(@PathVariable Integer pageNum, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		return ResponseEntity.ok(this.rps.getRentalPropertiesByAdmin(rentalUser.getUserId(), pageNum));
+	}
+	
 	@GetMapping(value="/get/{unitId}")
 	public ResponseEntity<RentalProps> getRentalProps(@PathVariable Integer unitId, @AuthenticationPrincipal UserDetails user) {
 		Optional<RentalProps> oprp = this.rps.getRentalPropertyById(unitId);

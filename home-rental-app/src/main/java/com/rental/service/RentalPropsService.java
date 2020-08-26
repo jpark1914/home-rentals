@@ -22,8 +22,8 @@ public class RentalPropsService {
 		this.rpr = rpr;
 	}
 	
-	public Page<RentalProps> getRentalProperties(int pageNum) {
-		return this.rpr.findAll(PageRequest.of(pageNum, 12, Sort.by("unitId")));
+	public Page<RentalProps> getRentalPropertiesByAdmin(Long userId, int pageNum) {
+		return this.rpr.findRentalPropsByUserId(userId, PageRequest.of(pageNum, 12, Sort.by("unitId")));
 	}
 	
 	public Page<RentalProps> getRentalPropertiesUnauthorized(int pageNum) {
