@@ -6,6 +6,7 @@ import { LOCAL_STORAGE, WebStorageService } from 'ngx-webstorage-service';
 import { map } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { Observable, of } from 'rxjs';
 export class RentalPropertyService {
 
   constructor(private http: HttpClient,
+    private router : Router,
     private messageService: MessageService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
 
@@ -41,7 +43,7 @@ export class RentalPropertyService {
   }
 
   getListedProperties(pageNum : number) {
-    return this.http.get(
+     return this.http.get(
       environment.rentalprops.getPage + pageNum, 
       {
         observe: 'response'
@@ -49,18 +51,27 @@ export class RentalPropertyService {
     );
   }
 
-  getProperty(unitId: number) : HttpResponse<RentalProperty> {
-    return this.http.get(
-      environment.rentalprops.getProp + unitId,
-      {
-        headers: {
-          "Authorization": this.storage.get('authorization')
-        },
-        observe: "response",
-      }
-    );
+  getProperty(unitId: number) : Observable<HttpResponse<RentalProperty>> {
+    let headers = {};
+    let observe = "response";
+    if (this.storage.get('authorization') !== undefined) {
+      headers = { "Authorization": this.storage.get('authorization') };
+    }
+
+    return this.http.get(environment.rentalprops.getProp + unitId, { headers, observe })
+      .pipe(
+        map(this.handleNoContent.bind(this))
+      );
   }
   
+  handleNoContent(res : HttpResponse<any>) {
+    if (res.status === 204) {
+      console.log("Property does not exist");
+      this.router.navigate(['/landing']);
+    }
+    return res;
+  }
+
 
   getMockAdminProperties() {
     let houseList = [];

@@ -11,6 +11,7 @@ export const environment = {
   personal: {
     get: 'http://localhost:9000/personal/get',
     save: 'http://localhost:9000/personal/save',
+    getInfo: 'http://localhost:9000/personal/getInfo/'
   },
   spouse: {
     get: 'http://localhost:9000/spouse/get',

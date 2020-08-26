@@ -55,6 +55,18 @@ export class PersonalInfoService {
     );
   }
 
+  getPersonalInfoUnauthorized(userId): Observable<HttpResponse<PersonalInfo>> {
+    return this.http.get(environment.personal.getInfo + userId, {
+      observe: "response"
+    }).pipe(
+      map((res) => { 
+        if (res.status === 204) {
+          console.log("No personal info found");
+        }
+        return res;
+      })
+    );
+  }
 
   private handleNoContent(res: HttpResponse<any>) {
     if (res.status === 204) {

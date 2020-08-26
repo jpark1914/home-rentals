@@ -89,11 +89,11 @@
     </thead>
     <tbody>
       <tr>
-        <td>Naughty</td>
-        <td>Nas</td>
-        <td>naughtynas@gmail.com</td>
-        <td>4321 Example Dr. Memphis, Tennessee 12345</td>
-        <td>+1 (232)-234-3456</td>
+        <td>{{ adminInfo.firstName }}</td>
+        <td>{{ adminInfo.lastName }}</td>
+        <td>{{ adminInfo.rentalUser.email }}</td>
+        <td>{{ adminInfo.address }} {{ adminInfo.city }}, {{ adminInfo.state }} {{ adminInfo.zip }}</td>
+        <td>{{ adminInfo.phoneNumber }}</td>
       </tr>
     </tbody>  
     </table>
