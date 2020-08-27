@@ -60,7 +60,7 @@ export class PropertyDetailsComponent implements OnInit {
     private rentalPropertyService : RentalPropertyService, private personalInfoService : PersonalInfoService) { }
 
   goBack() {
-    this.location.back();
+    this.rentalPropertyService.goBack(); 
   }
 
   ngOnInit(): void {

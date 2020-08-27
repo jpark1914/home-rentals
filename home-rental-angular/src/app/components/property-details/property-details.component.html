@@ -3,7 +3,7 @@
     <div class="d-flex">
       <h2 class="mb-0 flex-fill">Property Details</h2>
       <button class="btn btn-info" (click)="goBack()">Back</button>
-      <button class="btn btn-primary mx-2" routerLink="/rental-admin-save" *ngIf="adminProperty">Edit</button>
+      <button class="btn btn-primary mx-2" [routerLink]="['/rental-admin-save', property.unitId]" *ngIf="adminProperty">Edit</button>
     </div>
     <hr class="mb-4 mt-2">
     <div class="d-flex flex-wrap">

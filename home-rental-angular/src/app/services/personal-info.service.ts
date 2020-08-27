@@ -59,7 +59,7 @@ export class PersonalInfoService {
     return this.http.get(environment.personal.getInfo + userId, {
       observe: "response"
     }).pipe(
-      map((res) => { 
+      map((res : HttpResponse<PersonalInfo>) => { 
         if (res.status === 204) {
           console.log("No personal info found");
         }

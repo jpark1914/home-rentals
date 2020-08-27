@@ -17,13 +17,13 @@
         </ng-template>
       </ngb-carousel>
       <div class="py-2 px-3">
-        <input type="text" style="font-size: 2rem;" placeholder="Address" class="px-2 mr-2 my-1"><br>
-        <input type="text" style="font-size: 1.5rem;" placeholder="City" class="px-2 mr-2 my-1">
-        <input type="text" style="font-size: 1.5rem;" placeholder="State" class="px-2 mr-2 my-1"><br>
-        <input type="number" style="font-size: 1.5rem;" placeholder="Zip" class="px-2 mr-2 my-1">
-        <input type="text" style="font-size: 1.5rem;" placeholder="Country" class="px-2 mr-2 my-1"><br><br>
-        <input type="number" style="font-size: 2rem" placeholder="Rent Amount" class="px-2 mr-2 my-1"><br><br>
-        <textarea cols="70" rows="9" placeholder="Description" class="px-2 mr-2 my-1"></textarea>
+        <input type="text" style="font-size: 2rem;" placeholder="Address" class="px-2 mr-2 my-1" [(ngModel)]="property.unitAddress"><br>
+        <input type="text" style="font-size: 1.5rem;" placeholder="City" class="px-2 mr-2 my-1" [(ngModel)]="property.unitCity">
+        <input type="text" style="font-size: 1.5rem;" placeholder="State" class="px-2 mr-2 my-1" [(ngModel)]="property.unitState"><br>
+        <input type="number" style="font-size: 1.5rem;" placeholder="Zip" class="px-2 mr-2 my-1" [(ngModel)]="property.unitZip">
+        <input type="text" style="font-size: 1.5rem;" placeholder="Country" class="px-2 mr-2 my-1" [(ngModel)]="property.unitCountry"><br><br>
+        <input type="number" style="font-size: 2rem" placeholder="Rent Amount" class="px-2 mr-2 my-1" [(ngModel)]="property.rentAmount"><br><br>
+        <textarea cols="70" rows="9" placeholder="Description" class="px-2 mr-2 my-1" [(ngModel)]="property.unitDescription"></textarea>
       </div>
     </div>
     <div class="pt-3 pb-2 pl-2">
@@ -41,11 +41,11 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" class="p-1" size="20"></td>
-          <td><input type="number" class="p-1" style="width: 10rem;"></td>
-          <td><input type="number" class="p-1" style="width: 5rem;"></td>
-          <td><input type="number" class="p-1" style="width: 5rem;"></td>
-          <td><input type="text" class="p-1" size="5"></td>
+          <td><input type="text" class="p-1" size="20" [(ngModel)]="property.unitType"></td>
+          <td><input type="number" class="p-1" style="width: 10rem;" [(ngModel)]="property.unitSquareFeet"></td>
+          <td><input type="number" class="p-1" style="width: 5rem;" [(ngModel)]="property.unitNumBedrooms"></td>
+          <td><input type="number" class="p-1" style="width: 5rem;" [(ngModel)]="property.unitNumBathrooms"></td>
+          <td><input type="text" class="p-1" size="5" [(ngModel)]="property.unitWasherDryer"></td>
         </tr>
       </tbody>  
     </table>
@@ -65,12 +65,12 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" class="p-1" size="15"></td>
-          <td><input type="text" class="p-1" size="15"></td>
-          <td><input type="text" class="p-1" size="15"></td>
-          <td><input type="text" class="p-1" size="15"></td>
-          <td><input type="text" class="p-1" size="15"></td>
-          <td><input type="text" class="p-1" size="15"></td>
+          <td><input type="text" class="p-1" size="15" [(ngModel)]="property.unitElectric"></td>
+          <td><input type="text" class="p-1" size="15" [(ngModel)]="property.unitWaterSewage"></td>
+          <td><input type="text" class="p-1" size="15" [(ngModel)]="property.unitHeat"></td>
+          <td><input type="text" class="p-1" size="15" [(ngModel)]="property.unitAC"></td>
+          <td><input type="text" class="p-1" size="15" [(ngModel)]="property.unitTrashRecycle"></td>
+          <td><input type="text" class="p-1" size="15" [(ngModel)]="property.unitWifi"></td>
         </tr>
       </tbody>  
     </table>

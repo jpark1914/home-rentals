@@ -18,33 +18,24 @@ export class RentalPropertyService {
     private messageService: MessageService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService) { }
 
-  init() {
+  backlist = "/landing";
+
+  init(location : string) {
     this.messageService.clearMsg();
   }
 
-  getMockListedProperties() {
-    let houseList = [];
-    for (let i = 0; i < 12; i++) {
-      houseList.push({
-        unitId: i,
-        unitAddress: "4787 Yale Rd",
-        unitCity: "Memphis",
-        unitState: "Tennessee",
-        unitZip: 38128,
-        unitCountry: "United States",
-        unitNumBedrooms: 3,
-        unitNumBathrooms: 2,
-        unitSquareFeet: 2100,
-        unitType: "Single Family House",
-        rentAmount: 1420 
-      });
-    }
-    return of({ status: 200, body: houseList });
+  setBack(location : string) {
+    this.backlist = location;
+  }
+ 
+  goBack() {
+    this.router.navigate([this.backlist]);
   }
 
-  getListedProperties(pageNum : number) {
-     return this.http.get(
-      environment.rentalprops.getPage + pageNum, 
+
+
+  getListedProperties(pageNum : number) : Observable<HttpResponse<any>> {
+     return this.http.get( environment.rentalprops.getPage + pageNum, 
       {
         observe: 'response'
       }
@@ -53,12 +44,11 @@ export class RentalPropertyService {
 
   getProperty(unitId: number) : Observable<HttpResponse<RentalProperty>> {
     let headers = {};
-    let observe = "response";
     if (this.storage.get('authorization') !== undefined) {
       headers = { "Authorization": this.storage.get('authorization') };
     }
 
-    return this.http.get(environment.rentalprops.getProp + unitId, { headers, observe })
+    return this.http.get(environment.rentalprops.getProp + unitId, { headers, observe: "response" })
       .pipe(
         map(this.handleNoContent.bind(this))
       );
@@ -72,7 +62,34 @@ export class RentalPropertyService {
     return res;
   }
 
+  saveProperty(rentalProperty: RentalProperty) {
+    this.http.post( environment.rentalprops.save, rentalProperty, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: 'response',
+      responseType: 'text'  
+    }).subscribe((res: HttpResponse<string>) => {
+      if (res.status === 200) {
+        if (rentalProperty.unitId) {
+          this.router.navigate(['/property-details', rentalProperty.unitId]);
+        } else {
+          this.router.navigate(['/rental-admin']);
+        }
+      }
+    });
+  }
 
+  getAdminProperties(pageNum : number) : Observable<HttpResponse<any>> {
+    return this.http.get( environment.rentalprops.getPageAdmin + pageNum, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: 'response'
+    });
+  }
+
+/*
   getMockAdminProperties() {
     let houseList = [];
     for (let i = 0; i < 1; i++) {
@@ -93,5 +110,25 @@ export class RentalPropertyService {
     return of({ status: 200, body: houseList });
 
   }
-
+  
+  getMockListedProperties() {
+    let houseList = [];
+    for (let i = 0; i < 12; i++) {
+      houseList.push({
+        unitId: i,
+        unitAddress: "4787 Yale Rd",
+        unitCity: "Memphis",
+        unitState: "Tennessee",
+        unitZip: 38128,
+        unitCountry: "United States",
+        unitNumBedrooms: 3,
+        unitNumBathrooms: 2,
+        unitSquareFeet: 2100,
+        unitType: "Single Family House",
+        rentAmount: 1420 
+      });
+    }
+    return of({ status: 200, body: houseList });
+  }
+*/
 }
