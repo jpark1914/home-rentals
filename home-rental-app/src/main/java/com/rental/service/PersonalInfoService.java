@@ -32,4 +32,12 @@ public class PersonalInfoService {
 		return Optional.ofNullable(pi);
 	}
 
+	public Optional<PersonalInfo> getPersonalInfoUnauthorized(long userId) {
+		PersonalInfo pi = pir.findPersonalInfoOfUser(userId);
+		pi.setDriverLicense(null);
+		pi.setSsn(null);
+		pi.getRentalUser().setPassword(null);
+		return Optional.ofNullable(pi);
+	}
+	
 }

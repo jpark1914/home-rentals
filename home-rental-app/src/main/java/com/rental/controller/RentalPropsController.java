@@ -38,27 +38,26 @@ public class RentalPropsController {
 	
 	@GetMapping(value = "/getPage/{pageNum}")
 	public ResponseEntity<Page<RentalProps>> getRentalPropsPage(@PathVariable Integer pageNum) {
-		return ResponseEntity.ok(this.rps.getRentalProperties(pageNum));
+		return ResponseEntity.ok(this.rps.getRentalPropertiesUnauthorized(pageNum));
+	}
+	
+	@GetMapping(value = "/getPageAdmin/{pageNum}")
+	public ResponseEntity<Page<RentalProps>> getAdminRentalPropsPage(@PathVariable Integer pageNum, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		return ResponseEntity.ok(this.rps.getRentalPropertiesByAdmin(rentalUser.getUserId(), pageNum));
 	}
 	
 	@GetMapping(value="/get/{unitId}")
 	public ResponseEntity<RentalProps> getRentalProps(@PathVariable Integer unitId, @AuthenticationPrincipal UserDetails user) {
 		Optional<RentalProps> oprp = this.rps.getRentalPropertyById(unitId);
-		
 		if (!oprp.isPresent()) {	
 			return ResponseEntity.noContent().build();
 		} 
-		
-		RentalProps rp = oprp.get();
-		
-		if (user == null) {
-			return ResponseEntity.status(203).body(rp);
-		}
-		RentalUsers rentalUser = this.rus.findUserByEmail(user.getUsername());
-		if (!rp.getRentalUser().equals(rentalUser)) {
-			return ResponseEntity.status(203).body(rp);
-		}
-			
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		if (!this.rps.propertyOwner(oprp.get(), rentalUser)) {
+			oprp = this.rps.getRentalPropertyByIdUnauthorized(unitId);
+			return ResponseEntity.status(203).body(oprp.get());
+		}	
 		return ResponseEntity.ok(oprp.get());
 
 	}

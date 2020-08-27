@@ -24,7 +24,7 @@ public class PersonalInfo {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="PERSONAL_SEQ")
 	@Column
-	private int personId;
+	private Integer personId;
 	
 	private transient Long userId;
 
@@ -39,13 +39,13 @@ public class PersonalInfo {
 	private String lastName;
 	
 	@Column
-	private long phoneNumber;
+	private Long phoneNumber;
 	
 	@Column
 	private String driverLicense;
 	
 	@Column(unique = true)
-	private long ssn;
+	private Long ssn;
 	
 	@Column
 	private String address;
@@ -57,7 +57,7 @@ public class PersonalInfo {
 	private String state;
 	
 	@Column
-	private int zip;
+	private Integer zip;
 	
 	// Make instance of class to make reference to that classes Primary Key	
 	@OneToOne(cascade = CascadeType.ALL)

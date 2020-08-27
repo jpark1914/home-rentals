@@ -8,6 +8,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,16 @@ public class PersonalInfoController {
 	public ResponseEntity<PersonalInfo> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
 		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
 		Optional<PersonalInfo> opPersonal = pis.getPersonalInfo(userId);
+		if (opPersonal.isPresent()) {
+			return ResponseEntity.ok(opPersonal.get());
+		} else {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	@GetMapping(value="/getInfo/{userId}")
+	public ResponseEntity<PersonalInfo> getPersonalInfoOfUser(@PathVariable Long userId) {
+		Optional<PersonalInfo> opPersonal = pis.getPersonalInfoUnauthorized(userId);
 		if (opPersonal.isPresent()) {
 			return ResponseEntity.ok(opPersonal.get());
 		} else {

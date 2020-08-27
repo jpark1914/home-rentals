@@ -62,6 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/user/save").permitAll().and()
 				.authorizeRequests().antMatchers("/rentalprops/getPage/**").permitAll().and()
 				.authorizeRequests().antMatchers("/rentalprops/get/**").permitAll().and()
+				.authorizeRequests().antMatchers("/personal/getInfo/**").permitAll().and()
 				.authorizeRequests().antMatchers("/h2-console/**").permitAll().
 				//.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().
 				// all other requests need to be authenticated

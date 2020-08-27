@@ -38,7 +38,7 @@ export class LoginService {
   logout() {
     this.storage.remove('user');
     this.storage.remove('authorization');
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   login(email, password) {

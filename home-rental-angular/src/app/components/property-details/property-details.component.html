@@ -3,7 +3,7 @@
     <div class="d-flex">
       <h2 class="mb-0 flex-fill">Property Details</h2>
       <button class="btn btn-info" (click)="goBack()">Back</button>
-      <button class="btn btn-primary mx-2" routerLink="/rental-admin-save" *ngIf="adminProperty">Edit</button>
+      <button class="btn btn-primary mx-2" [routerLink]="['/rental-admin-save', property.unitId]" *ngIf="adminProperty">Edit</button>
     </div>
     <hr class="mb-4 mt-2">
     <div class="d-flex flex-wrap">
@@ -23,7 +23,7 @@
         <h1>{{ property.rentAmount | currency }}</h1>
         <br>
         <h5>Description:</h5>
-          <p style="max-width: 35rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus auctor dolor ac aliquet. Phasellus porttitor aliquet velit, sit amet faucibus arcu congue eu. Vivamus vel nisi sit amet orci ultrices finibus. Etiam et ipsum neque. Donec vestibulum egestas dui, sed convallis purus malesuada ac. Ut ut ultrices ligula. Duis nec urna eros. Praesent commodo nec ex et condimentum. Praesent auctor vel nunc non pretium. Vivamus pretium blandit odio cursus accumsan.</p>
+        <p style="max-width: 35rem;">{{ property.unitDescription  }}</p>
       </div>
     </div>
     <div class="pt-3 pb-2 pl-2">
@@ -45,7 +45,7 @@
           <td>{{ property.unitSquareFeet }}</td>
           <td>{{ property.unitNumBedrooms }}</td>
           <td>{{ property.unitNumBathrooms }}</td>
-          <td>Both</td>
+          <td>{{ property.unitWasherDryer }}</td>
         </tr>
       </tbody>  
     </table>
@@ -65,12 +65,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>Yes</td>
-          <td>Yes</td>
-          <td>Yes, Centralized</td>
-          <td>Yes, separated ACs in each room</td>
-          <td>Every Monday</td>
-          <td>Optimum Cable</td>
+          <td>{{ property.unitElectric }}</td>
+          <td>{{ property.unitWaterSewage }}</td>
+          <td>{{ property.unitHeat }}</td>
+          <td>{{ property.unitAC }}</td>
+          <td>{{ property.unitTrashRecycle }}</td>
+          <td>{{ property.unitWifi }}</td>
         </tr>
       </tbody>  
     </table>
@@ -89,11 +89,11 @@
     </thead>
     <tbody>
       <tr>
-        <td>Naughty</td>
-        <td>Nas</td>
-        <td>naughtynas@gmail.com</td>
-        <td>4321 Example Dr. Memphis, Tennessee 12345</td>
-        <td>+1 (232)-234-3456</td>
+        <td>{{ adminInfo.firstName }}</td>
+        <td>{{ adminInfo.lastName }}</td>
+        <td>{{ adminInfo.rentalUser.email }}</td>
+        <td>{{ adminInfo.address }} {{ adminInfo.city }}, {{ adminInfo.state }} {{ adminInfo.zip }}</td>
+        <td>{{ adminInfo.phoneNumber }}</td>
       </tr>
     </tbody>  
     </table>

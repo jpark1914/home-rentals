@@ -2,37 +2,47 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const backendHost = 'http://localhost:9000';
+
 export const environment = {
   production: false,
+  backendHost: backendHost,
   user: {
-    getUser: 'http://localhost:9000/user/get',
-    register: 'http://localhost:9000/user/save',
+    getUser: `${ backendHost }/user/get`,
+    register: `${ backendHost }/user/save`,
   },
   personal: {
-    get: 'http://localhost:9000/personal/get',
-    save: 'http://localhost:9000/personal/save',
+    get: `${ backendHost }/personal/get`,
+    save: `${ backendHost }/personal/save`,
+    getInfo: `${ backendHost }/personal/getInfo/`
   },
   spouse: {
-    get: 'http://localhost:9000/spouse/get',
-    save: 'http://localhost:9000/spouse/save',
+    get: `${ backendHost }/spouse/get`,
+    save: `${ backendHost }/spouse/save`,
   },
   vehicle: {
-    save: 'http://localhost:9000/vehicle/save',
-    get: 'http://localhost:9000/vehicle/get'
+    save: `${ backendHost }/vehicle/save`,
+    get: `${ backendHost }/vehicle/get`
   },
   bank: {
-    save: 'http://localhost:9000/bank/save',
-    get: 'http://localhost:9000/bank/get'
+    save: `${ backendHost }/bank/save`,
+    get: `${ backendHost }/bank/get`
   },
   reference: {
-    save: 'http://localhost:9000/references/save',
-    get: 'http://localhost:9000/references/get'
+    save: `${ backendHost }/references/save`,
+    get: `${ backendHost }/references/get`
   },
   other: {
-    save: 'http://localhost:9000/other/save',
-    get: 'http://localhost:9000/other/get'
+    save: `${ backendHost }/other/save`,
+    get: `${ backendHost }/other/get`
+  },
+  rentalprops: {
+    save: `${ backendHost }/rentalprops/save`,
+    getProp: `${ backendHost }/rentalprops/get/`,
+    getPage: `${ backendHost }/rentalprops/getPage/`,
+    getPageAdmin: `${ backendHost }/rentalprops/getPageAdmin/`
   }
-
+  
 };
 
 /*

@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'reference-info', component: ReferenceInfoPageComponent },
   { path: 'other-info', component: OtherInfoPageComponent },
   { path: 'rental-admin', component: RentalsAdminPageComponent },
-  { path: 'rental-admin-save', component: RentalsAdminSavePageComponent },
+  { path: 'rental-admin-save/:unitId', component: RentalsAdminSavePageComponent },
+  { path: 'rental-admin-add', component: RentalsAdminSavePageComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 ];
 
