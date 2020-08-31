@@ -34,7 +34,8 @@ export class SpouseInfoService {
         this.messageService.setMsg("success", "Your spouse info has been updated");
         if (redirect === "stay") {
           //document.querySelector("#page").scroll(0, 0);
-          location.reload();
+          //location.reload();
+          this.router.navigate(['/spouse-info'])
         } else if (redirect === "next") {
           this.router.navigate(['/vehicle-info'])
         } else {

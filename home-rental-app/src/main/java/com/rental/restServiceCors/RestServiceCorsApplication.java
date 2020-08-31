@@ -17,7 +17,9 @@ public class RestServiceCorsApplication {
 				registry.addMapping("/**")
 				.allowedMethods("GET", "POST", "PUT", "DELETE")
 				.allowedHeaders("*")
-				.allowedOrigins("http://localhost:4200");
+				.allowedOrigins("*");
+//				.allowedOrigins("http://localhost:4200")
+//				.allowedOrigins("http://ec2-3-134-245-222.us-east-2.compute.amazonaws.com:4200");
 			}
 		};
 	}
