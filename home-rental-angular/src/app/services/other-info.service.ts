@@ -45,7 +45,8 @@ export class OtherInfoService {
         this.messageService.setMsg("success", "Your other info has been updated");
         if (redirect === "stay") {
           //document.querySelector("#page").scroll(0, 0);
-          location.reload();
+          //location.reload();
+          this.router.navigate(['/other-info'])
         } else if (redirect === "next") {
           this.router.navigate(['/landing'])
         } else {

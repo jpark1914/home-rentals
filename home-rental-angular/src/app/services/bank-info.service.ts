@@ -34,7 +34,8 @@ export class BankInfoService {
         this.messageService.setMsg("success", "Your bank info has been updated");
         if (redirect === "stay") {
           //document.querySelector("#page").scroll(0, 0);
-          location.reload();
+          //location.reload();
+          this.router.navigate(['/bank-info'])
         } else if (redirect === "next") {
           this.router.navigate(['/reference-info'])
         } else {
