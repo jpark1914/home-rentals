@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -81,9 +82,22 @@ public class RentalApp {
 	@Column(name="CONTACT_PERSON_PHONE")
 	private long contactPersonPhone;
 	
+	@Column
+	private String appDate;
+	
+	@Column
+	private String status;
+	
+	@Column
+	private String propertyOwner;
+	
 	//Data Model Mappings
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private RentalUsers rentalUser;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "UNIT_ID")
+	private RentalProps rentalProp;
 	
 }
