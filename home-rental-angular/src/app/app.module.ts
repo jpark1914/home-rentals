@@ -34,6 +34,8 @@ import { RentalsAdminPageComponent } from './page-components/rentals-admin-page/
 import { RentalAdminListComponent } from './components/rental-admin-list/rental-admin-list.component';
 import { RentalsAdminSavePageComponent } from './page-components/rentals-admin-save-page/rentals-admin-save-page.component';
 import { RentalAdminSaveComponent } from './components/rental-admin-save/rental-admin-save.component';
+import { RentalAppsPageComponent } from './page-components/rental-apps-page/rental-apps-page.component';
+import { RentalAppsListComponent } from './components/rental-apps-list/rental-apps-list.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { RentalAdminSaveComponent } from './components/rental-admin-save/rental-
     RentalAdminListComponent,
     RentalsAdminSavePageComponent,
     RentalAdminSaveComponent,
+    RentalAppsPageComponent,
+    RentalAppsListComponent,
   ],
   imports: [
     BrowserModule,

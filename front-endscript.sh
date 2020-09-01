@@ -1,4 +1,4 @@
-#docker rmi amdsolah/home-rental:front-end
+docker rmi amdsolah/home-rental:front-end
 cd home-rental-angular
 cp ./dist/home-rental-angular/Dockerfile .
 ng build
