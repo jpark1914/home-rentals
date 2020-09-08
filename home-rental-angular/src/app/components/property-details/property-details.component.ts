@@ -17,7 +17,7 @@ export class PropertyDetailsComponent implements OnInit {
 
   images = ['/assets/logo.svg','/assets/living-room.svg', '/assets/bedroom.svg', '/assets/kitchen.svg'];
 
-  adminInfo : PersonalInfo = {
+  adminInfo: any = {
     dateOfBirth: "",
     firstName: "",
     lastName: "",

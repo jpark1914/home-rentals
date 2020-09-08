@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalInfo } from 'src/app/interfaces/personalInfo.interface';
-import { PersonalInfoService } from '../../services/personal-info.service'
+import { PersonalInfoService } from 'src/app/services/personal-info.service';
+import { DEFAULT_PERSONAL_INFO } from 'src/app/constants/personalInfo.constant';
 import { LoginService } from 'src/app/services/login.service';
 import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 
@@ -11,35 +12,7 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 })
 export class PersonalInfoFormComponent implements OnInit {
 
-  // personalInfo = {
-  //   firstName: 'Maurie',
-  //   lastName: 'Giustini',
-  //   address: '28 Example Rd',
-  //   city: 'Exampletown',
-  //   state: 'Tennessee',
-  //   zip: 38018,
-  //   phoneNumber: 2122122122,
-  //   dateOfBirth: '2020-01-01',
-  //   driverLicense: 111222333,
-  //   ssn: 111222333
-  // }
-  //user: RentalUser = this.loginService.getLoggedInUser();
-
-  personalInfo: PersonalInfo = {
-    personId: null,
-    userId: null,
-    dateOfBirth: null,
-    firstName: "",
-    lastName: "",
-    phoneNumber: null,
-    driverLicense: null,
-    ssn: null,
-    address: "",
-    city: "",
-    state: "",
-    zip: null,
-    rentalUser: null,
-  };
+  personalInfo: PersonalInfo = DEFAULT_PERSONAL_INFO;
 
   constructor(private personalInfoService: PersonalInfoService,
     private loginService: LoginService) { }
