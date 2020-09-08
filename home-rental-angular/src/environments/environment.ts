@@ -15,7 +15,6 @@ export const environment = {
   personal: {
     get: `${ backendHost }/personal/get`,
     save: `${ backendHost }/personal/save`,
-    getInfo: `${ backendHost }/personal/getInfo/`
   },
   spouse: {
     get: `${ backendHost }/spouse/get`,

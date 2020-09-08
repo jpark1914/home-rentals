@@ -1,6 +1,6 @@
 import { PersonalInfo } from 'src/app/interfaces/personalInfo.interface';
 
-export const DEFAULT_PERSONAL_INFO = {
+export const DEFAULT_PERSONAL_INFO : PersonalInfo = {
   personId: null,
 
   firstName: "",

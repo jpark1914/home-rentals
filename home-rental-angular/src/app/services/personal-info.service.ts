@@ -56,19 +56,6 @@ export class PersonalInfoService {
     );
   }
 
-  getPersonalInfoUnauthorized(userId): Observable<HttpResponse<PersonalInfo>> {
-    return this.http.get(environment.personal.getInfo + userId, {
-      observe: "response"
-    }).pipe(
-      map((res : HttpResponse<PersonalInfo>) => { 
-        if (res.status === 204) {
-          console.log("No personal info found");
-        }
-        return res;
-      })
-    );
-  }
-
   private handleNoContent(res: HttpResponse<any>) {
     if (res.status === 204) {
       console.log("No personal info found")
@@ -77,14 +64,4 @@ export class PersonalInfoService {
     return res;
   }
 
-  // private handleSaveError(res: Response) {
-  //   if (res.status === 401) {
-  //     console.log("Either user is unauthorized.")
-  //     this.messageService.setMsg("warning", "No personal info found");
-  //   } else if (res.status === 400) {
-  //     console.log("You have a bad request. The form isn't correct")
-  //     this.messageService.setMsg("warning", "Please fill out form correctly.");
-  //   }
-  //   return of(res);
-  // }
 }
