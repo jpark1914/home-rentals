@@ -20,6 +20,11 @@ export interface RentalProperty {
   unitAC: string;
   unitTrashRecycle: string;
   unitWifi: string;
+  ownerFirstName?: string;
+  ownerLastName?: string;
+  ownerFullAddress?: string;
+  ownerEmail?: string;
+  ownerPhone?: number; 
   status?: string;
   startDate?: string;
   term?: number;
