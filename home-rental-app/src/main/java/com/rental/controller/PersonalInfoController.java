@@ -41,7 +41,7 @@ public class PersonalInfoController {
 	
 	@GetMapping(value="/get")
 	public ResponseEntity<PersonalInfo> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
-		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
+		long userId = rus.findUserByUserDetails(user).getUserId();
 		Optional<PersonalInfo> opPersonal = pis.getPersonalInfo(userId);
 		if (opPersonal.isPresent()) {
 			return ResponseEntity.ok(opPersonal.get());
@@ -50,14 +50,12 @@ public class PersonalInfoController {
 		}
 	}
 	
-	@GetMapping(value="/getInfo/{userId}")
-	public ResponseEntity<PersonalInfo> getPersonalInfoOfUser(@PathVariable Long userId) {
-		Optional<PersonalInfo> opPersonal = pis.getPersonalInfoUnauthorized(userId);
-		if (opPersonal.isPresent()) {
-			return ResponseEntity.ok(opPersonal.get());
-		} else {
-			return ResponseEntity.noContent().build();
-		}
-	}
+	/*
+	 * @GetMapping(value="/getInfo/{userId}") public ResponseEntity<PersonalInfo>
+	 * getPersonalInfoOfUser(@PathVariable Long userId) { Optional<PersonalInfo>
+	 * opPersonal = pis.getPersonalInfoUnauthorized(userId); if
+	 * (opPersonal.isPresent()) { return ResponseEntity.ok(opPersonal.get()); } else
+	 * { return ResponseEntity.noContent().build(); } }
+	 */
 
 }

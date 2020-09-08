@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rental.entity.PersonalInfo;
 import com.rental.entity.RentalProps;
 import com.rental.entity.RentalUsers;
+import com.rental.service.PersonalInfoService;
 import com.rental.service.RentalPropsService;
 import com.rental.service.RentalUserService;
 
@@ -29,16 +31,18 @@ public class RentalPropsController {
 	
 	private RentalPropsService rps;
 	private RentalUserService rus;
+	private PersonalInfoService pis;
 
 	@Autowired
-	public RentalPropsController(RentalPropsService rps, RentalUserService rus) {
+	public RentalPropsController(RentalPropsService rps, RentalUserService rus, PersonalInfoService pis) {
 		this.rps = rps;
 		this.rus = rus;
+		this.pis = pis;
 	}
 	
 	@GetMapping(value = "/getPage/{pageNum}")
 	public ResponseEntity<Page<RentalProps>> getRentalPropsPage(@PathVariable Integer pageNum) {
-		return ResponseEntity.ok(this.rps.getRentalPropertiesUnauthorized(pageNum));
+		return ResponseEntity.ok(this.rps.getRentalProperties(pageNum));
 	}
 	
 	@GetMapping(value = "/getPageAdmin/{pageNum}")
@@ -50,25 +54,28 @@ public class RentalPropsController {
 	@GetMapping(value="/get/{unitId}")
 	public ResponseEntity<RentalProps> getRentalProps(@PathVariable Integer unitId, @AuthenticationPrincipal UserDetails user) {
 		Optional<RentalProps> oprp = this.rps.getRentalPropertyById(unitId);
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
 		if (!oprp.isPresent()) {	
 			return ResponseEntity.noContent().build();
-		} 
-		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
-		if (!this.rps.propertyOwner(oprp.get(), rentalUser)) {
-			oprp = this.rps.getRentalPropertyByIdUnauthorized(unitId);
+		}
+		else if (!this.rps.propertyOwner(oprp.get(), rentalUser)) {
 			return ResponseEntity.status(203).body(oprp.get());
-		}	
-		return ResponseEntity.ok(oprp.get());
-
+		} else {
+			return ResponseEntity.ok(oprp.get());
+		}
 	}
 	
 	@PostMapping(value = "/save")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<String> saveRentalProps(@RequestBody RentalProps rentalProp, @AuthenticationPrincipal UserDetails user) {
-		RentalUsers rentalUser = this.rus.findUserByEmail(user.getUsername());
-		rentalProp.setRentalUser(rentalUser);
-		this.rps.saveNewRentalProperty(rentalProp);
-		return ResponseEntity.ok("Success");
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		Optional<PersonalInfo> opPersonalInfo = this.pis.getPersonalInfo(rentalUser.getUserId());
+		if (!opPersonalInfo.isPresent()) {
+			return ResponseEntity.notFound().build();
+		} else {
+			this.rps.saveNewRentalProperty(rentalProp, opPersonalInfo.get());
+			return ResponseEntity.ok("Success");
+		}
 	}
 	
 	
