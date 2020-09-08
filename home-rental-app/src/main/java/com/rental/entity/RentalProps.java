@@ -69,7 +69,18 @@ public class RentalProps {
 	@Column
 	private String startDate;
 	@Column
-	private int term;
+	private Integer term;
+	
+	@Column
+	private String ownerFirstName;
+	@Column
+	private String ownerLastName;
+	@Column
+	private String ownerFullAddress;
+	@Column
+	private String ownerEmail;
+	@Column
+	private Integer ownerPhone;
 	
 	private transient Long userId;
 	

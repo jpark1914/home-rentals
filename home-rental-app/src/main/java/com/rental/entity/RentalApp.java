@@ -36,21 +36,20 @@ public class RentalApp {
 	private Integer petsWeight;
 	
 	@Column
-	private String appDate;
+	private String appSubmitDate;
 	
 	@Column
 	private String status;
 	
-	@Column
-	private String propertyOwner;
 	
+	private transient Long userId;
 	//Data Model Mappings
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private RentalUsers rentalUser;
 	
-	private transient Long userId;
 	
+	private transient Long unitId;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "UNIT_ID")
 	private RentalProps rentalProp;

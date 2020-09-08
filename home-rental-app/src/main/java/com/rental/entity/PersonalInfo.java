@@ -54,12 +54,12 @@ public class PersonalInfo {
 	@Column
 	private String landlord;
 	@Column
-	private long landlordPhone;
+	private Long landlordPhone;
 	
 	@Column
-	private String contactPersonFName;
+	private String contactPersonFirstName;
 	@Column
-	private String contactPersonLName;
+	private String contactPersonLastName;
 	@Column
 	private Long contactPersonPhone;
 	
