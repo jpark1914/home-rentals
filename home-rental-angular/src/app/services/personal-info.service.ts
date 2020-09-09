@@ -22,7 +22,7 @@ export class PersonalInfoService {
     this.messageService.clearMsg();
   }
 
-  savePersonalInfo(personalInfo: PersonalInfo, redirect: string) {
+  savePersonalInfo(personalInfo: PersonalInfo, redirect: string, reload) {
     this.http.post(environment.personal.save, personalInfo, {
       headers: {
         "Authorization": this.storage.get('authorization')
@@ -35,7 +35,8 @@ export class PersonalInfoService {
         if (redirect === "stay") {
           //document.querySelector("#page").scroll(0, 0);
           //location.reload();
-          this.router.navigate(['/personal-info'])
+          //this.router.navigate(['/personal-info'])
+          reload();
         } else if (redirect === "next") {
           this.router.navigate(['/spouse-info'])
         } else {

@@ -36,7 +36,7 @@ export class PersonalInfoFormComponent implements OnInit {
 
   submitPersonalInfo(redirect: string) {
     console.log(this.personalInfo);
-    this.personalInfoService.savePersonalInfo(this.personalInfo, redirect);
+    this.personalInfoService.savePersonalInfo(this.personalInfo, redirect, this.checkPersonalInfo.bind(this));
   }
 
   ngOnInit(): void {
