@@ -21,6 +21,35 @@ export class VehicleInfoFormComponent implements OnInit {
     rentalUser: null
   }
 
+  vehicleArray: VehicleInfo[] = [];
+  vehicleSelected: number = null;
+
+  select(i : number) {
+    if (this.vehicleSelected !== i) {
+      this.vehicleSelected = i;
+    } else {
+      this.vehicleSelected = null;
+    }
+  }
+
+  add() {
+    this.vehicleArray.push({
+      carId: null,
+      userId: null,
+      make: "",
+      model: "",
+      year: null,
+      color: "",
+      tagNumber: null,
+      state: "",
+      rentalUser: null
+    });
+  }
+
+  delete(i : number) {
+    this.vehicleArray.splice(i, 1);
+  }
+
   constructor(
     private vehicleInfoService: VehicleInfoService,
     private loginService: LoginService
