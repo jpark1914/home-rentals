@@ -1,7 +1,5 @@
 package com.rental.entity;
 
-import java.sql.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,17 +12,19 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class SpouseInfo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="SPOUSE_SEQ")
 	@Column(name="SPOUSE_ID")
-	private int spouseId;
+	private Integer spouseId;
 	
 	private transient Long userId;
 	

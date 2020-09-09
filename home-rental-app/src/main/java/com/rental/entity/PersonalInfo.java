@@ -1,7 +1,5 @@
 package com.rental.entity;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +12,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name="PERSONAL_INFO")
-@Data
+@Getter @Setter @NoArgsConstructor
 public class PersonalInfo {
 	
 	@Id

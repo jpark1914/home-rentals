@@ -12,10 +12,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class RentalApp {
 	
 	@Id
@@ -50,8 +53,25 @@ public class RentalApp {
 	
 	
 	private transient Long unitId;
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "UNIT_ID")
 	private RentalProps rentalProp;
+	
+	private transient Integer personId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "PERSON_ID")
+	private PersonalInfo personalInfo;
+	
+	private transient Integer spouseId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "SPOUSE_ID")
+	private SpouseInfo spouseInfo;
+	
+	private transient Integer bankId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "BANK_ID")
+	private BankInfo bankInfo;
+	
+	
 	
 }

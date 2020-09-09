@@ -10,17 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table 
-@Data
+@Getter @Setter @NoArgsConstructor
 public class BankInfo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="BANK_SEQ")
 	@Column(name="BANK_ID")
-	private int bankId;
+	private Integer bankId;
 	
 	private transient Long userId;
 	
@@ -28,7 +30,7 @@ public class BankInfo {
 	private String bankName;
 	
 	@Column(name="PHONE_NUMBER")
-	private long phoneNumber;
+	private Long phoneNumber;
 	
 	@Column(name="BANK_ADDRESS")
 	private String bankAddress;
@@ -40,13 +42,13 @@ public class BankInfo {
 	private String bankState;
 	
 	@Column(name="BANK_ZIP")
-	private int bankZip;
+	private Integer bankZip;
 	
 	@Column(name="CHECKING_NO")
-	private long checkingAccNo;
+	private Long checkingAccNo;
 	
 	@Column(name="SAVINGS_NO")
-	private long savingsAccNo;
+	private Long savingsAccNo;
 	
 	//Model Mapping
 	@OneToOne(cascade = CascadeType.ALL)

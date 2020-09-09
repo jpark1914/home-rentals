@@ -1,7 +1,5 @@
 package com.rental.entity;
 
-import java.sql.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,17 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class RentalProps {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="PROP_SEQ")
 	@Column
-	private int unitId;	
+	private Integer unitId;	
 	
 	@Column
 	private String unitAddress;
@@ -38,7 +38,7 @@ public class RentalProps {
 	@Column
 	private String unitDescription;
 	@Column
-	private double rentAmount;
+	private Double rentAmount;
 	
 	@Column
 	private String unitType;
