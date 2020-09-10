@@ -42,7 +42,7 @@ export class VehicleInfoFormComponent implements OnInit {
   }
 
   add() {
-    this.vehicleInfoService.addVehicleInfo(defaultVehicle)
+    this.vehicleInfoService.addVehicleInfo(this.defaultVehicle)
       .subscribe((resp) => {
         if (resp.status === 200 || resp.status === 409) {
           this.vehicleArray = resp.body;
@@ -52,7 +52,7 @@ export class VehicleInfoFormComponent implements OnInit {
 
   delete(i : number) {
     if (confirm("Are you sure you want to delete?")) {
-      this.vehicleInfoService.deleteVehicleInfo(vehicleArray[i].carId)
+      this.vehicleInfoService.deleteVehicleInfo(this.vehicleArray[i].carId)
         .subscribe((resp) => {
           if (resp.status === 200) {
             this.vehicleArray = resp.body;
@@ -70,9 +70,9 @@ export class VehicleInfoFormComponent implements OnInit {
   }
 
   update(redirect : string) {
-    this.vehicleInfoService.updateVehicleInfo(vehicleArray)
+    this.vehicleInfoService.updateVehicleInfo(this.vehicleArray)
       .subscribe((resp) => {
-        if (resp === 200) {
+        if (resp.status === 200) {
           if (redirect === 'back') {
             this.router.navigate(['/spouse-info'])
           } else if (redirect === 'next') {
@@ -86,9 +86,7 @@ export class VehicleInfoFormComponent implements OnInit {
   }
 
   checkLogin() {
-    if (this.loginService.isLoggedIn()) {
-      this.vehicleInfo.userId = this.loginService.getLoggedInUser().userId;
-    } else {
+    if (!this.loginService.isLoggedIn()) {
       this.loginService.logout();
     }
   }

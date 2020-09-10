@@ -13,7 +13,7 @@
         <div class="d-flex p-2">
           <h4 class="flex-fill clickable" (click)="select(i)">Vehicle {{i+1}}</h4>
           <button class="btn btn-info" (click)="delete(i)">Delete</button>
-        </Div>
+        </div>
         <div *ngIf="vehicleSelected === i">
           <h4 class="mt-3 ml-3">About</h4>
           <hr class="m-1">

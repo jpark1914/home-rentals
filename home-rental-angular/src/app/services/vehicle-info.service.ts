@@ -21,7 +21,7 @@ export class VehicleInfoService {
     this.messageService.clearMsg();
   }
 
-  addVehicleInfo(vehicleInfo: VehicleInfo) : Observable<HttpResponse<VehicleInfo[]>> {
+  addVehicleInfo(vehicleInfo: VehicleInfo) : Observable<HttpResponse<any>> {
     return this.http.post(environment.vehicle.add, [vehicleInfo], {
       headers: {
         "Authorization": this.storage.get('authorization')      
@@ -30,7 +30,7 @@ export class VehicleInfoService {
     });
   }
 
-  updateVehicleInfo(vehicles: VehicleInfo[]) : Observable<HttpResponse<VehicleInfo[]>> {
+  updateVehicleInfo(vehicles: VehicleInfo[]) : Observable<HttpResponse<any>> {
     return this.http.put(environment.vehicle.update, vehicles, {
       headers: {
         "Authorization": this.storage.get('authorization')      
@@ -39,8 +39,8 @@ export class VehicleInfoService {
     });
   }
 
-  deleteVehicleInfo(carId : number) : Observable<HttpResponse<VehicleInfo[]>> {
-    return this.http.post(environment.vehicle.delete + carId, {
+  deleteVehicleInfo(carId : number) : Observable<HttpResponse<any>> {
+    return this.http.delete(environment.vehicle.delete + carId, {
       headers: {
         "Authorization": this.storage.get('authorization')      
       },
