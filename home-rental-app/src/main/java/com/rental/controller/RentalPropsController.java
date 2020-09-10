@@ -69,7 +69,7 @@ public class RentalPropsController {
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<String> saveRentalProps(@RequestBody RentalProps rentalProp, @AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
-		Optional<PersonalInfo> opPersonalInfo = this.pis.getPersonalInfo(rentalUser.getUserId());
+		Optional<PersonalInfo> opPersonalInfo = this.pis.getPersonalInfo(rentalUser);
 		if (!opPersonalInfo.isPresent()) {
 			return ResponseEntity.notFound().build();
 		} else {

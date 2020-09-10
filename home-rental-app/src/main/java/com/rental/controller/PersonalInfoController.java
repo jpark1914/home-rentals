@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rental.entity.PersonalInfo;
+import com.rental.entity.RentalUsers;
 import com.rental.service.PersonalInfoService;
 import com.rental.service.RentalUserService;
 
@@ -33,16 +34,16 @@ public class PersonalInfoController {
 	}
 	
 	@PostMapping(value="/save")
-	public String savePersonalInfo(@RequestBody PersonalInfo pi) {
-		System.out.println(pi);
-		pis.savePersonalInfo(pi);
-		return "Success";
+	public ResponseEntity<PersonalInfo> savePersonalInfo(@RequestBody PersonalInfo pi, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		pis.savePersonalInfo(pi, rentalUser);
+		return ResponseEntity.ok(pis.getPersonalInfo(rentalUser).get());
 	}
 	
 	@GetMapping(value="/get")
 	public ResponseEntity<PersonalInfo> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
-		long userId = rus.findUserByUserDetails(user).getUserId();
-		Optional<PersonalInfo> opPersonal = pis.getPersonalInfo(userId);
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		Optional<PersonalInfo> opPersonal = pis.getPersonalInfo(rentalUser);
 		if (opPersonal.isPresent()) {
 			return ResponseEntity.ok(opPersonal.get());
 		} else {

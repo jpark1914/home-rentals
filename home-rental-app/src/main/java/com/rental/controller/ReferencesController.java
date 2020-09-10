@@ -36,23 +36,23 @@ public class ReferencesController {
 	}
 	
 	@PostMapping(value = "/add")
-	public ResponseEntity<String> addRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
+	public ResponseEntity<List<References>> addRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
 		String result = this.refS.addRefs(references, rentalUser);
 		if (result.equals(ReferencesService.TOO_MANY_REFS)) {
-			return ResponseEntity.status(409).body(result);
+			return ResponseEntity.status(409).body(refS.getRef(rentalUser));
 		}
-		return ResponseEntity.ok(result);
+		return ResponseEntity.ok(refS.getRef(rentalUser));
 	}
 	
 	@PutMapping(value = "/update")
-	public ResponseEntity<String> updateRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
+	public ResponseEntity<List<References>> updateRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = rus.findUserByUserDetails(user);
 		String result = refS.updateRefs(references, rentalUser);
 		if (result.equals(ReferencesService.NUM_REF_MISMATCH)) {
-			return ResponseEntity.status(409).body(result);
+			return ResponseEntity.status(409).body(refS.getRef(rentalUser));
 		}
-		return ResponseEntity.ok(result);
+		return ResponseEntity.ok(refS.getRef(rentalUser));
 		
 	}
 	
@@ -60,17 +60,13 @@ public class ReferencesController {
 	public ResponseEntity<List<References>> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
 		List<References> references = refS.getRef(rentalUser);
-		if (references.size() != 0) {
-			return ResponseEntity.ok(references);
-		} else {
-			return ResponseEntity.noContent().build();
-		}
+		return ResponseEntity.ok(references);
 	}
 	
 	@DeleteMapping(value="/delete")
-	public ResponseEntity<String> deleteRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
+	public ResponseEntity<List<References>> deleteRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
 		String result = refS.deleteRef(references, rentalUser);
-		return ResponseEntity.ok(result);
+		return ResponseEntity.ok(refS.getRef(rentalUser));
 	}
 }

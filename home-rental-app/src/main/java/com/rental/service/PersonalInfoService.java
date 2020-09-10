@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rental.entity.PersonalInfo;
+import com.rental.entity.RentalUsers;
 import com.rental.repo.PersonalInfoRepo;
 import com.rental.repo.RentalUserRepo;
 
@@ -22,13 +23,22 @@ public class PersonalInfoService {
 	}
 	
 	
-	public void savePersonalInfo(PersonalInfo pi) {
-		pi.setRentalUser(rur.findById(pi.getUserId()).get());
+	public static final String SAVE_SUCCESS = "Success. Personal Info saved.";
+	
+	public String savePersonalInfo(PersonalInfo pi, RentalUsers rentalUser) {
+		PersonalInfo oldPi = pir.findPersonalInfoOfUser(rentalUser.getUserId());
+		if (oldPi != null) {
+			pi.setPersonId(oldPi.getPersonId());
+		} else {
+			pi.setPersonId(null);
+		}
+		pi.setRentalUser(rentalUser);
 		pir.save(pi);
+		return SAVE_SUCCESS;
 	}
 	
-	public Optional<PersonalInfo> getPersonalInfo(long userId) {
-		PersonalInfo pi = pir.findPersonalInfoOfUser(userId);
+	public Optional<PersonalInfo> getPersonalInfo(RentalUsers rentalUser) {
+		PersonalInfo pi = pir.findPersonalInfoOfUser(rentalUser.getUserId());
 		return Optional.ofNullable(pi);
 	}
 
