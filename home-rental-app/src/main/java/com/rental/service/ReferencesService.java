@@ -64,6 +64,7 @@ public class ReferencesService {
 	public String deleteRef(List<References> refs, RentalUsers rentalUser) {
 		List<References> oldRefs = this.refR.findReferencesOfUser(rentalUser.getUserId());
 		for (References ref : refs) {
+			ref.setRentalUser(rentalUser);
 			if (oldRefs.contains(ref)) {
 				refR.delete(ref);
 			}
