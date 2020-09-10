@@ -57,11 +57,10 @@ public class VehicleInfoService {
 	
 	public static final String DELETE_SUCCESS = "Success. Vehicles Deleted.";
 	
-	public String deleteVehicles(List<VehicleInfo> vehicles, RentalUsers rentalUser) {
+	public String deleteVehicles(Integer carId, RentalUsers rentalUser) {
 		List<VehicleInfo> oldVehicles = vir.findVehicleInfoOfUser(rentalUser.getUserId());
-		for (VehicleInfo vehicle: vehicles) {
-			vehicle.setRentalUser(rentalUser);
-			if (oldVehicles.contains(vehicle)) {
+		for (VehicleInfo vehicle: oldVehicles) {
+			if (vehicle.getCarId().equals(carId)) {
 				vir.delete(vehicle);
 			}
 		}

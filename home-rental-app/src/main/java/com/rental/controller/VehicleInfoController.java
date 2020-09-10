@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,10 +58,10 @@ public class VehicleInfoController {
 		return ResponseEntity.ok(vis.getVehicleInfo(rentalUser));
 	}
 	
-	@DeleteMapping(value="/delete")
-	public ResponseEntity<List<VehicleInfo>> deleteVehicles(@RequestBody List<VehicleInfo> vehicles, @AuthenticationPrincipal UserDetails user) {
+	@DeleteMapping(value="/delete/{carId}")
+	public ResponseEntity<List<VehicleInfo>> deleteVehicles(@PathVariable Integer carId, @AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = rus.findUserByUserDetails(user);
-		vis.deleteVehicles(vehicles, rentalUser);
+		vis.deleteVehicles(carId, rentalUser);
 		return ResponseEntity.ok(vis.getVehicleInfo(rentalUser));
 	}
 	

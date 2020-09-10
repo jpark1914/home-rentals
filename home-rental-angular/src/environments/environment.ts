@@ -21,7 +21,9 @@ export const environment = {
     save: `${ backendHost }/spouse/save`,
   },
   vehicle: {
-    save: `${ backendHost }/vehicle/save`,
+    add: `${ backendHost }/vehicle/add`,
+    update: `${ backendHost }/vehicle/update`,
+    delete: `${ backendHost }/vehicle/delete/`,
     get: `${ backendHost }/vehicle/get`
   },
   bank: {
