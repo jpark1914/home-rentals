@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rental.entity.OtherInfo;
+import com.rental.entity.RentalUsers;
 import com.rental.service.OtherInfoService;
 import com.rental.service.RentalUserService;
 
@@ -32,14 +33,16 @@ public class OtherInfoController {
 	}
 	
 	@PostMapping(value = "/save")
-	public String saveOtherInfo(@RequestBody OtherInfo otherInfo) {
-		return ois.saveOtherInfo(otherInfo);
+	public ResponseEntity<OtherInfo> saveOtherInfo(@RequestBody OtherInfo otherInfo, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		ois.saveOtherInfo(otherInfo, rentalUser);
+		return ResponseEntity.ok(ois.getOtherInfo(rentalUser).get());
 	}
 	
 	@GetMapping(value="/get")
 	public ResponseEntity<OtherInfo> getOtherInfo(@AuthenticationPrincipal UserDetails user) {
-		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
-		Optional<OtherInfo> opOther = ois.getOtherInfo(userId);
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		Optional<OtherInfo> opOther = ois.getOtherInfo(rentalUser);
 		if (opOther.isPresent()) {
 			return ResponseEntity.ok(opOther.get());
 		} else {

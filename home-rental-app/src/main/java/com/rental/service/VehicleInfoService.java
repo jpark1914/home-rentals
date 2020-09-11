@@ -28,7 +28,7 @@ public class VehicleInfoService {
 	
 	public String updateVehicles(List<VehicleInfo> vehicles, RentalUsers rentalUser) {
 		List<VehicleInfo> oldVehicles = vir.findVehicleInfoOfUser(rentalUser.getUserId());
-		if (oldVehicles.size() == vehicles.size()) {
+		if (oldVehicles.size() != vehicles.size()) {
 			return NUM_VEHICLE_MISMATCH;
 		}
 		for (int i = 0; i < oldVehicles.size(); i++) {

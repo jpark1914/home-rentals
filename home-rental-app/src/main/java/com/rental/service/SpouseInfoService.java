@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rental.entity.RentalUsers;
 import com.rental.entity.SpouseInfo;
 import com.rental.repo.RentalUserRepo;
 import com.rental.repo.SpouseInfoRepo;
@@ -21,14 +22,22 @@ public class SpouseInfoService {
 		this.rur = rur;
 	}
 	
-	public String saveSpouse(SpouseInfo spouse) {
-		spouse.setRentalUser(rur.findById(spouse.getUserId()).get());
+	public static final String SAVE_SUCCESS = "Success. Spouse info saved.";
+	
+	public String saveSpouse(SpouseInfo spouse, RentalUsers rentalUser) {
+		SpouseInfo oldSpouse = sir.findSpouseInfoOfUser(rentalUser.getUserId());
+		if (oldSpouse != null) {
+			spouse.setSpouseId(oldSpouse.getSpouseId());
+		} else {
+			spouse.setSpouseId(null);
+		}
+		spouse.setRentalUser(rentalUser);
 		sir.save(spouse);
-		return "Spouse info saved";
+		return SAVE_SUCCESS;
 	}
 	
-	public Optional<SpouseInfo> getSpouseInfo(long userId) {
-		SpouseInfo si = sir.findSpouseInfoOfUser(userId);
+	public Optional<SpouseInfo> getSpouseInfo(RentalUsers rentalUser) {
+		SpouseInfo si = sir.findSpouseInfoOfUser(rentalUser.getUserId());
 		return Optional.ofNullable(si);
 	}
 	

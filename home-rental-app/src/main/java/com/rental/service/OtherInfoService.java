@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rental.entity.OtherInfo;
+import com.rental.entity.RentalUsers;
 import com.rental.repo.OtherInfoRepo;
 import com.rental.repo.RentalUserRepo;
 
@@ -21,14 +22,22 @@ public class OtherInfoService {
 		this.rur = rur;
 	}
 	
-	public String saveOtherInfo(OtherInfo otherInfo) {
-		otherInfo.setRentalUser(rur.findById(otherInfo.getUserId()).get());
+	public static final String SAVE_SUCCESS = "Success. Other info saved.";
+	
+	public String saveOtherInfo(OtherInfo otherInfo, RentalUsers rentalUser) {
+		OtherInfo oldOtherInfo = oir.findOtherInfoOfUser(rentalUser.getUserId());
+		if (oldOtherInfo != null) {
+			otherInfo.setOtherId(oldOtherInfo.getOtherId());
+		} else {
+			otherInfo.setOtherId(null);
+		}
+		otherInfo.setRentalUser(rentalUser);
 		oir.save(otherInfo);
-		return "Other Information has been saved";
+		return SAVE_SUCCESS;
 	}
 	
-	public Optional<OtherInfo> getOtherInfo(long userId) {
-		OtherInfo oi = oir.findOtherInfoOfUser(userId);
+	public Optional<OtherInfo> getOtherInfo(RentalUsers rentalUser) {
+		OtherInfo oi = oir.findOtherInfoOfUser(rentalUser.getUserId());
 		return Optional.ofNullable(oi);
 	}
 	
