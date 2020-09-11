@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,10 +64,10 @@ public class ReferencesController {
 		return ResponseEntity.ok(references);
 	}
 	
-	@DeleteMapping(value="/delete")
-	public ResponseEntity<List<References>> deleteRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
+	@DeleteMapping(value="/delete/{refId}")
+	public ResponseEntity<List<References>> deleteRefs(@PathVariable Integer refId, @AuthenticationPrincipal UserDetails user) {
 		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
-		String result = refS.deleteRef(references, rentalUser);
+		refS.deleteRef(refId, rentalUser);
 		return ResponseEntity.ok(refS.getRef(rentalUser));
 	}
 }

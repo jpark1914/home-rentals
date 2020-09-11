@@ -31,7 +31,9 @@ export const environment = {
     get: `${ backendHost }/bank/get`
   },
   reference: {
-    save: `${ backendHost }/references/save`,
+    add: `${ backendHost }/references/add`,
+    update: `${ backendHost }/references/update`,
+    delete: `${ backendHost }/references/delete/`,
     get: `${ backendHost }/references/get`
   },
   other: {

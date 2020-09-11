@@ -17,8 +17,8 @@ public interface ReferencesRepo extends JpaRepository<References, Long>{
 	@Query("SELECT r FROM References r WHERE r.rentalUser.userId = ?1")
 	public List<References> findReferencesOfUser(long userId); 
 	
-	@Transactional
-	@Modifying
-	@Query("DELETE FROM References r WHERE r.rentalUser.userId = ?1")
-	public void deleteAllByUserId(long userId);
+	//@Transactional
+	//@Modifying
+	//@Query("DELETE FROM References r WHERE r.rentalUser.userId = ?1")
+	//public void deleteAllByUserId(long userId);
 }

@@ -61,11 +61,10 @@ public class ReferencesService {
 	
 	public static final String DELETE_SUCCESS =  "Success. References Deleted.";
 	
-	public String deleteRef(List<References> refs, RentalUsers rentalUser) {
+	public String deleteRef(Integer refId, RentalUsers rentalUser) {
 		List<References> oldRefs = this.refR.findReferencesOfUser(rentalUser.getUserId());
-		for (References ref : refs) {
-			ref.setRentalUser(rentalUser);
-			if (oldRefs.contains(ref)) {
+		for (References ref : oldRefs) {
+			if (ref.getRefId().equals(refId)) {
 				refR.delete(ref);
 			}
 		}

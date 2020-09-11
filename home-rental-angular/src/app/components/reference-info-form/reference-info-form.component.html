@@ -12,7 +12,7 @@
       <div class="border" *ngFor="let ri of riArray; let i = index">
         <div class="d-flex p-2">
           <h4 class="flex-fill clickable" (click)="select(i)">Reference {{i+1}}</h4>
-          <button class="btn btn-info" (click)="deleteReference(i)">Delete</button>
+          <button class="btn btn-info" (click)="delete(i)">Delete</button>
         </div>
         <div *ngIf="riSelected === i">
           <h5 class="mt-3 ml-3">About</h5>
@@ -77,91 +77,13 @@
       </div>
     </div>
     <div class="px-2 py-4 d-flex justify-content-center">
-      <button (click)="addReference()" class="btn btn-info">Add Reference</button>
+      <button (click)="add()" class="btn btn-info">Add Reference</button>
     </div>
     <hr class="mt-3 mb-5">
     <div class="d-flex justify-content-around">
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('back')">Go Back
-      </button>
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('stay')">Save
-      </button>
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('next')">Save &
-        Continue</button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="update('back')">Save and Go Back</button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="update('stay')">Save</button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="update('next')">Save and Continue</button>
     </div>
   </div>
 </div>
-
-<!-- <div class="d-flex justify-content-center py-4 px-2">
-  <div class="border p-3">
-    <div class="text-center">
-      <h3 class="mb-3">Reference Information</h3>
-    </div>
-    <h4 class="mt-3 ml-3">About</h4>
-    <hr class="m-1">
-    <div class="d-flex flex-wrap">
-      <div class="p-3">
-        <h6 class="font-weight-bold">Ref. First Name</h6>
-        <input type="text" [(ngModel)]="referenceInfo.refFirstName" class="mb-3 p-2" size="40" />
-      </div>
-      <div class="p-3">
-        <h6 class="font-weight-bold">Ref. Last Name</h6>
-        <input type="text" [(ngModel)]="referenceInfo.refLastName" class="mb-3 p-2" size="40" />
-      </div>
-    </div>
-    <div class="d-flex flex-wrap">
-      <div class="p-3">
-        <h6 class="font-weight-bold">Ref. Phone Number</h6>
-        <input type="number" [(ngModel)]="referenceInfo.phoneNo" class="mb-3 p-2" />
-      </div>
-      <div class="p-3">
-        <h6 class="font-weight-bold">Relationship</h6>
-        <input type="text" [(ngModel)]="referenceInfo.relationship" class="mb-3 p-2" size="40" />
-      </div>
-    </div>
-    <h4 class="mt-3 ml-3">Address</h4>
-    <hr class="m-1">
-    <div class="d-flex flex-wrap">
-      <div class="p-3">
-        <h6 class="font-weight-bold">Address</h6>
-        <input type="text" [(ngModel)]="referenceInfo.address" class="mb-3 p-2" size="65" />
-      </div>
-    </div>
-    <div class="d-flex flex-wrap">
-      <div class="p-3">
-        <h6 class="font-weight-bold">City</h6>
-        <input type="text" [(ngModel)]="referenceInfo.city" class="mb-3 p-2" size="30" />
-      </div>
-      <div class="p-3">
-        <h6 class="font-weight-bold">State</h6>
-        <input type="text" [(ngModel)]="referenceInfo.state" class="mb-3 p-2" size="30" />
-      </div>
-    </div>
-    <div class="d-flex flex-wrap">
-      <div class="p-3">
-        <h6 class="font-weight-bold">Zip Code</h6>
-        <input type="text" [(ngModel)]="referenceInfo.zip" class="mb-3 p-2" size="30" />
-      </div>
-    </div>
-    <h4 class="mt-3 ml-3">Credit Grantor</h4>
-    <hr class="mt-1 mb-3">
-    <div class="d-flex flex-wrap">
-      <div class="p-3">
-        <h6 class="font-weight-bold">Credit Grantor</h6>
-        <input type="text" [(ngModel)]="referenceInfo.creditGrantor" class="mb-3 p-2" size="30" />
-      </div>
-      <div class="p-3">
-        <h6 class="font-weight-bold">Grantor Number</h6>
-        <input type="number" [(ngModel)]="referenceInfo.grantorNo" class="mb-3 p-2" size="30" />
-      </div>
-    </div>
-    <hr class="mt-3 mb-5">
-    <div class="d-flex justify-content-around">
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('back')">Go Back
-      </button>
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('stay')">Save
-      </button>
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitReferenceInfo('next')">Save &
-        Continue</button>
-    </div>
-  </div>
-</div>   -->

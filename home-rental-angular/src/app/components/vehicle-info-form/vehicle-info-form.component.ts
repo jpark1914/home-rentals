@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 import { VehicleInfo } from 'src/app/interfaces/vehicleInfo.interface';
 import { LoginService } from 'src/app/services/login.service';
 import { VehicleInfoService } from 'src/app/services/vehicle-info.service';
@@ -13,7 +14,8 @@ import { VehicleInfoService } from 'src/app/services/vehicle-info.service';
 export class VehicleInfoFormComponent implements OnInit {
 
   constructor(
-    private router : Router,
+    private router: Router,
+    private messageService: MessageService,
     private vehicleInfoService: VehicleInfoService,
     private loginService: LoginService
   ) { }
@@ -65,7 +67,7 @@ export class VehicleInfoFormComponent implements OnInit {
     this.vehicleInfoService.getVehicleInfo().subscribe(resp => {
       if (resp.status === 200) {
         this.vehicleArray = resp.body;
-      }
+      } 
     });
   }
 
@@ -73,6 +75,7 @@ export class VehicleInfoFormComponent implements OnInit {
     this.vehicleInfoService.updateVehicleInfo(this.vehicleArray)
       .subscribe((resp) => {
         if (resp.status === 200) {
+          this.messageService.setMsg("success", "Your vehicle info has been updated");
           if (redirect === 'back') {
             this.router.navigate(['/spouse-info'])
           } else if (redirect === 'next') {
