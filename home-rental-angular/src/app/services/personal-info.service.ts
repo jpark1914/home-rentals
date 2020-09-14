@@ -14,8 +14,8 @@ export class PersonalInfoService {
   constructor(private http: HttpClient,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,) { }
 
-  savePersonalInfo(personalInfo: PersonalInfo) : Observable<HttpResponse<PersonalInfo>> {
-    return this.http.post<PersonalInfo>(environment.personal.save, personalInfo, {
+  savePersonalInfo(personalInfo: PersonalInfo) : Observable<HttpResponse<any>> {
+    return this.http.post(environment.personal.save, personalInfo, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },
@@ -23,8 +23,8 @@ export class PersonalInfoService {
     })
   }
 
-  getPersonalInfo(): Observable<HttpResponse<PersonalInfo>> {
-    return this.http.get<PersonalInfo>(environment.personal.get, {
+  getPersonalInfo(): Observable<HttpResponse<any>> {
+    return this.http.get(environment.personal.get, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },

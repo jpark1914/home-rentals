@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OtherInfo } from 'src/app/interfaces/otherInfo.interface'
-import { OtherInfoService } from 'src/app/services/other-info.service'
-import { LoginService } from 'src/app/services/login.service'
+import { DEFAULT_OTHER_INFO } from 'src/app/constants/otherInfo.constant';
+import { OtherInfo } from 'src/app/interfaces/otherInfo.interface';
+import { OtherInfoService } from 'src/app/services/other-info.service';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-other-info-form',
@@ -10,41 +13,52 @@ import { LoginService } from 'src/app/services/login.service'
 })
 export class OtherInfoFormComponent implements OnInit {
 
-  otherInfo: OtherInfo = {
-    bankruptcy: false,
-    evictNotice: false,
-    refusedRentPay: false,
-    suedForUnlawfulDetainer: false,
-    userId: null,
-    rentalUser: null,
-  }
+  otherInfo: OtherInfo = DEFAULT_OTHER_INFO;
 
-  constructor(private otherInfoService: OtherInfoService, private loginService: LoginService) { }
+  constructor(private otherInfoService: OtherInfoService, 
+    private router: Router,
+    private messageService: MessageService,
+    private loginService: LoginService) { }
 
   checkLogin() {
     if (this.loginService.isLoggedIn()) {
-      this.otherInfo.userId = this.loginService.getLoggedInUser().userId;
+      console.log("User logged in.");
     } else {
       this.loginService.logout();
     }
   }
 
-  checkOtherInfo(){
+  get(){
     this.otherInfoService.getOtherInfo().subscribe(res => {
       if(res.status === 200){
         this.otherInfo = res.body;
-        this.otherInfo.userId = res.body.rentalUser.userId;
+      } else if (res.status === 204) {
+        console.log("No other info found")
+        this.messageService.setMsg("info", "Your other info has not been set yet. Enter your info and click save.");
       }
     })
   }
 
   ngOnInit(): void {
     this.checkLogin();
-    this.checkOtherInfo();
+    this.get();
   }
 
-  submitOtherInfo(redirect){
+  save(redirect){
     console.log(this.otherInfo);
-    this.otherInfoService.saveOtherInfo(this.otherInfo, redirect);
+    this.otherInfoService.saveOtherInfo(this.otherInfo)
+      .subscribe((resp) => {
+        if (resp.status === 200) {
+          this.messageService.setMsg("success", "Your other info has been updated");
+          if (redirect === "back") {
+            this.router.navigate(['/reference'])
+          } else if (redirect === "next") {
+            this.router.navigate(['/landing'])
+          } else {
+            this.otherInfo = resp.body;
+            document.querySelector("#page").scroll(0, 0);
+          }
+        }
+      });
   }
 }
