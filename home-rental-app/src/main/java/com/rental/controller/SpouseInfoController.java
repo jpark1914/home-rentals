@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rental.entity.RentalUsers;
 import com.rental.entity.SpouseInfo;
 import com.rental.service.RentalUserService;
 import com.rental.service.SpouseInfoService;
@@ -32,14 +33,16 @@ public class SpouseInfoController {
 	}
 	
 	@PostMapping("/save")
-	public void saveSpouse(@RequestBody SpouseInfo spouse) {
-		sis.saveSpouse(spouse);
+	public ResponseEntity<SpouseInfo> saveSpouse(@RequestBody SpouseInfo spouse, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		sis.saveSpouse(spouse, rentalUser);
+		return ResponseEntity.ok(sis.getSpouseInfo(rentalUser).get());
 	}
 	
 	@GetMapping("/get")
 	public ResponseEntity<SpouseInfo> getSpouseInfo(@AuthenticationPrincipal UserDetails user){
-		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
-		Optional<SpouseInfo> spSpouse = sis.getSpouseInfo(userId);
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		Optional<SpouseInfo> spSpouse = sis.getSpouseInfo(rentalUser);
 		if(spSpouse.isPresent()) {
 			return ResponseEntity.ok(spSpouse.get());
 		}else {

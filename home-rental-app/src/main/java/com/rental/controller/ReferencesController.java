@@ -8,13 +8,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rental.entity.References;
+import com.rental.entity.RentalUsers;
 import com.rental.service.ReferencesService;
 import com.rental.service.RentalUserService;
 
@@ -32,19 +36,38 @@ public class ReferencesController {
 		this.rus = rus;
 	}
 	
-	@PostMapping(value = "/save")
-	public String saveRefs(@RequestBody References[] references) {
-		return refS.saveRef(references);
+	@PostMapping(value = "/add")
+	public ResponseEntity<List<References>> addRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		String result = this.refS.addRefs(references, rentalUser);
+		if (result.equals(ReferencesService.TOO_MANY_REFS)) {
+			return ResponseEntity.status(409).body(refS.getRef(rentalUser));
+		}
+		return ResponseEntity.ok(refS.getRef(rentalUser));
+	}
+	
+	@PutMapping(value = "/update")
+	public ResponseEntity<List<References>> updateRefs(@RequestBody List<References> references, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		String result = refS.updateRefs(references, rentalUser);
+		if (result.equals(ReferencesService.NUM_REF_MISMATCH)) {
+			return ResponseEntity.status(409).body(refS.getRef(rentalUser));
+		}
+		return ResponseEntity.ok(refS.getRef(rentalUser));
+		
 	}
 	
 	@GetMapping(value="/get")
 	public ResponseEntity<List<References>> getPersonalInfo(@AuthenticationPrincipal UserDetails user) {
-		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
-		Optional<List<References>> opReferences = refS.getRef(userId);
-		if (opReferences.isPresent()) {
-			return ResponseEntity.ok(opReferences.get());
-		} else {
-			return ResponseEntity.noContent().build();
-		}
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		List<References> references = refS.getRef(rentalUser);
+		return ResponseEntity.ok(references);
+	}
+	
+	@DeleteMapping(value="/delete/{refId}")
+	public ResponseEntity<List<References>> deleteRefs(@PathVariable Integer refId, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = this.rus.findUserByUserDetails(user);
+		refS.deleteRef(refId, rentalUser);
+		return ResponseEntity.ok(refS.getRef(rentalUser));
 	}
 }

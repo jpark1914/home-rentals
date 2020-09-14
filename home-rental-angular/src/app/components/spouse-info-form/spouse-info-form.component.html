@@ -83,12 +83,9 @@
     </div>
     <hr class="mt-3 mb-5">
     <div class="d-flex justify-content-around">
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitSpouseInfo('back')">Go Back
-      </button>
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitSpouseInfo('stay')"> Save
-      </button>
-      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="submitSpouseInfo('next')"> Save &
-        Continue</button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="save('back')">Save and Go Back</button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="save('stay')">Save</button>
+      <button class="mx-2 btn btn-primary" style="width: 25%;" (click)="save('next')">Save and Continue</button>
     </div>
   </div>
 </div>

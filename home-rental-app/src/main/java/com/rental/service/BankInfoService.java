@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rental.entity.BankInfo;
-
+import com.rental.entity.RentalUsers;
 import com.rental.repo.BankInfoRepo;
 import com.rental.repo.RentalUserRepo;
 
@@ -22,13 +22,22 @@ public class BankInfoService {
 		this.rur = rur;
 	}
 	
-	public void saveBankInfo(BankInfo bank) {
-		bank.setRentalUser(rur.findById(bank.getUserId()).get());
-		bir.save(bank);
+	public static final String SAVE_SUCCESS = "Success. Bank info saved.";
+	
+	public String saveBankInfo(BankInfo bankInfo, RentalUsers rentalUser) {
+		BankInfo oldBankInfo = bir.findBankInfoOfUser(rentalUser.getUserId());
+		if (oldBankInfo != null) {
+			bankInfo.setBankId(oldBankInfo.getBankId());
+		} else {
+			bankInfo.setBankId(null);
+		}
+		bankInfo.setRentalUser(rentalUser);
+		bir.save(bankInfo);
+		return SAVE_SUCCESS;
 	}
 	
-	public Optional<BankInfo> getBankInfo(long userId) {
-		BankInfo bi = bir.findBankInfoOfUser(userId);
+	public Optional<BankInfo> getBankInfo(RentalUsers rentalUser) {
+		BankInfo bi = bir.findBankInfoOfUser(rentalUser.getUserId());
 		return Optional.ofNullable(bi);
 	}
 

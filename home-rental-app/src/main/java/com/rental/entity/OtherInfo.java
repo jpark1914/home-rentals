@@ -10,31 +10,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class OtherInfo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="OTHER_INFO_SEQ")
 	@Column(name="OTHER_ID")
-	private int otherId;
+	private Integer otherId;
 	
-	private transient long userId;
+	private transient Long userId;
 	
 	@Column(name="BANKRUPTCY")
-	private boolean bankruptcy;
+	private Boolean bankruptcy;
 	
 	@Column(name="EVICT_NOTICE")
-	private boolean evictNotice;
+	private Boolean evictNotice;
 
 	@Column(name="REFUSED_PAY")
-	private boolean refusedRentPay;
+	private Boolean refusedRentPay;
 	
 	@Column(name="SUED_UNLAWFL_DETAINER")
-	private boolean suedForUnlawfulDetainer;
+	private Boolean suedForUnlawfulDetainer;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")

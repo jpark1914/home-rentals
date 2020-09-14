@@ -8,16 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class Referral {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="REFERRAL_SEQ" )
 	@Column(name = "REFERRAL_ID")
-	private long referralId;
+	private Long referralId;
 	
 	@Column(name = "REFERRAL_TYPE")
 	private String referralType;

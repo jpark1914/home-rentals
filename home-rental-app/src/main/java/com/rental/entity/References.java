@@ -10,17 +10,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class References {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="REFERENCE_SEQ")
 	@Column(name="REF_ID")
-	private int refId;
+	private Integer refId;
 	
 	private transient Long userId;
 	

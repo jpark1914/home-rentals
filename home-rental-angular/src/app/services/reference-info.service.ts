@@ -1,7 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { MessageService } from './message.service';
 import { WebStorageService, LOCAL_STORAGE } from 'ngx-webstorage-service';
 import { Reference } from 'src/app/interfaces/reference.interface'
 import { environment } from 'src/environments/environment';
@@ -14,54 +12,42 @@ import { map } from 'rxjs/operators';
 export class ReferenceInfoService {
 
   constructor(private http: HttpClient,
-    private router: Router,
-    private messageService: MessageService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,) { }
 
-  init() {
-    this.messageService.clearMsg();
-  }
-
-  saveReferenceInfo(referenceInfo: Reference[], redirect: string) {
-    this.http.post(environment.reference.save, referenceInfo, {
+  addReferenceInfo(reference : Reference): Observable<HttpResponse<any>> {
+    return this.http.post(environment.reference.add, [reference], {
       headers: {
         "Authorization": this.storage.get('authorization')
       },
       observe: "response",
-      responseType: "text"
-    }).subscribe((res: HttpResponse<string>) => {
-      if (res.status === 200) {
-        this.messageService.setMsg("success", "Your reference info has been updated");
-        if (redirect === "stay") {
-          //document.querySelector("#page").scroll(0, 0);
-          //location.reload();
-          this.router.navigate(['/reference-info'])
-        } else if (redirect === "next") {
-          this.router.navigate(['/other-info'])
-        } else {
-          this.router.navigate(['/bank-info'])
-        }
-      }
     });
   }
 
-  getReferenceInfo(): Observable<HttpResponse<Reference[]>> {
+  updateReferenceInfo(references : Reference[]): Observable<HttpResponse<any>> {
+    return this.http.put(environment.reference.update, references, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response", 
+    });
+  }
+
+  deleteReferenceInfo(refId : number): Observable<HttpResponse<any>> {
+    return this.http.delete(environment.reference.delete + refId, {
+      headers: {
+        "Authorization": this.storage.get('authorization')
+      },
+      observe: "response", 
+    });
+  }
+
+  getReferenceInfo(): Observable<HttpResponse<any>> {
     return this.http.get(environment.reference.get, {
       headers: {
         "Authorization": this.storage.get('authorization')
       },
       observe: "response",
-    }).pipe(
-      map(this.handleNoContent.bind(this))
-    );
-  }
-
-  private handleNoContent(res: HttpResponse<any>) {
-    if (res.status === 204) {
-      console.log("No reference info found")
-      this.messageService.setMsg("info", "Your references have not been set yet. Enter your info and click save.");
-    }
-    return res;
+    })
   }
 
 }

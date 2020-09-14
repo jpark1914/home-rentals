@@ -2,8 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-const backendHost = 'http://ec2-3-134-245-222.us-east-2.compute.amazonaws.com:9000';
-//const backendHost = 'http://localhost:9000';
+//const backendHost = 'http://ec2-3-134-245-222.us-east-2.compute.amazonaws.com:9000';
+const backendHost = 'http://localhost:9000';
 
 export const environment = {
   production: false,
@@ -15,14 +15,15 @@ export const environment = {
   personal: {
     get: `${ backendHost }/personal/get`,
     save: `${ backendHost }/personal/save`,
-    getInfo: `${ backendHost }/personal/getInfo/`
   },
   spouse: {
     get: `${ backendHost }/spouse/get`,
     save: `${ backendHost }/spouse/save`,
   },
   vehicle: {
-    save: `${ backendHost }/vehicle/save`,
+    add: `${ backendHost }/vehicle/add`,
+    update: `${ backendHost }/vehicle/update`,
+    delete: `${ backendHost }/vehicle/delete/`,
     get: `${ backendHost }/vehicle/get`
   },
   bank: {
@@ -30,7 +31,9 @@ export const environment = {
     get: `${ backendHost }/bank/get`
   },
   reference: {
-    save: `${ backendHost }/references/save`,
+    add: `${ backendHost }/references/add`,
+    update: `${ backendHost }/references/update`,
+    delete: `${ backendHost }/references/delete/`,
     get: `${ backendHost }/references/get`
   },
   other: {

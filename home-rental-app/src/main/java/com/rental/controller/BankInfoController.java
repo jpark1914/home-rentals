@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rental.entity.BankInfo;
+import com.rental.entity.RentalUsers;
 import com.rental.entity.BankInfo;
 import com.rental.service.BankInfoService;
 import com.rental.service.RentalUserService;
@@ -33,15 +34,16 @@ public class BankInfoController {
 	}
 	
 	@PostMapping(value="/save")
-	public String saveBankInfo(@RequestBody BankInfo bank) {
-		bis.saveBankInfo(bank);
-		return "Bank info saved";
+	public ResponseEntity<BankInfo> saveBankInfo(@RequestBody BankInfo bankInfo, @AuthenticationPrincipal UserDetails user) {
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		bis.saveBankInfo(bankInfo, rentalUser);
+		return ResponseEntity.ok(bis.getBankInfo(rentalUser).get());
 	}
 	
 	@GetMapping(value="/get")
 	public ResponseEntity<BankInfo> getBankInfo(@AuthenticationPrincipal UserDetails user) {
-		long userId = rus.findUserByEmail(user.getUsername()).getUserId();
-		Optional<BankInfo> opBank = bis.getBankInfo(userId);
+		RentalUsers rentalUser = rus.findUserByUserDetails(user);
+		Optional<BankInfo> opBank = bis.getBankInfo(rentalUser);
 		if (opBank.isPresent()) {
 			return ResponseEntity.ok(opBank.get());
 		} else {

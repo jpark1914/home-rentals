@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PersonalInfo } from 'src/app/interfaces/personalInfo.interface';
-import { PersonalInfoService } from '../../services/personal-info.service'
+import { MessageService } from 'src/app/services/message.service';
+import { PersonalInfoService } from 'src/app/services/personal-info.service';
+import { DEFAULT_PERSONAL_INFO } from 'src/app/constants/personalInfo.constant';
 import { LoginService } from 'src/app/services/login.service';
 import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 
@@ -11,37 +14,11 @@ import { RentalUser } from 'src/app/interfaces/rentalUser.interface';
 })
 export class PersonalInfoFormComponent implements OnInit {
 
-  // personalInfo = {
-  //   firstName: 'Maurie',
-  //   lastName: 'Giustini',
-  //   address: '28 Example Rd',
-  //   city: 'Exampletown',
-  //   state: 'Tennessee',
-  //   zip: 38018,
-  //   phoneNumber: 2122122122,
-  //   dateOfBirth: '2020-01-01',
-  //   driverLicense: 111222333,
-  //   ssn: 111222333
-  // }
-  //user: RentalUser = this.loginService.getLoggedInUser();
-
-  personalInfo: PersonalInfo = {
-    personId: null,
-    userId: null,
-    dateOfBirth: null,
-    firstName: "",
-    lastName: "",
-    phoneNumber: null,
-    driverLicense: null,
-    ssn: null,
-    address: "",
-    city: "",
-    state: "",
-    zip: null,
-    rentalUser: null,
-  };
+  personalInfo: PersonalInfo = DEFAULT_PERSONAL_INFO;
 
   constructor(private personalInfoService: PersonalInfoService,
+    private router: Router,
+    private messageService: MessageService,
     private loginService: LoginService) { }
 
   checkLogin() {
@@ -52,23 +29,38 @@ export class PersonalInfoFormComponent implements OnInit {
     }
   }
 
-  checkPersonalInfo() {
+  get() {
     this.personalInfoService.getPersonalInfo().subscribe(res => {
       if (res.status === 200) {
         this.personalInfo = res.body;
-        this.personalInfo.userId = res.body.rentalUser.userId;
+      } else if (res.status === 204) {
+        console.log("No personal info found")
+        this.messageService.setMsg("info", "Your profile has not been set yet. Enter your info and click save to set your profile.");
       }
     });
   }
 
-  submitPersonalInfo(redirect: string) {
+  save(redirect: string) {
     console.log(this.personalInfo);
-    this.personalInfoService.savePersonalInfo(this.personalInfo, redirect);
+    this.personalInfoService.savePersonalInfo(this.personalInfo)
+      .subscribe((resp) => {
+        if (resp.status === 200) {
+          this.messageService.setMsg("success", "Your personal info has been updated");
+          if (redirect === "next") {
+            this.router.navigate(['/spouse-info']);
+          } else if (redirect === "back") {
+            this.router.navigate(['/landing']);
+          } else {
+            this.personalInfo = resp.body;
+            document.querySelector("#page").scroll(0, 0);
+          }
+        }
+      });
   }
 
   ngOnInit(): void {
     this.checkLogin();
-    this.checkPersonalInfo();
+    this.get();
   }
 
 }

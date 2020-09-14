@@ -13,17 +13,19 @@ import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table
-@Data
+@Getter @Setter @NoArgsConstructor
 public class VehicleInfo {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="CAR_SEQ")
 	@Column(name="CAR_ID")
-	private int carId;
+	private Integer carId;
 	
 	private transient Long userId;
 	

@@ -1,10 +1,12 @@
 package com.rental.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rental.entity.RentalUsers;
 import com.rental.entity.VehicleInfo;
 import com.rental.repo.RentalUserRepo;
 import com.rental.repo.VehicleInfoRepo;
@@ -21,13 +23,51 @@ public class VehicleInfoService {
 		this.rur = rur;
 	}
 	
-	public void saveVehicleInfo(VehicleInfo vehicle) {
-		vehicle.setRentalUser(rur.findById(vehicle.getUserId()).get());
-		vir.save(vehicle);
+	public static final String SAVE_SUCCESS = "Success. Vehicles saved.";
+	public static final String NUM_VEHICLE_MISMATCH = "Fail. Number of vehicles do not correspond.";
+	
+	public String updateVehicles(List<VehicleInfo> vehicles, RentalUsers rentalUser) {
+		List<VehicleInfo> oldVehicles = vir.findVehicleInfoOfUser(rentalUser.getUserId());
+		if (oldVehicles.size() != vehicles.size()) {
+			return NUM_VEHICLE_MISMATCH;
+		}
+		for (int i = 0; i < oldVehicles.size(); i++) {
+			vehicles.get(i).setCarId(oldVehicles.get(i).getCarId());
+			vehicles.get(i).setRentalUser(rentalUser);
+		}
+		vir.saveAll(vehicles);
+		return SAVE_SUCCESS;
 	}
 	
-	public Optional<VehicleInfo> getVehicleInfo(long userId) {
-		VehicleInfo vi = vir.findVehicleInfoOfUser(userId);
-		return Optional.ofNullable(vi);
+	public static final Integer MAX_VEHICLES = 4;
+	public static final String TOO_MANY_VEHICLES = "Fail. User can have up to " + MAX_VEHICLES + "vehicles.";
+	
+	public String addVehicles(List<VehicleInfo> vehicles, RentalUsers rentalUser) {
+		List<VehicleInfo> oldVehicles = vir.findVehicleInfoOfUser(rentalUser.getUserId());
+		if (oldVehicles.size() >= MAX_VEHICLES) {
+			return TOO_MANY_VEHICLES;
+		}
+		for (VehicleInfo vehicle: vehicles) {
+			vehicle.setCarId(null);
+			vehicle.setRentalUser(rentalUser);
+		}
+		vir.saveAll(vehicles);
+		return SAVE_SUCCESS;
+	}
+	
+	public static final String DELETE_SUCCESS = "Success. Vehicles Deleted.";
+	
+	public String deleteVehicles(Integer carId, RentalUsers rentalUser) {
+		List<VehicleInfo> oldVehicles = vir.findVehicleInfoOfUser(rentalUser.getUserId());
+		for (VehicleInfo vehicle: oldVehicles) {
+			if (vehicle.getCarId().equals(carId)) {
+				vir.delete(vehicle);
+			}
+		}
+		return DELETE_SUCCESS;
+	}
+	
+	public List<VehicleInfo> getVehicleInfo(RentalUsers rentalUser) {
+		return vir.findVehicleInfoOfUser(rentalUser.getUserId());
 	}
 }
