@@ -1,5 +1,6 @@
 package com.rental.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -8,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,42 +27,50 @@ import com.rental.entity.RentalUsers;
 import com.rental.service.RentalUserService;
 
 @WebMvcTest(RentalUserController.class)
-public class RentalUserControllerTest {
+public class RentalUserControllerUnitTests {
 
-	@Autowired
+
 	private MockMvc mockMvc;
 	
+	@Autowired
+	public void setMockMvc(MockMvc mockMvc) {
+		this.mockMvc = mockMvc;
+	}
+
 	@MockBean
 	private RentalUserService rus;
 	
 	@MockBean
 	private PasswordEncoder passwordEncoder;
 
-	private UserDetails adminUserDetails;
-	private RentalUsers adminRentalUser;
 	
-	public void setUpAdminUser() {
+	public UserDetails getAdminUserDetails() {
 		ArrayList<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new UserAuthority());
 		roles.add(new AdminAuthority());
-		this.adminUserDetails = new User("naughtynas@gmail.com", "pass", roles);
-		this.adminRentalUser = new RentalUsers(1L,"naughtynas@gmail.com","pass","ADMIN");
+		return new User("naughtynas@gmail.com", "pass", roles);
+	}
+	
+	public RentalUsers getAdminRentalUser() {
+		return new RentalUsers(1L,"naughtynas@gmail.com","pass","ADMIN");
 	}
 	
 	@Test
-	public void shouldReturnDefaultMessage() throws Exception {
-
-		this.setUpAdminUser();
+	public void testgetEndpoint() throws Exception {
 		
+		UserDetails adminUser = getAdminUserDetails();
+		RentalUsers adminRentalUser = getAdminRentalUser();
+				
 		Mockito.when(rus.findUserByEmail("naughtynas@gmail.com"))
-			.thenReturn(this.adminRentalUser);
-		
+				.thenReturn(adminRentalUser);
 		Mockito.when(passwordEncoder.encode("pass")).thenReturn("pass");
 		
-		this.mockMvc
-			.perform(get("/user/get").with(user(this.adminUserDetails)))
+		String expectedJSON = "{\"userId\":1,\"email\":\"naughtynas@gmail.com\"," 
+				+ "\"password\":\"pass\",\"isAdmin\":\"ADMIN\"}";
+		
+		this.mockMvc.perform(get("/user/get").with(user(adminUser)))
 			.andExpect(status().isOk())
-			.andExpect(content().string("{\"userId\":1,\"email\":\"naughtynas@gmail.com\",\"password\":\"pass\",\"isAdmin\":\"ADMIN\"}"));
+			.andExpect(content().string(expectedJSON));
 	}
 
 }
