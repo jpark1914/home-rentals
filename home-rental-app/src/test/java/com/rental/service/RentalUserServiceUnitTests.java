@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.rental.HelperMethodsForTests;
 import com.rental.authority.AdminAuthority;
 import com.rental.authority.UserAuthority;
 import com.rental.entity.RentalUsers;
@@ -29,27 +30,16 @@ public class RentalUserServiceUnitTests {
 		@InjectMocks
 		private RentalUserService rus;
 		
-		public UserDetails getAdminUserDetails() {
-			ArrayList<GrantedAuthority> roles = new ArrayList<>();
-			roles.add(new UserAuthority());
-			roles.add(new AdminAuthority());
-			return new User("naughtynas@gmail.com", "pass", roles);
-		}
-		
-		public RentalUsers getAdminRentalUser() {
-			return new RentalUsers(1L,"naughtynas@gmail.com","pass","ADMIN");
-		}
-		
 		@Test
 		public void testFindUsersByEmailCallsRepoMethod() {
-			RentalUsers rentalUser = getAdminRentalUser();
+			RentalUsers rentalUser = HelperMethodsForTests.getAdminRentalUser();
 			rus.findUserByEmail(rentalUser.getEmail());
 			Mockito.verify(rur, times(1)).findRentalUsersByEmail(rentalUser.getEmail());
 		}
 		
 		@Test
 		public void testFindUsersByEmailReturnsUser() {
-			RentalUsers rentalUser = getAdminRentalUser();
+			RentalUsers rentalUser = HelperMethodsForTests.getAdminRentalUser();
 			Mockito.when(rur.findRentalUsersByEmail("naughtynas@gmail.com"))
 				.thenReturn(rentalUser);
 			assertThat(rus.findUserByEmail("naughtynas@gmail.com"))
@@ -58,8 +48,8 @@ public class RentalUserServiceUnitTests {
 		
 		@Test
 		public void testFindUsersByUserDetailsCallsRepoMethod() {
-			RentalUsers rentalUser = getAdminRentalUser();
-			UserDetails userDetails = getAdminUserDetails();
+			RentalUsers rentalUser = HelperMethodsForTests.getAdminRentalUser();
+			UserDetails userDetails = HelperMethodsForTests.getAdminUserDetails();
 			rus.findUserByUserDetails(userDetails);
 			Mockito.verify(rur, times(1)).findRentalUsersByEmail(rentalUser.getEmail());
 		}
@@ -67,8 +57,8 @@ public class RentalUserServiceUnitTests {
 		
 		@Test
 		public void testFindUsersByUserDetailsReturnsUser() {
-			RentalUsers rentalUser = getAdminRentalUser();
-			UserDetails userDetails = getAdminUserDetails();
+			RentalUsers rentalUser = HelperMethodsForTests.getAdminRentalUser();
+			UserDetails userDetails = HelperMethodsForTests.getAdminUserDetails();
 			Mockito.when(rur.findRentalUsersByEmail("naughtynas@gmail.com"))
 				.thenReturn(rentalUser);
 			assertThat(rus.findUserByUserDetails(userDetails))
@@ -76,13 +66,13 @@ public class RentalUserServiceUnitTests {
 		}
 		
 		@Test
-		public void testFindUsersByUserDetailsNotNull() {
+		public void testFindUsersByUserDetailsNull() {
 			assertThat(rus.findUserByUserDetails(null)).isEqualTo(null);
 		}
 		
 		@Test
 		public void testSaveCallsRepoMethod() {
-			RentalUsers rentalUser = getAdminRentalUser();
+			RentalUsers rentalUser = HelperMethodsForTests.getAdminRentalUser();
 			rus.save(rentalUser);
 			Mockito.verify(rur, times(1)).save(rentalUser);
 		}

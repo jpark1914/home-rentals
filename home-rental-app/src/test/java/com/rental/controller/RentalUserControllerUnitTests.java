@@ -1,28 +1,20 @@
 package com.rental.controller;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.rental.authority.AdminAuthority;
-import com.rental.authority.UserAuthority;
+import com.rental.HelperMethodsForTests;
 import com.rental.entity.RentalUsers;
 import com.rental.service.RentalUserService;
 
@@ -42,24 +34,12 @@ public class RentalUserControllerUnitTests {
 	
 	@MockBean
 	private PasswordEncoder passwordEncoder;
-
-	
-	public UserDetails getAdminUserDetails() {
-		ArrayList<GrantedAuthority> roles = new ArrayList<>();
-		roles.add(new UserAuthority());
-		roles.add(new AdminAuthority());
-		return new User("naughtynas@gmail.com", "pass", roles);
-	}
-	
-	public RentalUsers getAdminRentalUser() {
-		return new RentalUsers(1L,"naughtynas@gmail.com","pass","ADMIN");
-	}
 	
 	@Test
 	public void testgetEndpoint() throws Exception {
 		
-		UserDetails adminUser = getAdminUserDetails();
-		RentalUsers adminRentalUser = getAdminRentalUser();
+		UserDetails adminUser = HelperMethodsForTests.getAdminUserDetails();
+		RentalUsers adminRentalUser = HelperMethodsForTests.getAdminRentalUser();
 				
 		Mockito.when(rus.findUserByEmail("naughtynas@gmail.com"))
 				.thenReturn(adminRentalUser);
